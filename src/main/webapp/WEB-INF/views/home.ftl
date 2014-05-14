@@ -23,7 +23,6 @@
 </div>
 --!>
 <div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
-  <H2>Start</H2>
   <div class="carousel-inner">
     <div class="item active"><!-- class of active since it's the first item -->
       <img src="http://placehold.it/1200x480" alt="" />
