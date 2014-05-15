@@ -21,7 +21,7 @@
 	</div>
 	
 </div>
-<h3>Stanly 2</h3>
+
 <div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
   
   <div class="carousel-inner">
