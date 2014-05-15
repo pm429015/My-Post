@@ -1,5 +1,5 @@
 *.class
-
+pom.properties
 # Package Files #
 *.jar
 *.war
