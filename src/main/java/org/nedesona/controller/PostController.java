@@ -93,11 +93,22 @@ public class PostController {
 	public @ResponseBody
 	Object saveDeal(@RequestBody Deal deal) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.debug("Save a new deal");
+		logger.info("Save a new deal");
 		dealManager.saveDeal(deal);
 		postManager.addDeal(deal);
 		
 		return model;
 	}
+	
+	@RequestMapping(value = "/search")
+	public String search(@RequestParam String keyword) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		logger.warn("Search Keyword: "+keyword);
+		
+		model.put("search", keyword);
+		return "search";
+	}
+	
 
 }

@@ -1,31 +1,27 @@
+function searchSubmit(){
+	
+	var searchTerm = $('#keyword').val();
+	alert(searchTerm);
+	/*if (searchTerm != "") {
+		var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
 
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 1) {
+				document.getElementById('returnTable').innerHTML = "<img src='resources/graph/loading.GIF' />";
+			}
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById('returnTable').style.top = "50px";
+				document.getElementById("returnTable").innerHTML = xmlhttp.responseText;
 
-function PostListCtrl($scope, $http) {
-	$scope.id = '';
-	$scope.response = '';
-
-	$scope.view = function(){
+			}
+		};
 		
-		console.log("view start");
-		$http({    
-            		url: _context+'/viewPost',    
-            		method: "POST",   
-            		data: $scope.id,   
-            		headers: {'Content-Type': 'application/json'}    
-			}).success(function (data, status, headers, config) {    
-            // data contains the model which is provided by Spring
-            // $scope.comments.push is the way to add new comments into $scope
-				
-                                                                                                
-			}).error(function (data, status, headers, config) {    
-//				alert("Something Wrong "+status);    
-			});     
-     	};
-	
-	
-	
-
-
-	
+		xmlhttp.open("GET", "search?keyword="+searchTerm);
+		xmlhttp.send();
+	}*/
 }
-

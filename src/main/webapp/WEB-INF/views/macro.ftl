@@ -13,6 +13,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		
 		<#include "external-css-loader.ftl" />
+		<#include "external-js-loader.ftl" />
 	</head>
 	
 	<body>
