@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.nedesona.dao.PostDao;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Post;
@@ -50,6 +51,11 @@ public class PostManagerImpl implements PostManager {
 		Update updateQuery = new Update().set("deals." + deal.getId(),deal);
 		postDao.addDeal(query, updateQuery);
 
+	}
+
+	@Override
+	public List<Post> search(String keyword) {
+		return postDao.search(keyword);
 	}
 
 }

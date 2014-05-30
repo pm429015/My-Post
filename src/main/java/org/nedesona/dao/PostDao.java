@@ -16,4 +16,6 @@ public interface PostDao {
 	Post viewById(String id); 
 	
 	void addDeal(Query query, Update update);
+	
+	List<Post> search(String keyword);
 }

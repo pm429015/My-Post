@@ -48,17 +48,16 @@
 			<thead>
 				<tr>
 					<th>Topic</th>
-					<th>Description</th>
-					<th></th>
+					
 				</tr>
 			</thead>
 
 			<tbody>
 				<#list postList as post>
 				<tr>
-					<td>${post.title}</td>
-					<td>${post.description}</td>
-					<td><a href="view/${post.id}" > View</a></td>
+					<td><a href="view/${post.id}" >${post.title}</a></td>
+					<!--<td>${post.description}</td>-->
+					
 				</tr>
 				</#list>
 

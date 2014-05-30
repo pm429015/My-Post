@@ -53,7 +53,7 @@ public class PostController {
 	@RequestMapping(value = "/postDone")
 	public ModelAndView postDone() {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.debug("Post done");
+		logger.warn("Post done");
 		return new ModelAndView("postThankYou", model);
 	}
 
@@ -61,7 +61,7 @@ public class PostController {
 	public @ResponseBody
 	Object savePost(@RequestBody Post post) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.debug("Save a new post");
+		logger.warn("Save a new post");
 		postManager.savePost(post);
 
 		return model;
@@ -93,7 +93,7 @@ public class PostController {
 	public @ResponseBody
 	Object saveDeal(@RequestBody Deal deal) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.info("Save a new deal");
+		logger.warn("Save a new deal");
 		dealManager.saveDeal(deal);
 		postManager.addDeal(deal);
 		
@@ -101,13 +101,13 @@ public class PostController {
 	}
 	
 	@RequestMapping(value = "/search")
-	public String search(@RequestParam String keyword) {
+	public ModelAndView search(@RequestParam String keyword) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		
 		logger.warn("Search Keyword: "+keyword);
+		model.put("postList", postManager.search(keyword));
 		
-		model.put("search", keyword);
-		return "search";
+		return new ModelAndView("search", model);
 	}
 	
 

@@ -31,12 +31,12 @@
 
 		
 		</div><!-- end of container -->
-<#include "footer.ftl" />
+<!--<#include "footer.ftl" />-->
 		<script type="text/javascript">
 			var _context = '${rc.getContextPath()}';
 		</script>
 
-		<#include "external-js-loader.ftl" />
+		<!--<#include "external-js-loader.ftl" /> -->
  
 		<#nested>
 	</body>

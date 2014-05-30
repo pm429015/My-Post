@@ -15,5 +15,7 @@ public interface PostManager {
 	Post viewById(String id);
 	
 	void addDeal(Deal deal);
+	
+	List<Post> search(String keyword);
 
 }
