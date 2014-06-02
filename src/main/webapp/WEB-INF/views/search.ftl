@@ -1,11 +1,18 @@
 <#import "/spring.ftl" as spring /> <#import "macro.ftl" as macro/>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+<link href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
+
+<script type="text/javascript"
+	src="${rc.getContextPath()}/resources/js/pages/SearchResultList.js"></script>
+</script>
 
 <div class="starter-template row-fluid inner-col">
 	<div class="span12 center-table">
-		<table class="table table-hover">
+		<table class="table table-hover" id="resultTable">
 			<thead>
 				<tr>
-					<th>Topic</th>
+					<th>Subject</th>
 				</tr>
 			</thead>
 
