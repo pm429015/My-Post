@@ -24,6 +24,7 @@
 		<mongodb.driver.version>2.7.2</mongodb.driver.version>
 		<org.cloudfoundry-version>0.8.1</org.cloudfoundry-version>
 		<org.cloudfoundry-group>org.cloudfoundry</org.cloudfoundry-group>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -287,6 +288,18 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
 			<version>1.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- Spring Social -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-web</artifactId>
+			<version>1.1.0.RELEASE</version>
 		</dependency>
 
 
