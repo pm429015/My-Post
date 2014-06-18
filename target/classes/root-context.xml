@@ -16,4 +16,5 @@
 
 	<mongo:db-factory id="mongoDbFactory" dbname="deepakrathor"
 		host="127.0.0.1" port="27017" />
+	
 </beans>

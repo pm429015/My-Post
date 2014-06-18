@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/util 
+            http://www.springframework.org/schema/util/spring-util-3.0.xsd
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+        
+    <util:properties id="socialAuthProperties">
+        <prop key="googleapis.com.consumer_key">655785290080-h2q8m2isj465jspg0n41gkmfi019sdof.apps.googleusercontent.com</prop>
+        <prop key="googleapis.com.consumer_secret">e8iNCpuRzl-loIox3lQ73TQI</prop>
+        <prop key="graph.facebook.com.consumer_key">1495977243970076</prop>
+        <prop key="graph.facebook.com.consumer_secret">776f3641548764e254ee292fc49af640</prop>
+        
+    </util:properties>
+</beans>
