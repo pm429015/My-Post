@@ -5,7 +5,7 @@
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="${rc.getContextPath()}/resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/angular.js"></script>
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/angular-ui.js"></script>
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/angular-strap.js"></script>
