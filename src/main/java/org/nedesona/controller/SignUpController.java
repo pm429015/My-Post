@@ -35,37 +35,37 @@ public class SignUpController {
 		return new ModelAndView("signUp", model);
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public @ResponseBody
-	Object showSignUp(HttpServletRequest request, @RequestBody BookmarkUser user) {
-		Map<String, Object> model = new HashMap<String, Object>();
-		try {
-
-			String password = userManager.generateRandomPassword();
-			user.setPassword(password);
-			user.setPassChanged(false);
-			userManager.addNewUser(user);
-			SimpleMailMessage message = new SimpleMailMessage();
-
-			message.setFrom("pm429015@gmail.com");
-			message.setTo(user.getEmail());
-			message.setSubject("Welcome to Online Bookmark.");
-			message.setText("Dear "
-					+ user.getFullName()
-					+ ",\r\n\n\n\t You are not member of Online Bookmark Family.Use \'"
-					+ user.getPassword()
-					+ "\' to login to application.\r\n\n\n\nThank\r\nDeepak Rathor");
-
-			mailSender.send(message);
-			model.put("success", true);
-			model.put("msg",
-					"You have successfully register with Online Bookmark");
-		} catch (Exception e) {
-			model.put("success", false);
-			model.put("msg", "Error while processing your request.");
-		}
-
-		return model;
-	}
+//	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+//	public @ResponseBody
+//	Object showSignUp(HttpServletRequest request, @RequestBody BookmarkUser user) {
+//		Map<String, Object> model = new HashMap<String, Object>();
+//		try {
+//
+//			String password = userManager.generateRandomPassword();
+//			user.setPassword(password);
+//			user.setPassChanged(false);
+//			userManager.addNewUser(user);
+//			SimpleMailMessage message = new SimpleMailMessage();
+//
+//			message.setFrom("pm429015@gmail.com");
+//			message.setTo(user.getEmail());
+//			message.setSubject("Welcome to Online Bookmark.");
+//			message.setText("Dear "
+//					+ user.getFullName()
+//					+ ",\r\n\n\n\t You are not member of Online Bookmark Family.Use \'"
+//					+ user.getPassword()
+//					+ "\' to login to application.\r\n\n\n\nThank\r\nDeepak Rathor");
+//
+//			mailSender.send(message);
+//			model.put("success", true);
+//			model.put("msg",
+//					"You have successfully register with Online Bookmark");
+//		} catch (Exception e) {
+//			model.put("success", false);
+//			model.put("msg", "Error while processing your request.");
+//		}
+//
+//		return model;
+//	}
 
 }

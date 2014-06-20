@@ -30,23 +30,23 @@ public class ChangePasswordController {
 		return new ModelAndView("changePassword", model);
 	}
 
-	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public @ResponseBody
-	Object showSignUp(HttpServletRequest request,
-			@RequestBody Map<String, Object> data) {
-		Map<String, Object> model = new HashMap<String, Object>();
-		String oldPassword = (String) data.get("oldPassword");
-		String newPassword = (String) data.get("newPassword");
-		BookmarkUser user = BookmarkUtils.getUser(request);
-		if (user.getPassword().equals(oldPassword)) {
-			user.setPassword(newPassword);
-			user.setPassChanged(true);
-			userManager.updatePassword(user);
-			model.put("success", true);
-		} else {
-			model.put("success", false);
-			model.put("error", "Old password provided by you is incorrect.");
-		}
-		return model;
-	}
+//	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+//	public @ResponseBody
+//	Object showSignUp(HttpServletRequest request,
+//			@RequestBody Map<String, Object> data) {
+//		Map<String, Object> model = new HashMap<String, Object>();
+//		String oldPassword = (String) data.get("oldPassword");
+//		String newPassword = (String) data.get("newPassword");
+//		BookmarkUser user = BookmarkUtils.getUser(request);
+//		if (user.getPassword().equals(oldPassword)) {
+//			user.setPassword(newPassword);
+//			user.setPassChanged(true);
+//			userManager.updatePassword(user);
+//			model.put("success", true);
+//		} else {
+//			model.put("success", false);
+//			model.put("error", "Old password provided by you is incorrect.");
+//		}
+//		return model;
+//	}
 }

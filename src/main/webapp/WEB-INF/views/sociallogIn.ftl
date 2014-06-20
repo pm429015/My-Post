@@ -232,7 +232,7 @@ padding-top:10px;
 
 </style>
 
-<div class="row-fluid inner-col" ng-controller="SignInCtrl">
+<div class="row-fluid inner-col">
 
 <div id="loginform">
 		  
@@ -253,16 +253,18 @@ padding-top:10px;
         </td>
       </tr>
       <tr>
-        <td colspan="8" align="center">
+        <td colspan="10" align="center">
+        
           <div id="mainlogin">
           	<h1><font size="4" color="white">Login in through Your Email</font></h1>
-			<form action="#">
-				<input type="text" placeholder="Email" value="" required>
-				<button type="submit"><i class="fa fa-arrow-right">Login</i></button>
+			<form name="emailLoginForm" action="">
+				<input type="text" placeholder="Email" value="" id="email" name="email" required>
+				<label class="error" for="email" id="email_error"><font color="white">This field is required a valid email format.</font></label>
+				<button type="submit" id="emailsubmitbtn" ><i class="fa fa-arrow-right">Login</i></button>
 			</form>
 			<div id="note"><a href="#">You don't need to sign in</a></div>
-			
           </div>
+          
         </td>
       </tr>
     </table>
@@ -286,3 +288,7 @@ padding-top:10px;
          return tempStr.replace(/^\s*|\s*$/g,"");
       }
     </script>
+    
+<script type="text/javascript"
+	src="${rc.getContextPath()}/resources/js/pages/sociallogin.js"></script>    
+    

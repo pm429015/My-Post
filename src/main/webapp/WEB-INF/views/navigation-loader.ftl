@@ -21,11 +21,9 @@
 			            <#if !loggedInUser?exists>
 			            
 			            <ul class="nav pull-right">
+			            	
 			            	<li>
-			            		<a href="${rc.getContextPath()}/signUp">Sign Up</a>
-			            	</li>
-			            	<li>
-			            		<a href="${rc.getContextPath()}/signIn">Sign In</a>
+			            		<a href="${rc.getContextPath()}/login">LOG IN / SIGN UP</a>
 			            	</li>
 			            </ul>
 			            
