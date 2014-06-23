@@ -14,7 +14,7 @@ public class User {
 
 	private String firstName;
 	private String lastName;
-
+	private String gender;
 	private String userName;
 	private String password;
 	private String email;
@@ -87,6 +87,14 @@ public class User {
 
 	public void setDoj(Date doj) {
 		this.doj = doj;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,40 +50,59 @@ public class SocialLoginController {
 	public ModelAndView emailLogoin(HttpServletRequest request,@RequestParam(value = "email") String email,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		logger.warn("The email is ");
 		User user = new User();
 		user.setEmail(email);
 		userManager.checkUserExist(user);
-		
-		logger.warn(user.getEmail());
 		mail.sendMail(user.getEmail());
-		
-		
 		mv.setViewName("sociallogIn");
 		
 		return mv;
 	}
+
 	
 	@RequestMapping(value = "/authSuccess")
-    public ModelAndView getRedirectURL(final HttpServletRequest request)
+    public ModelAndView getRedirectURL(final HttpServletRequest request, HttpServletResponse response)
                     throws Exception {
             ModelAndView mv = new ModelAndView();
             List<Contact> contactsList = new ArrayList<Contact>();
             SocialAuthManager manager = socialAuthTemplate.getSocialAuthManager();
             AuthProvider provider = manager.getCurrentAuthProvider();
-            contactsList = provider.getContactList();
-            if (contactsList != null && contactsList.size() > 0) {
-                    for (Contact p : contactsList) {
-                            if (!StringUtils.hasLength(p.getFirstName())
-                                            && !StringUtils.hasLength(p.getLastName())) {
-                                    p.setFirstName(p.getDisplayName());
-                            }
-                    }
-            }
-            mv.addObject("id", provider.getProviderId());
-            mv.addObject("profile", provider.getUserProfile());
-            mv.addObject("contacts", contactsList);
-            mv.setViewName("authSuccess");
+            
+            // save the social user into db
+            User user = new User();
+            if (!provider.getUserProfile().getEmail().equals("")) {
+            	user.setEmail(provider.getUserProfile().getEmail());
+			}
+            
+            if (!provider.getUserProfile().getFirstName().equals("")) {
+            	user.setFirstName(provider.getUserProfile().getFirstName());
+			}
+            
+            if (!provider.getUserProfile().getLastName().equals("")) {
+            	user.setLastName(provider.getUserProfile().getLastName());
+			}
+            
+            if (!provider.getUserProfile().getGender().equals("")) {
+            	user.setGender(provider.getUserProfile().getGender());
+			}
+            userManager.checkUserExist(user);
+            
+//            mv.addObject("loggedInUser", user);
+//            mv.addObject("profile", provider.getUserProfile());
+//            mv.addObject("contacts", contactsList);
+            
+            // Bake cookies
+            int expireTime = 30;
+            Cookie loginName = new Cookie("Name", provider.getUserProfile().getFirstName());
+            loginName.setMaxAge(expireTime);
+            response.addCookie(loginName);
+            
+            Cookie loginEmail = new Cookie("Email", provider.getUserProfile().getEmail());
+            loginEmail.setMaxAge(expireTime);
+            response.addCookie(loginEmail);
+            
+            
+            mv.setViewName("home");
 
             return mv;
     }

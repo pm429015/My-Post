@@ -48,6 +48,7 @@
                 <th>Profile Field</th>
                 <th>Value</th>
         </tr>
+        
         <tr class="sectiontableentry1">
                 <td>Email:</td>
                 <td><c:out value="${profile.email}"/></td>
@@ -111,19 +112,19 @@
                 <th>Email</th>
                 <th>Profile URL</th>
         </tr>
-        <c:forEach var="contact" items="${contacts}" varStatus="index">
-                <tr class='<c:if test="${index.count % 2 == 0}">sectiontableentry2</c:if>
-                    <c:if test="${index.count % 2 != 0}">sectiontableentry1</c:if>'>
-                        <td>
-                <c:out value="${contact.firstName}"/> <c:out value="${contact.lastName}"/>
-            </td>
-                        <td><c:out value="${contact.email}"/></td>
-                        <td><a href='<c:out value="${contact.profileUrl}"/>' target="_new">
-                    <c:out value="${contact.profileUrl}"/>
-                </a>
-            </td>
-                </tr>
-        </c:forEach>
+<%--         <c:forEach var="contact" items="${contacts}" varStatus="index"> --%>
+<%--                 <tr class='<c:if test="${index.count % 2 == 0}">sectiontableentry2</c:if> --%>
+<%--                     <c:if test="${index.count % 2 != 0}">sectiontableentry1</c:if>'> --%>
+<!--                         <td> -->
+<%--                 <c:out value="${contact.firstName}"/> <c:out value="${contact.lastName}"/> --%>
+<!--             </td> -->
+<%--                         <td><c:out value="${contact.email}"/></td> --%>
+<%--                         <td><a href='<c:out value="${contact.profileUrl}"/>' target="_new"> --%>
+<%--                     <c:out value="${contact.profileUrl}"/> --%>
+<!--                 </a> -->
+<!--             </td> -->
+<!--                 </tr> -->
+<%--         </c:forEach> --%>
 </table>
 
 <h3> ${id} </h3>
