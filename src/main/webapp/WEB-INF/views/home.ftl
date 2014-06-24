@@ -55,6 +55,5 @@
     <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
 </div><!-- /.carousel -->
-<@macro.showFooter>
+
 	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/home.js"></script>
-</@macro.showFooter>

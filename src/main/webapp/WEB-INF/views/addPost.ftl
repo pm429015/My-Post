@@ -70,7 +70,6 @@
 <script type="text/javascript"
 	src="${rc.getContextPath()}/resources/js/pages/addPost.js"></script>
 	
-<@macro.showFooter />
 
 
 

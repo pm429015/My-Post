@@ -3,15 +3,16 @@ package org.nedesona.service;
 import java.util.Map;
 
 import org.nedesona.domain.BookmarkUser;
+import org.nedesona.domain.User;
 
 public interface UserManager {
 
-	void addNewUser(BookmarkUser user);
+//	void addNewUser(User user);
 
-	BookmarkUser validateUser(Map<String, Object> data);
+//	User validateUser(Map<String, Object> data);
+//
+//	void updatePassword(User user);
 	
-	String generateRandomPassword();
-
-	void updatePassword(BookmarkUser user);
+	void checkUserExist(User user);
 
 }

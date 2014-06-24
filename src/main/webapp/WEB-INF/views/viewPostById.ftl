@@ -62,10 +62,10 @@
 		</div>
 	</div>
 </div>
-<@macro.showFooter>
+
 <script type="text/javascript"
 	src="${rc.getContextPath()}/resources/js/pages/postctrl.js"></script>
-</@macro.showFooter>
+
 
 
 

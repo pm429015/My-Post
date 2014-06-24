@@ -28,21 +28,21 @@ public class SignInController {
 		return new ModelAndView("signIn", model);
 	}
 
-	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
-	public @ResponseBody
-	Object showSignUp(HttpServletRequest request,
-			@RequestBody Map<String, Object> data) {
-		Map<String, Object> model = new HashMap<String, Object>();
-		BookmarkUser user = userManager.validateUser(data);
-		if (user != null) {
-			request.getSession().setAttribute("loggedInUser", user);
-			model.put("isFirstLogin", user.getPassChanged());
-			model.put("user", user);
-			model.put("success", true);
-		} else {
-			model.put("success", false);
-		}
-
-		return model;
-	}
+//	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
+//	public @ResponseBody
+//	Object showSignUp(HttpServletRequest request,
+//			@RequestBody Map<String, Object> data) {
+//		Map<String, Object> model = new HashMap<String, Object>();
+//		BookmarkUser user = userManager.validateUser(data);
+//		if (user != null) {
+//			request.getSession().setAttribute("loggedInUser", user);
+//			model.put("isFirstLogin", user.getPassChanged());
+//			model.put("user", user);
+//			model.put("success", true);
+//		} else {
+//			model.put("success", false);
+//		}
+//
+//		return model;
+//	}
 }
