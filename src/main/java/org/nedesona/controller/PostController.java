@@ -67,13 +67,13 @@ public class PostController {
 		return model;
 	}
 
-	@RequestMapping(value = "/view/{id}")
+	@RequestMapping(value = "/{id}")
 	public String view(@PathVariable String id, Model model) throws Exception {
 		Post post = postManager.viewById(id);
 		model.addAttribute("post", post);
 
 		logger.debug(post);
-		return "viewPostById";
+		return "PostByID";
 	}
 
 	// @RequestMapping(value = "/insertDeal", method = RequestMethod.POST)

@@ -30,7 +30,7 @@
 			<tbody>
 				<#list postList as post>
 				<tr>
-					<td><a href="view/${post.id}" >${post.title}</a></td>
+					<td><a href="${post.id}" >${post.title}</a></td>
 					<!--<td>${post.description}</td>-->
 					
 				</tr>

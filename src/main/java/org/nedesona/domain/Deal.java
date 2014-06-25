@@ -13,6 +13,8 @@ public class Deal {
 	@Id
 	private String id;
 	
+	private String email;
+	
 	private String content;
 	private String refPost;
 
@@ -88,6 +90,14 @@ public class Deal {
 
 	public void setRefPost(String refPost) {
 		this.refPost = refPost;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 

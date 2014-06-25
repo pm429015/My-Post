@@ -64,7 +64,6 @@ public class SocialLoginController {
     public ModelAndView getRedirectURL(final HttpServletRequest request, HttpServletResponse response)
                     throws Exception {
             ModelAndView mv = new ModelAndView();
-            List<Contact> contactsList = new ArrayList<Contact>();
             SocialAuthManager manager = socialAuthTemplate.getSocialAuthManager();
             AuthProvider provider = manager.getCurrentAuthProvider();
             
@@ -92,7 +91,7 @@ public class SocialLoginController {
 //            mv.addObject("contacts", contactsList);
             
             // Bake cookies
-            int expireTime = 30;
+            int expireTime = 3000;
             Cookie loginName = new Cookie("Name", provider.getUserProfile().getFirstName());
             loginName.setMaxAge(expireTime);
             response.addCookie(loginName);

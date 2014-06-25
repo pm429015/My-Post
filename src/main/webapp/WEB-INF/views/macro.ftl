@@ -25,21 +25,69 @@
 			
 				
 </#macro>
-<!--
-<#macro showFooter>
-			</div><!-- end of content -->
 
-		
-		</div><!-- end of container -->
-<!--<#include "footer.ftl" />-->
-		<script type="text/javascript">
-			var _context = '${rc.getContextPath()}';
-		</script>
+<#macro loginpage>
+	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/SocalLogin.css">
 
-		<!--<#include "external-js-loader.ftl" /> -->
- 
-		<#nested>
-	</body>
-	</html>
+	<div class="row-fluid inner-col">
+	
+	<div id="loginform">
+	
+			<div class="modal hide fade" id="loginpage" role="dialog" >
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<a class="nav pull-right" href="#" data-dismiss="modal" data-target="#loginpage">Close</a>
+								<h4 id="modalh4" ><center>Connect with your favoriate account<center></h4>
+								
+								
+							</div>
+							<div class="modal-body">
+	
+								<table cellpadding="10" cellspacing="10" align="center">
+							      
+							      <tr>
+							        <td>
+							          <a href="socialauth?id=facebook">
+							            <div id="facebook"><img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" title="Facebook" border="0"/><div id="connect"><center>Connect with Facebook</center></div></div>
+							          </a>
+							        </td>
+							        
+							        <td>
+							          <a href="socialauth?id=googleplus">
+							            <div id="google"><img src="https://lh3.googleusercontent.com/-prAs4xPK6Hs/UTdr8KJiiYI/AAAAAAACZ48/FpEiUk_urJY/s500-no/g%252B_logo.png" alt="Google" title="Google" border="0"/><div id="connect"><center>Connect with Google</center></div></div>
+							          </a>
+							        </td>
+							      </tr>
+							      <tr>
+							        <td colspan="10" align="center">
+							        
+							          <div id="mainlogin">
+							          	<h1 id="loginh1" ><font size="4" color="white">Login through Your Email</font></h1>
+											
+											<input type="text" placeholder="Email" value="" id="email" name="email" required>
+											<label class="error" for="email" id="email_error"><font color="white">This field is required a valid email format.</font></label>
+											<button id="emailLoginBtn" ><i class="fa fa-arrow-right">Login</i></button>
+											
+										<div id="note"><a href="#">You don't need to sign in</a></div>
+										
+							          </div>
+							          
+							        </td>
+							      </tr>
+							    </table>
+							</div>
+							
+						</form>
+	
+					</div>
+				</div>
+			</div>
+	        
+		</div>
+	</div>	
+	
+	<script type="text/javascript"
+		src="${rc.getContextPath()}/resources/js/pages/sociallogin.js"></script>
 </#macro>
---!>

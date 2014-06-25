@@ -1,17 +1,18 @@
-<#import "/spring.ftl" as spring /> <#import "macro.ftl" as macro/>
+<#import "/spring.ftl" as spring /> 
+<#import "macro.ftl" as macro/>
+
 <@macro.showHeader />
 
 <div class="content inner-col">
-	<div class="row-fluid inner-col" ng-controller="PostCtrl"
-		ng-init="id='${post.id}';">
+	<div class="row-fluid inner-col" ng-controller="PostCtrl" ng-init="id='${post.id}' >
 		<div class="starter-template text-center">
 			<div class="jumbotron">
 				<h1>${post.title}</h1>
 				<br />
 				<p>${post.description}</p>
 				<p>
-					<a class="btn btn-primary btn-lg" role="button" href="#dealForm"
-						data-toggle="modal">Join Fight</a>
+					<#-- <a class="btn btn-primary btn-lg" role="button" href="#dealForm" data-toggle="modal" >Join Fight</a> -->
+					<a class="btn btn-primary btn-lg" role="button" ng-click="showDealForm()" >Join Fight</a>
 				</p>
 			</div>
 
@@ -51,8 +52,8 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<a href="${rc.getContextPath()}/view/${post.id}"><button
-									type="button" class="btn btn-success" ng-click="saveDeal()">Submit</button></a>
+							<a href="${rc.getContextPath()}/${post.id}"><button
+									type="button" class="btn btn-success" ng-click="showDealForm()">Submit</button></a>
 						</div>
 
 					</form>
