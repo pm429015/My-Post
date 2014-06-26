@@ -36,10 +36,13 @@ public class Mail {
 		this.mailSender.send(mime);
 		logger.warn("Send email Done....");
 	}
+
 	
-	public void sendMail(String emailTo) {
+	public void sendMail(String emailTo, String returnURL) {
 		EncyptedObject enObj=sakencryption.encrpytion(emailTo);
-		String linkTo ="http://localhost:8082/mypost/emailBack?data="+enObj.getEncryptedData()+"&key="+enObj.getEncryptedKey();
+		String returnTo = "http://localhost:8082/mypost/"+returnURL;
+		String linkTo ="http://localhost:8082/mypost/emailBack?data="+enObj.getEncryptedData()+"&key="+enObj.getEncryptedKey()+"&path="+returnTo;
+		
 		try {
 			String htmlmsg = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" bgcolor=\"#f2f2f2\"><tbody><tr><td valign=\"top\" style=\"padding:30px 10px\">"+
 		"<table width=\"580\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">"+

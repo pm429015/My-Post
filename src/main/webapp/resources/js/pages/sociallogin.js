@@ -5,10 +5,14 @@ $(function() {
 	$("#emailLoginBtn")
 			.click(
 					function() {
-						var email = $("#email").val();
+						var user_email = $("#email").val();
+						var url_path = window.location.pathname;
+						url_path = url_path.split("/");
+						
+						
 						// Email regular expressions
 						var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
-						if (!pattern.test(email)) {
+						if (!pattern.test(user_email)) {
 							$("label#email_error").show();
 							$("input#email").focus();
 
@@ -24,7 +28,7 @@ $(function() {
 						$.ajax({
 							type : "POST",
 							url : "emailProcess",
-							data : 'email=' + email,
+							data : {email: user_email,path:url_path[(url_path.length)-1]}
 							
 						});
 

@@ -28,6 +28,16 @@
 
 <#macro loginpage>
 	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/SocalLogin.css">
+	<script type="text/javascript">
+		var d = new Date();
+		var url_path = window.location.pathname;
+		url_path = url_path.split("/");
+		
+    	d.setTime(d.getTime() + (2*60*1000));
+    	var expires = "expires="+d.toGMTString();
+    	document.cookie = "returnURL" + "=" + url_path[(url_path.length)-1] + "; " + expires;
+	</script>
+	
 
 	<div class="row-fluid inner-col">
 	

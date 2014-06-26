@@ -23,6 +23,7 @@ import org.nedesona.utils.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +41,7 @@ public class SocialLoginController {
 	
 	SAKEncryption sakencryption = new SAKEncryption();
 	
-	int expireTime = 3000;
+	int expireTime = 10;
 	
 	@Autowired
     private SocialAuthTemplate socialAuthTemplate;
@@ -53,13 +54,13 @@ public class SocialLoginController {
 	}
 	
 	@RequestMapping(value = "/emailProcess", method = RequestMethod.POST)
-	public ModelAndView emailLogoin(HttpServletRequest request,@RequestParam(value = "email") String email,
+	public ModelAndView emailLogoin(HttpServletRequest request,@RequestParam(value = "email") String email,@RequestParam(value = "path") String path,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		User user = new User();
 		user.setEmail(email);
 		userManager.checkUserExist(user);
-		mail.sendMail(user.getEmail());
+		mail.sendMail(user.getEmail(),path);
 		mv.setViewName("sociallogIn");
 		
 		return mv;
@@ -67,6 +68,7 @@ public class SocialLoginController {
 	
 	@RequestMapping(value = "/emailBack", method = RequestMethod.GET)
 	public ModelAndView emailSaveCookies(HttpServletRequest request,@RequestParam(value = "data") String email,
+			@RequestParam(value = "path") String returnPath,
 			@RequestParam(value = "key") String key, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		EncyptedObject encyptedObject = new EncyptedObject();
@@ -78,7 +80,7 @@ public class SocialLoginController {
 			// Bake cookies: name and email
             response.addCookie(Controller_utils.bakeCookie("Name", returnUser.getEmail(), expireTime));
             response.addCookie(Controller_utils.bakeCookie("Email", returnUser.getEmail(), expireTime));
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:"+returnPath);
 		}else{
 			mv.setViewName("Error");
 			return mv;
@@ -90,7 +92,8 @@ public class SocialLoginController {
 
 	
 	@RequestMapping(value = "/authSuccess")
-    public ModelAndView getRedirectURL(final HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView getRedirectURL(final HttpServletRequest request, 
+    		HttpServletResponse response,@CookieValue(value = "returnURL", defaultValue = "") String reURL)
                     throws Exception {
             SocialAuthManager manager = socialAuthTemplate.getSocialAuthManager();
             AuthProvider provider = manager.getCurrentAuthProvider();
@@ -126,7 +129,7 @@ public class SocialLoginController {
             
             
 
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:"+reURL);
     }
 
 

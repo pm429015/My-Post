@@ -96,7 +96,7 @@ public class SymmetricAsymmetricKeyEncryptionUtil {
 		KeyGenerator generator = KeyGenerator.getInstance("AES");
 		generator.init(128);
 		SecretKey key = generator.generateKey();
-		System.out.println("key size (in bytes):" + key.getEncoded().length);
+//		System.out.println("key size (in bytes):" + key.getEncoded().length);
 		return (key.getEncoded());
 	}
 
@@ -105,8 +105,7 @@ public class SymmetricAsymmetricKeyEncryptionUtil {
 			InvalidKeyException, IllegalBlockSizeException,
 			BadPaddingException, UnsupportedEncodingException {
 		SecretKey secKey = new SecretKeySpec(key, 0, 16, "AES");
-		System.out.println("Secret key size (in bytes):"
-				+ secKey.getEncoded().length);
+//		System.out.println("Secret key size (in bytes):"+ secKey.getEncoded().length);
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.ENCRYPT_MODE, secKey);
 		byte[] newData = cipher.doFinal(data.getBytes());

@@ -27,6 +27,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,8 +35,10 @@ import org.brickred.socialauth.AuthProvider;
 import org.brickred.socialauth.SocialAuthManager;
 import org.brickred.socialauth.spring.bean.SocialAuthTemplate;
 import org.brickred.socialauth.util.SocialAuthUtil;
+import org.nedesona.utils.Controller_utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -99,6 +102,7 @@ public class SocialAuthWebController {
 			url = successPageURL;
 			socialAuthManager.connect(new HashMap<String, String>());
 		}
+
 		socialAuthTemplate.setSocialAuthManager(socialAuthManager);
 		return "redirect:" + url;
 	}
