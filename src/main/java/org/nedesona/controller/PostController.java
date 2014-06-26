@@ -6,11 +6,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Post;
+import org.nedesona.domain.User;
 import org.nedesona.service.DealManager;
 import org.nedesona.service.PostManager;
+import org.nedesona.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -33,6 +37,9 @@ public class PostController {
 
 	@Autowired
 	private DealManager dealManager;
+	
+	@Autowired
+	private UserManager userManager;
 
 	@RequestMapping(value = "/newPost")
 	public ModelAndView getPost() {
@@ -72,7 +79,6 @@ public class PostController {
 		Post post = postManager.viewById(id);
 		model.addAttribute("post", post);
 
-		logger.debug(post);
 		return "PostByID";
 	}
 
@@ -91,9 +97,19 @@ public class PostController {
 
 	@RequestMapping(value = "/insertDeal", method = RequestMethod.POST)
 	public @ResponseBody
-	Object saveDeal(@RequestBody Deal deal) {
+	Object saveDeal(HttpServletRequest request,@RequestParam(value = "email") String email,@RequestParam(value = "content") String content,@RequestParam(value = "id") String postid) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.warn("Save a new deal");
+		logger.info("Save a new deal "+email+" content:"+content+" id:"+postid);
+		User dealer = userManager.searchUser("email", email);
+		Deal deal = new Deal();
+		if (dealer!= null) {
+			
+			deal.setRefPost(postid);
+			deal.setContent(content);
+			deal.setUser(dealer);
+		}
+		
+		
 		dealManager.saveDeal(deal);
 		postManager.addDeal(deal);
 		

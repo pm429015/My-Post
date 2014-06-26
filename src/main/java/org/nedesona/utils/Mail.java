@@ -38,9 +38,8 @@ public class Mail {
 	}
 	
 	public void sendMail(String emailTo) {
-		String data= "i love you";
-		EncyptedObject enObj=sakencryption.encrpytion(data);
-		String linkTo ="http://localhost:8082/mypost?data="+enObj.getEncryptedData()+"&key="+enObj.getEncryptedKey();
+		EncyptedObject enObj=sakencryption.encrpytion(emailTo);
+		String linkTo ="http://localhost:8082/mypost/emailBack?data="+enObj.getEncryptedData()+"&key="+enObj.getEncryptedKey();
 		try {
 			String htmlmsg = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" bgcolor=\"#f2f2f2\"><tbody><tr><td valign=\"top\" style=\"padding:30px 10px\">"+
 		"<table width=\"580\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">"+

@@ -14,5 +14,7 @@ public interface UserManager {
 //	void updatePassword(User user);
 	
 	void checkUserExist(User user);
+	
+	User searchUser(String byemail, String email);
 
 }

@@ -15,6 +15,6 @@ public interface UserDao {
 	
 	Boolean checkUserExist(User user);
 	
-	
+	User searchUser(String byemail,String email);
 
 }

@@ -14,8 +14,11 @@ import org.brickred.socialauth.AuthProvider;
 import org.brickred.socialauth.Contact;
 import org.brickred.socialauth.SocialAuthManager;
 import org.brickred.socialauth.spring.bean.SocialAuthTemplate;
+import org.nedesona.beans.SAKEncryption;
 import org.nedesona.domain.User;
 import org.nedesona.service.UserManager;
+import org.nedesona.utils.Controller_utils;
+import org.nedesona.utils.EncyptedObject;
 import org.nedesona.utils.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +38,9 @@ public class SocialLoginController {
 	@Autowired
 	private Mail mail;
 	
+	SAKEncryption sakencryption = new SAKEncryption();
+	
+	int expireTime = 3000;
 	
 	@Autowired
     private SocialAuthTemplate socialAuthTemplate;
@@ -58,12 +64,34 @@ public class SocialLoginController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value = "/emailBack", method = RequestMethod.GET)
+	public ModelAndView emailSaveCookies(HttpServletRequest request,@RequestParam(value = "data") String email,
+			@RequestParam(value = "key") String key, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		EncyptedObject encyptedObject = new EncyptedObject();
+		encyptedObject.setEncryptedData(email.replaceAll("\\s", "+"));
+		encyptedObject.setEncryptedKey(key.replaceAll("\\s", "+"));
+		String user_email = sakencryption.Decryption(encyptedObject);
+		User returnUser = userManager.searchUser("email", user_email);
+		if (returnUser!= null) {
+			// Bake cookies: name and email
+            response.addCookie(Controller_utils.bakeCookie("Name", returnUser.getEmail(), expireTime));
+            response.addCookie(Controller_utils.bakeCookie("Email", returnUser.getEmail(), expireTime));
+            return new ModelAndView("redirect:/");
+		}else{
+			mv.setViewName("Error");
+			return mv;
+		}
+		
+		
+		
+	}
 
 	
 	@RequestMapping(value = "/authSuccess")
     public ModelAndView getRedirectURL(final HttpServletRequest request, HttpServletResponse response)
                     throws Exception {
-            ModelAndView mv = new ModelAndView();
             SocialAuthManager manager = socialAuthTemplate.getSocialAuthManager();
             AuthProvider provider = manager.getCurrentAuthProvider();
             
@@ -91,22 +119,15 @@ public class SocialLoginController {
 //            mv.addObject("contacts", contactsList);
             
             // Bake cookies
-            int expireTime = 3000;
-            Cookie loginName = new Cookie("Name", provider.getUserProfile().getFirstName());
-            loginName.setMaxAge(expireTime);
-            response.addCookie(loginName);
-            
-            Cookie loginEmail = new Cookie("Email", provider.getUserProfile().getEmail());
-            loginEmail.setMaxAge(expireTime);
-            response.addCookie(loginEmail);
-            
-            
-            mv.setViewName("home");
 
-            return mv;
+            response.addCookie(Controller_utils.bakeCookie("Name", provider.getUserProfile().getFirstName(), expireTime));
+
+            response.addCookie(Controller_utils.bakeCookie("Email", provider.getUserProfile().getEmail(), expireTime));
+            
+            
+
+            return new ModelAndView("redirect:/");
     }
-
-
 
 
 }

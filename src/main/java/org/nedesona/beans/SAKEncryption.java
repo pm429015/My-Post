@@ -98,7 +98,7 @@ public class SAKEncryption implements Encryption {
 	@Override
 	public String Decryption(EncyptedObject encypt) {
 		// Decrypt symmteric key using keystore
-		String decryptedData = null;
+		String decryptedData = "";
 		try {
 			String decryptedKey = keyStoreUtil.decryptKey(encypt.getEncryptedKey(), keyPassword);
 			// Decrypt data using decrypted symetric key
@@ -156,6 +156,17 @@ public class SAKEncryption implements Encryption {
 		// Decrypt data using decrypted symetric key
 		System.out.println("Decrypted Data : " + keyStoreUtil.decryptWithAESKey(encryptedData, decryptedKey));
 
-	}
 
+	}
+	
+	public static void main(String [ ] args){
+		SAKEncryption sak = new SAKEncryption();
+		EncyptedObject encyptedObject = new EncyptedObject();
+		String da="JUX i6oH4XiKGc9TNETT7aq9a8EtqhGLiLh1QHOcyUY=";
+		String ky= "cuHYHirzMNQTXt6xwVl6JX5HRjn1OxxVKWunsyLZWuFTLyd6LtF82irFS7gdOZTViXQI TQnjzqTX JOqrm/oouc0RBpdfpIzzxVYXCchrKqmGwysLbLxApyInArLBWw0cToKJU/1PkH rXGuw3IFEaRrJQKCBl3rhPMse0m4Is=";
+
+		encyptedObject.setEncryptedData(da);
+		encyptedObject.setEncryptedKey(ky);
+		System.out.println(sak.Decryption(encyptedObject));
+	}
 }
