@@ -1,12 +1,12 @@
 body {
-	background-color: white;
+	background-color: #e7ebee;
 	margin: 0;
 	padding: 0;
 	color : black;
 }
 
 .content {
-	margin-top: 70px;
+	margin-top: 0px;
 	background-color: white;
 	min-height: 600px;
 }
