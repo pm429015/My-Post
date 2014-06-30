@@ -3,11 +3,14 @@ package org.nedesona.dao.impl;
 import java.util.Map;
 
 import org.nedesona.dao.UserDao;
+import org.nedesona.domain.Deal;
+import org.nedesona.domain.Post;
 import org.nedesona.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -35,11 +38,7 @@ public class UserDaoImpl implements UserDao {
 //		}
 //
 //	}
-//
-//	@Override
-//	public void updatePassword(BookmarkUser user) {
-//		mongoTemplate.save(user);
-//	}
+
 
 
 	@Override
@@ -66,6 +65,11 @@ public class UserDaoImpl implements UserDao {
 		}else{
 			return returnUser;
 		}
+	}
+
+	@Override
+	public void addPost(Query query, Update update) {
+		mongoTemplate.updateFirst(query, update, User.class);
 	}
 
 }

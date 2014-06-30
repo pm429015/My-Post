@@ -41,7 +41,7 @@ public class SocialLoginController {
 	
 	SAKEncryption sakencryption = new SAKEncryption();
 	
-	int expireTime = 10;
+	
 	
 	@Autowired
     private SocialAuthTemplate socialAuthTemplate;
@@ -59,7 +59,7 @@ public class SocialLoginController {
 		ModelAndView mv = new ModelAndView();
 		User user = new User();
 		user.setEmail(email);
-		userManager.checkUserExist(user);
+		userManager.addUser(user);
 		mail.sendMail(user.getEmail(),path);
 		mv.setViewName("sociallogIn");
 		
@@ -78,8 +78,10 @@ public class SocialLoginController {
 		User returnUser = userManager.searchUser("email", user_email);
 		if (returnUser!= null) {
 			// Bake cookies: name and email
-            response.addCookie(Controller_utils.bakeCookie("Name", returnUser.getEmail(), expireTime));
-            response.addCookie(Controller_utils.bakeCookie("Email", returnUser.getEmail(), expireTime));
+			String[] userName = user_email.split("@");
+			returnUser.setFirstName(userName[0]);
+            response.addCookie(Controller_utils.bakeCookie("Name", userName[0]));
+            response.addCookie(Controller_utils.bakeCookie("Email", returnUser.getEmail()));
             return new ModelAndView("redirect:"+returnPath);
 		}else{
 			mv.setViewName("Error");
@@ -115,7 +117,7 @@ public class SocialLoginController {
             if (!provider.getUserProfile().getGender().equals("")) {
             	user.setGender(provider.getUserProfile().getGender());
 			}
-            userManager.checkUserExist(user);
+            userManager.addUser(user);
             
 //            mv.addObject("loggedInUser", user);
 //            mv.addObject("profile", provider.getUserProfile());
@@ -123,9 +125,9 @@ public class SocialLoginController {
             
             // Bake cookies
 
-            response.addCookie(Controller_utils.bakeCookie("Name", provider.getUserProfile().getFirstName(), expireTime));
+            response.addCookie(Controller_utils.bakeCookie("Name", provider.getUserProfile().getFirstName()));
 
-            response.addCookie(Controller_utils.bakeCookie("Email", provider.getUserProfile().getEmail(), expireTime));
+            response.addCookie(Controller_utils.bakeCookie("Email", provider.getUserProfile().getEmail()));
             
             
 

@@ -24,9 +24,6 @@
 	</div>
 </div>
 
-<@macro.showFooter>
-	
-</@macro.showFooter>
 
 
 

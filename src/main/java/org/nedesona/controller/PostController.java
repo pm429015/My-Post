@@ -4,17 +4,23 @@ import java.awt.List;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Post;
 import org.nedesona.domain.User;
+import org.nedesona.service.CommentManager;
 import org.nedesona.service.DealManager;
 import org.nedesona.service.PostManager;
 import org.nedesona.service.UserManager;
+import org.nedesona.utils.Controller_utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -26,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mongodb.util.Hash;
 
 @Controller
 public class PostController {
@@ -40,6 +48,9 @@ public class PostController {
 	
 	@Autowired
 	private UserManager userManager;
+	
+	@Autowired
+	private CommentManager commentManager;
 
 	@RequestMapping(value = "/newPost")
 	public ModelAndView getPost() {
@@ -63,41 +74,91 @@ public class PostController {
 		logger.warn("Post done");
 		return new ModelAndView("postThankYou", model);
 	}
-
-	@RequestMapping(value = "/newPost/save", method = RequestMethod.POST)
-	public @ResponseBody
-	Object savePost(@RequestBody Post post) {
+	
+	@RequestMapping(value = "/insertPost")
+	public ModelAndView insertPost(@RequestParam(value = "email") String email,
+			@RequestParam(value = "title") String title,
+			@RequestParam(value = "description") String description,
+			@RequestParam(value = "name") String name,
+			HttpServletResponse response) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.warn("Save a new post");
+		logger.warn("Insert a new post");
+		
+		// Check if user exist, add the user if doesn't exist
+		User returnUser = userManager.searchUser("email", email);
+		if (returnUser == null) {
+			returnUser = new User();
+			returnUser.setEmail(email);
+			returnUser.setFirstName(name);
+			userManager.addUser(returnUser);
+		}
+		
+		//Create a new post and save it
+		Post post = new Post();
+		post.setTitle(title);
+		post.setDescription(description);
+		post.setUser(returnUser);
+		
 		postManager.savePost(post);
-
+		
+		
+		return new ModelAndView("postThankYou", model);
+	}
+	
+	@RequestMapping(value = "/reply", method = RequestMethod.POST)
+	public @ResponseBody
+	Object saveReply(@RequestParam(value = "email") String email,
+			@RequestParam(value = "content") String content,
+			@RequestParam(value = "deal_id") String dealID) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		logger.warn(email+" "+content+" "+dealID);
+		User user = userManager.searchUser("email", email);
+		Deal forWhichDeal = dealManager.searchBy("id", dealID);
+		Comment comment = new Comment();
+		//define user and for which deal 
+		if (user != null && comment != null ) {
+			comment.setContent(content);
+			comment.setUser(user);
+			comment.setDeal(forWhichDeal);
+		}
+		
+		commentManager.saveComment(comment);
+		dealManager.addComment(comment);
+		
 		return model;
 	}
 
 	@RequestMapping(value = "/{id}")
 	public String view(@PathVariable String id, Model model) throws Exception {
 		Post post = postManager.viewById(id);
-		model.addAttribute("post", post);
+		Set<Deal> outputDeals = new HashSet<Deal>();
+		if (post != null) {
+			
+			Map<String, Deal> deals = post.getDeals();
+			for (String key : deals.keySet()) {
+				outputDeals.add(dealManager.viewById(deals.get(key).getId()  ));
+			}
+			
+			model.addAttribute("post", post);
+			model.addAttribute("deals",outputDeals);
+			model.addAttribute("user", userManager.searchUser("id", post.getUser().getId()));
+			
+			return "PostByID";
+		}else{
+			return "Error";
+		}
+		
 
-		return "PostByID";
 	}
 
-	// @RequestMapping(value = "/insertDeal", method = RequestMethod.POST)
-	// public Object addComment(@RequestBody Deal deal)
-	// throws Exception {
-	// Map<String, Object> model = new HashMap<String, Object>();
-	// logger.debug("Save a new deal");
-	// // dealManager.saveDeal(deal);
-	// // Post post = postManager.viewById(deal.getRefPost());
-	// // Map<String, Deal> deals = post.getDeals();
-	// // deals.put(deal.getId(), deal);
-	// // post.setDeals(deals);
-	// return model;
-	// }
+
 
 	@RequestMapping(value = "/insertDeal", method = RequestMethod.POST)
 	public @ResponseBody
-	Object saveDeal(HttpServletRequest request,@RequestParam(value = "email") String email,@RequestParam(value = "content") String content,@RequestParam(value = "id") String postid) {
+	Object saveDeal(HttpServletRequest request,@RequestParam(value = "email") String email,
+			@RequestParam(value = "content") String content,
+			@RequestParam(value = "header") String header,
+			@RequestParam(value = "id") String postid) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		logger.info("Save a new deal "+email+" content:"+content+" id:"+postid);
 		User dealer = userManager.searchUser("email", email);
@@ -107,6 +168,7 @@ public class PostController {
 			deal.setRefPost(postid);
 			deal.setContent(content);
 			deal.setUser(dealer);
+			deal.setHeader(header);
 		}
 		
 		

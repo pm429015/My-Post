@@ -13,19 +13,12 @@ public class Comment {
 	private String content;
 	
 	private Date createdDate;
-	private Date editedDate;
+	private Date lastModifiedDate;
 
 	@DBRef
 	private User user;
+	private Deal deal;
 
-
-	public Comment() {
-
-	}
-
-	public Comment(String content) {
-		this.content = content;
-	}
 
 	public String getId() {
 		return id;
@@ -55,16 +48,25 @@ public class Comment {
 		return user;
 	}
 
-	public void setCUser(User createdBy) {
+	public void setUser(User createdBy) {
 		this.user = createdBy;
 	}
 
-	public Date getEditedDate() {
-		return editedDate;
+	public Deal getDeal() {
+		return deal;
 	}
 
-	public void setEditedDate(Date editedDate) {
-		this.editedDate = editedDate;
+	public void setDeal(Deal deal) {
+		this.deal = deal;
 	}
+
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifyDate) {
+		this.lastModifiedDate = lastModifyDate;
+	}
+
 
 }

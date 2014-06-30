@@ -14,7 +14,7 @@ public class Deal {
 	private String id;
 	
 	private String email;
-	
+	private String header;
 	private String content;
 	private String refPost;
 
@@ -23,10 +23,11 @@ public class Deal {
 
 	private int viewCount;
 	
-	private Map<String, Comment> comments;
+	
 	
 	@DBRef
 	private User user;
+	private Map<String, Comment> comments;
 	
 	public String getId() {
 		return id;
@@ -98,6 +99,14 @@ public class Deal {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
 	}
 
 

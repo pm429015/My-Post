@@ -7,15 +7,10 @@ import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Post;
 
-public interface DealManager {
+public interface CommentManager {
 
-	void saveDeal(Deal deal);
-
+	void saveComment(Comment comment);
 	
-	Deal viewById(String id);
-	
-	Deal searchBy(String by, String term);
-	
-	void addComment(Comment comment);
+	Comment viewById(String id);
 
 }

@@ -1,6 +1,7 @@
 package org.nedesona.domain;
 
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -22,6 +23,7 @@ public class User {
 
 	@DBRef
 	private Role role;
+	private Map<String, Post> posts;
 
 	public String getId() {
 		return id;
@@ -95,6 +97,14 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public Map<String, Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Map<String, Post> posts) {
+		this.posts = posts;
 	}
 	
 	

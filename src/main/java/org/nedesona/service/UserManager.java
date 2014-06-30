@@ -3,6 +3,7 @@ package org.nedesona.service;
 import java.util.Map;
 
 import org.nedesona.domain.BookmarkUser;
+import org.nedesona.domain.Post;
 import org.nedesona.domain.User;
 
 public interface UserManager {
@@ -13,8 +14,9 @@ public interface UserManager {
 //
 //	void updatePassword(User user);
 	
-	void checkUserExist(User user);
+	void addUser(User user);
 	
 	User searchUser(String byemail, String email);
-
+	
+	void insertPost(Post post);
 }

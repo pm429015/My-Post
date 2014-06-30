@@ -9,55 +9,52 @@
 		<div class="span6">
 			<form class="form-horizontal">
 				<div class="control-group">
-					<label class="control-label" for="title">Specific Keywords</label>
+					<label class="control-label" for="title">Request Summary</label>
 					<div class="controls">
-						<input type="text" name="subject" ng-model="title"
+						<input type="text" name="subject" ng-model="title" id="subject"
 							class="input-xxlarge" placeholder="Example: Unlocked IPhone 5">
 					</div>
+					<label class="error pull-right" for="subject" id="subject_error"><font color="red">Please Summary your request. </font></label>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="content">Description</label>
 					<div class="controls">
-						<textarea ng-model="description" name="description"
+						<textarea ng-model="description" name="description" id="descritpion"
 							class="input-xxlarge" style="height: 120px;"
 							placeholder="I request a best new deal for unlocked IPhone 5."></textarea>
+						<label class="error pull-right" for="description" id="descritpion_error"><font color="red">20 more words required. </font></label>
 					</div>
 				</div>
+				
+				<script type="text/javascript">
+				$(document)
+				.ready(
+						function() {
+							var name = getCookie("Name");
+							var email = getCookie("Email");
+							
 
-				<div class="form-horizontal center"
-					style="position: relative; left: 150px;">
-					<legend>Your Contact Info</legend>
+							if(!name && !email){
+								$("#userInfo")
+								.html('<div class="form-horizontal center" style="position: relative; left: 150px;">'+'<legend>Your Contact Info or <a href="#loginpage" data-toggle="modal" style="color:blue"><b>Sign up/Login for free</b></a></legend>'+
+									  '<div class="control-group"><label class="control-label" for="content">Name</label><div class="controls">'+
+									  '<input type="text" name="name" id="name" ng-model="name" class="input" placeholder="Stanley"><label class="error" for="name" id="name_error"><font color="red">Please type your name. </font></label>'+
+									  '</div> </div> <div class="control-group"><label class="control-label" for="content">Email</label>'+
+									  '<div class="controls"><input type="text" name="email" ng-model="email" id="Uemail" class="input" placeholder="Your Email@email.com"><label class="error" for="email" id="email_error"><font color="red">Please type your email. </font></label></div></div></div>');
+							}
+							$('.error').hide();
 
-					<div class="control-group">
-						<label class="control-label" for="content">Nickname</label>
-						<div class="controls">
-							<input type="text" name="nickname" ng-model="nickname"
-								class="input" placeholder="Stanley">
-						</div>
+						});
+					
+				</script>
+				
+				<div id="userInfo"></div>
 
-					</div>
+				
 
-					<div class="control-group">
-						<label class="control-label" for="content">Email</label>
-						<div class="controls">
-							<input type="text" name="email" ng-model="email" class="input"
-								placeholder="Your Email@email.com">
-						</div>
-					</div>
-
-					<div class="control-group">
-						<label class="control-label" for="content">Zip Code</label>
-						<div class="controls">
-							<input type="text" name="zipcode" ng-model="zipcode"
-								class="input" placeholder="94102">
-						</div>
-					</div>
-
-				</div>
-
-				<a href="${rc.getContextPath()}/postDone"><button type="button"
+				<button type="button"
 						class="btn btn-info" ng-click="savePost()"
-						style="position: absolute; right: 25%;">Submit</button></a>
+						style="position: absolute; right: 25%;">Submit</button>	
 				<button type="button" class="btn" ng-click="clear()"
 					style="position: absolute; right: 18%;">Reset</button>
 			</form>
