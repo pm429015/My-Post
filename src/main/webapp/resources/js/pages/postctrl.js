@@ -1,10 +1,10 @@
 function expand(index, dealerEmail) {
 	if ($(".dis" + index).is(":visible")) {
-		$("#reply1").text('Expand');
+		$("#expand"+index).text('Expand');
 		$(".dis" + index).hide();
 
 	} else {
-		$("#reply1").text('Collapse');
+		$("#expand"+index).text('Collapse');
 		$(".dis" + index).show();
 
 	}
@@ -34,7 +34,12 @@ function commentSubmit(dealID, index) {
 			}
 
 		});
-		location.reload();
+		
+		$(".comments").val("");
+		setTimeout(function() {location.reload();	}, 1000);
+	}else{
+		$("label#comment_error").show();
+		$("#comment" + index).focus();
 	}
 
 }
@@ -62,7 +67,8 @@ $(function() {
 				}
 
 			});
-			location.reload();
+			setTimeout(function() {location.reload();	}, 1000);
+			
 		} else {
 			if (!dealer_header) {
 				$("label#header_error").show();

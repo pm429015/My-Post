@@ -59,6 +59,11 @@ public class SocialLoginController {
 		ModelAndView mv = new ModelAndView();
 		User user = new User();
 		user.setEmail(email);
+		
+		// Use email account as first name
+		String[] userName = email.split("@");
+		user.setFirstName(userName[0]);
+		
 		userManager.addUser(user);
 		mail.sendMail(user.getEmail(),path);
 		mv.setViewName("sociallogIn");
@@ -78,9 +83,7 @@ public class SocialLoginController {
 		User returnUser = userManager.searchUser("email", user_email);
 		if (returnUser!= null) {
 			// Bake cookies: name and email
-			String[] userName = user_email.split("@");
-			returnUser.setFirstName(userName[0]);
-            response.addCookie(Controller_utils.bakeCookie("Name", userName[0]));
+            response.addCookie(Controller_utils.bakeCookie("Name", returnUser.getFirstName()));
             response.addCookie(Controller_utils.bakeCookie("Email", returnUser.getEmail()));
             return new ModelAndView("redirect:"+returnPath);
 		}else{

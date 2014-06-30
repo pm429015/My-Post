@@ -11,7 +11,7 @@
 				<p>${post.description}</p>
 
 				<p id="id" hidden>${post.id}</p>
-				<p id="post_mail" >${user.email}</p>
+				<p id="post_mail" hidden>${user.email}</p>
 
 				<script type="text/javascript">
 					$(document)
@@ -45,7 +45,12 @@
 
 
 		<div id="w">
-			<h3>Deal List</h3>
+			<#if deals?has_content> 
+				<h3><center>Deal List</center></h3>
+			<#else>
+				<h3><center>Waiting for good deals ........</center></h3>
+			</#if>
+			
 			<#assign index = 1> <#list deals as deal>
 			<div id="container">
 				<ul id="comments">
@@ -59,7 +64,7 @@
 							<p align="right">by ${deal.user.firstName}</p>
 							
 							
-							<a href="javascript:void(0);" class="pull-right"
+							<a href="javascript:void(0);" class="pull-right" id="expand${index}"
 								onclick="expand('${index}','${deal.user.email}');">Expand</a> <br>
 						</div> 
 						<#if deal.comments??> 
@@ -78,7 +83,7 @@
 							<ul class="replies dis${index}">
 							<li class="cmmnt">
 								<div class="cmmnt-content">
-									<h4>No Comment.</h4>
+									<h4>No comments yet.</h4>
 								</div>
 							</li>
 
@@ -90,8 +95,9 @@
 								<li class="cmmnt">
 									<div class="cmmnt-content">
 										<h4>Leave a message</h4>
-										<textarea class="form-control" id="comment${index}" rows="6"
+										<textarea class="form-control comments" id="comment${index}" rows="6"
 											style="width: 700px;" placeholder="Leave a message here"></textarea>
+										<label class="error" for="comment${index}" id="comment_error"><font color="red">Please write something. </font></label>
 										<div align="right"> 
 											<button class="btn btn-success"
 											onclick="commentSubmit('${deal.id}','${index}');">Submit</button>
