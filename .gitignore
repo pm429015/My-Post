@@ -5,3 +5,7 @@ pom.properties
 *.war
 *.ear
 /target/
+
+*.MF
+
+*.properties
