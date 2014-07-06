@@ -15,4 +15,10 @@ public class MainController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		return new ModelAndView("home", model);
 	}
+	
+	@RequestMapping(value = "/mainp")
+	public ModelAndView mainp() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		return new ModelAndView("main_page", model);
+	}
 }

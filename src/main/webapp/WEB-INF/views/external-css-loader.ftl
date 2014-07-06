@@ -9,5 +9,3 @@
 <link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/angular-ui.css">
 <link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/angular-ui.min.css">
 <link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/select2/select2.css">
-
-

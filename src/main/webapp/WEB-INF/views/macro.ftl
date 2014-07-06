@@ -2,12 +2,10 @@
 
 <#macro showHeader htmlclass="">
 <!DOCTYPE HTML>
-	<head>
+	<head>	
 		<meta charset="utf-8">
-	
-		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title></title>
+		<title>DealArena</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,7 +14,7 @@
 		<#include "external-js-loader.ftl" />
 	</head>
 	
-	<body>
+	<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 		<#include "navigation-loader.ftl" />
 		
 		<#nested/>
@@ -86,6 +84,13 @@
 							          
 							        </td>
 							      </tr>
+							      <tr>
+									<td colspan="10" align="center">
+										<h4>email<h4>
+							
+
+									</td>
+									</tr>
 							    </table>
 							</div>
 							

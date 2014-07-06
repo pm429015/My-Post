@@ -28,7 +28,7 @@
 
 			            <script type="text/javascript">
 			            $(document).ready(function(){
-			            	var name = getCookie("Name");
+			            		var name = getCookie("Name");
 							var email = getCookie("Email");
 							
 							if(name && email){

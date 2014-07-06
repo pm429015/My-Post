@@ -24,36 +24,6 @@
 
 <div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
   
-  <div class="carousel-inner">
-    <div class="item active"><!-- class of active since it's the first item -->
-      <img src="http://placehold.it/1200x480" alt="" />
-      <div class="carousel-caption">
-        <p>1</p>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://placehold.it/1200x480" alt="" />
-      <div class="carousel-caption">
-        <p>2</p>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://placehold.it/1200x480" alt="" />
-      <div class="carousel-caption">
-        <p>3</p>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://placehold.it/1200x480" alt="" />
-      <div class="carousel-caption">
-        <p>4</p>
-      </div>
-    </div>
-  </div><!-- /.carousel-inner -->
-  <!--  Next and Previous controls below
-        href values must reference the id for this carousel -->
-    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-</div><!-- /.carousel -->
+  
 
 	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/home.js"></script>

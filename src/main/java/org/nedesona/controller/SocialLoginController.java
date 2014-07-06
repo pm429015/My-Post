@@ -132,7 +132,7 @@ public class SocialLoginController {
 
             response.addCookie(Controller_utils.bakeCookie("Email", provider.getUserProfile().getEmail()));
             
-            
+            System.out.println("back to "+reURL);
 
             return new ModelAndView("redirect:"+reURL);
     }

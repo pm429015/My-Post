@@ -1,16 +1,14 @@
 <style>
 
-
-                                
 #loginform
 {
-width:550px;
+width:750px;
 height:auto;
 position:relative;
 margin:0 auto;
 }
 
-input
+#loginform input
 {
 display:block;
 margin:0px auto 15px;
@@ -29,7 +27,7 @@ font-size:0.8em;
 transition:0.5s ease; 
 }
 
-input:focus
+#loginform input:focus
 {
 -webkit-transition:0.5s ease;
 -moz-transition:0.5s ease;
@@ -92,24 +90,24 @@ color:#ff5f32;
 transition:0.5s ease;
 }
   
-*:focus{outline:none;}
+#loginform *:focus{outline:none;}
 ::-webkit-input-placeholder {
 color:#929999;
 }
 
-:-moz-placeholder { /* Firefox 18- */
+#loginform :-moz-placeholder { /* Firefox 18- */
 color:#929999; 
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
+#loginform ::-moz-placeholder {  /* Firefox 19+ */
 color:#929999;  
 }
 
-:-ms-input-placeholder {  
+#loginform :-ms-input-placeholder {  
 color:#929999; 
 }
 
-#loginh1
+#loginh
 {
 text-align:center;
 color:#fff;
@@ -117,7 +115,7 @@ font-size:13px;
 padding:12px 0px;
 }
 
-#note
+#loginform #note
 {
 color:#88887a;
 font-size: 0.8em;
@@ -125,7 +123,7 @@ text-align:left;
 padding-left:5px;
 }
 
-#facebook
+#loginform #facebook
 {
 text-align:center;
 float:left;
@@ -144,7 +142,7 @@ margin-right:10px;
 transition:0.5s ease;
 }
 
-#google
+#loginform #google
 {
 text-align:center;
 float:left;
@@ -163,7 +161,7 @@ margin-right:10px;
 transition:0.5s ease;
 }
 
-#facebook:hover
+#loginform #facebook:hover
 {
 box-shadow: 0px 0px 0px 0px #161718;
 -webkit-transition:0.5s ease;
@@ -173,7 +171,7 @@ box-shadow: 0px 0px 0px 0px #161718;
 transition:0.5s ease;
 }
 
-#google:hover
+#loginform #google:hover
 {
 box-shadow: 0px 0px 0px 0px #161718;
 -webkit-transition:0.5s ease;
@@ -183,7 +181,7 @@ box-shadow: 0px 0px 0px 0px #161718;
 transition:0.5s ease;
 }
 
-a
+#loginform a
 {
 color:#88887a;
 text-decoration:none;
@@ -194,7 +192,7 @@ text-decoration:none;
 transition:0.5s ease;
 }
 
-a:hover
+#loginform a:hover
 {
 color:#00FFFF;
 margin-left:5px;
@@ -205,7 +203,7 @@ margin-left:5px;
 transition:0.5s ease;
 }
 
-#mainlogin
+#loginform #mainlogin
 {
 float:left;
 width:340px;
@@ -216,7 +214,7 @@ background:#555555;
 border-radius:3px;
 }
 
-#connect
+#loginform #connect
 {
 font-weight: bold;
 color: #fff;
@@ -226,15 +224,15 @@ font-family: verdana;
 padding-top:10px;
 }
 
-.modal-body {
+#loginform .modal-body {
   background-color: #e9e8dd;
 }
 
-.modal-header {
+#loginform .modal-header {
   background-color: #e9e8dd;
 }
 
-.modal-footer {
+#loginform .modal-footer {
   background-color: #e9e8dd;
 }
 </style>

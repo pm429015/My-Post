@@ -79,7 +79,6 @@ public class PostController {
 	public ModelAndView insertPost(@RequestParam(value = "email") String email,
 			@RequestParam(value = "title") String title,
 			@RequestParam(value = "description") String description,
-			@RequestParam(value = "name") String name,
 			HttpServletResponse response) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		logger.warn("Insert a new post");
@@ -89,7 +88,8 @@ public class PostController {
 		if (returnUser == null) {
 			returnUser = new User();
 			returnUser.setEmail(email);
-			returnUser.setFirstName(name);
+			String[] userName = email.split("@");
+			returnUser.setFirstName(userName[0]);
 			userManager.addUser(returnUser);
 		}
 		
