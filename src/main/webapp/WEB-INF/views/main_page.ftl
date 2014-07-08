@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring />
 <#import "macro_new.ftl" as macro/>
 <link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
-
+<title>DealArena</title>
 <@macro.showHeader />
 	<!-- Product Showcase -->
         <div class="product-showcase">
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-
+<div id="aboutlayer">
 	<section id="about" class="container content-section text-center">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
@@ -74,14 +74,15 @@
 				DealArenas is also a sellers arena because only the best deals could survive. If you want to buy something but 
 				can't find a good deal or you have good deals but can't find customers, DealArenas is your best friend.
 				</p>
-				<p>pm429015@gmail.com</p>
-				<li><a href="mailto:pm429015@gmail.com"
+				<p>dealarenas@gmail.com</p>
+				<li><a href="mailto:dealarenas@gmail.com"
 						class="btn btn-default btn-lg"><i
 							class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
 					</li>
 			</div>
 		</div>
 	</section>
+</div>
 	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/main_page.js"></script>
 	</body>	
 </html>

@@ -58,9 +58,9 @@ public class Mail {
 		"<a href=\""+linkTo+"\" style=\"display:block;font-family:arial;font-size:14px;font-weight:bold;text-decoration:none;color:#ffffff;line-height:1\" target=\"_blank\">"+
 		"Log in Here! </a> </td></tr></tbody></table> </td> </tr> </tbody></table> </td> </tr> </tbody></table>"+
 		"</td> </tr> <tr> <td style=\"padding-top:20px;font-family:arial;font-size:14px;line-height:1.75;color:#74767a\">"+
-		"You received this message because you are a member of HuHo. </td></tr> </tbody></table></td></tr></tbody></table>";
+		"You received this message because you are a member of DealArenas. </td></tr> </tbody></table></td></tr></tbody></table>";
 
-		sendMail("hokuanhsing@gmail.com", emailTo, "A validation mail from HuHo", htmlmsg);
+		sendMail("dealarenas@gmail.com", emailTo, "A validation mail from DealArenas", htmlmsg);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

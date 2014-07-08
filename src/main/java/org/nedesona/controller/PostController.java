@@ -137,7 +137,8 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/{id}")
-	public String view(@PathVariable String id, Model model) throws Exception {
+	public ModelAndView view(@PathVariable String id) throws Exception {
+		Map<String, Object> model = new HashMap<String, Object>();
 		Post post = postManager.viewById(id);
 		Set<Deal> outputDeals = new HashSet<Deal>();
 		if (post != null) {
@@ -146,16 +147,14 @@ public class PostController {
 			for (String key : deals.keySet()) {
 				outputDeals.add(dealManager.viewById(deals.get(key).getId()  ));
 			}
+			model.put("post", post);
+			model.put("deals", outputDeals);
+			model.put("user", userManager.searchUser("id", post.getUser().getId()) );
 			
-			model.addAttribute("post", post);
-			model.addAttribute("deals",outputDeals);
-			model.addAttribute("user", userManager.searchUser("id", post.getUser().getId()));
-			
-			return "battleField";
-		}else{
-			return "Error";
+			return new ModelAndView("battlefield", model);
 		}
 		
+		return new ModelAndView("Error", model);
 
 	}
 
