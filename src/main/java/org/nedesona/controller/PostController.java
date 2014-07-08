@@ -58,6 +58,14 @@ public class PostController {
 		logger.debug("Connect to new post page");
 		return new ModelAndView("addPost", model);
 	}
+	
+	@RequestMapping(value = "/arena")
+	public ModelAndView dealArena() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		logger.debug("Connect to deal arena");
+		model.put("postList", postManager.getPostList());
+		return new ModelAndView("arena", model);
+	}
 
 	@RequestMapping(value = "/postsShow")
 	public ModelAndView postsShow() {
@@ -143,7 +151,7 @@ public class PostController {
 			model.addAttribute("deals",outputDeals);
 			model.addAttribute("user", userManager.searchUser("id", post.getUser().getId()));
 			
-			return "PostByID";
+			return "battleField";
 		}else{
 			return "Error";
 		}

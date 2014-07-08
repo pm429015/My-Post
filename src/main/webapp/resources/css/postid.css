@@ -41,13 +41,20 @@ a:hover { text-decoration: underline; }
 
 
 /* comments area */
-#comments { display: block; }
+#comments { 
+	display: block; 
+}
 
 #container:hover{
    background-color:#f7fcf0;
 }
 
-#comments .cmmnt, ul .cmmnt, ul ul .cmmnt { display: block; position: relative; padding-left: 0px; border-top: 3px solid #ddd; }
+#comments .cmmnt, ul .cmmnt, ul ul .cmmnt { 
+	display: block; 
+	position: relative; 
+	padding-left: 0px; 
+	border-top: 3px solid #ddd; 
+}
 
 #comments .cmmnt .avatar  { position: absolute; top: 8px; left: 0; }
 #comments .cmmnt .avatar img { 

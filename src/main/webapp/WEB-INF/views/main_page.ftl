@@ -70,15 +70,10 @@
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
 				<h2>About DealArenas</h2>
-				<p>Feel free to email us to provide some feedback on our
-					templates, give us suggestions for new templates and themes, or to
-					just say hello!Feel free to email us to provide some feedback on our
-					templates, give us suggestions for new templates and themes, or to
-					just say hello!Feel free to email us to provide some feedback on our
-					templates, give us suggestions for new templates and themes, or to
-					just say hello!Feel free to email us to provide some feedback on our
-					templates, give us suggestions for new templates and themes, or to
-					just say hello!</p>
+				<p>DealArenas is a paradise for buyers to instantly negotiate, compare and choose the best deals they like. 
+				DealArenas is also a sellers arena because only the best deals could survive. If you want to buy something but 
+				can't find a good deal or you have good deals but can't find customers, DealArenas is your best friend.
+				</p>
 				<p>pm429015@gmail.com</p>
 				<li><a href="mailto:pm429015@gmail.com"
 						class="btn btn-default btn-lg"><i

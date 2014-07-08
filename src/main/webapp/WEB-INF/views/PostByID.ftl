@@ -51,7 +51,8 @@
 				<h3><center>Waiting for good deals ........</center></h3>
 			</#if>
 			
-			<#assign index = 1> <#list deals as deal>
+			<#assign index = 1> 
+			<#list deals as deal>
 			<div id="container">
 				<ul id="comments">
 					<li class="cmmnt">

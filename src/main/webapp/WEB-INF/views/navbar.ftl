@@ -15,9 +15,8 @@
 				class="collapse navbar-collapse navbar-right navbar-main-collapse">
 				<ul class="nav navbar-nav">
 					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-					<li class="hidden"><a href="#about"></a></li>
-					<li class="page-scroll"><a href="#page-top">Request A Deal</a></li>
-					<li class="page-scroll"><a href="#about">About</a></li>
+					<li class="page-scroll"><a href="home">I Want</a></li>
+					<li class="page-scroll"><a href="arena">I Sell</a></li>
 					<li id="userToken" ></li>
 					<li id="loginStatus" ></li>
 				</ul>

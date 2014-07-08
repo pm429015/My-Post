@@ -1,7 +1,6 @@
 <#import "/spring.ftl" as spring /> <#import "macro.ftl" as macro/>
 <@macro.showHeader />
-<script type="text/javascript"
-	src="${rc.getContextPath()}/resources/js/pages/postList.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/postList.js"></script>
 </script>
 
 <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
