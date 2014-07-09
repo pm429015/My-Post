@@ -11,10 +11,18 @@
             http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         
     <util:properties id="socialAuthProperties">
+    		<!-- local test 
         <prop key="googleapis.com.consumer_key">655785290080-h2q8m2isj465jspg0n41gkmfi019sdof.apps.googleusercontent.com</prop>
         <prop key="googleapis.com.consumer_secret">e8iNCpuRzl-loIox3lQ73TQI</prop>
         <prop key="graph.facebook.com.consumer_key">1495977243970076</prop>
-        <prop key="graph.facebook.com.consumer_secret">776f3641548764e254ee292fc49af640</prop>
+        <prop key="graph.facebook.com.consumer_secret">776f3641548764e254ee292fc49af640</prop>-->
+        
+        <!-- dealarenas -->
+        <prop key="googleapis.com.consumer_key">300120042767-o3lj76l4gvi09nokddhdccnqmil2reu7.apps.googleusercontent.com</prop>
+        <prop key="googleapis.com.consumer_secret">BAR_BZKgWRRSCoKVnvY-e9Kz</prop>
+        <prop key="graph.facebook.com.consumer_key">691505750905139</prop>
+        <prop key="graph.facebook.com.consumer_secret">a1a839d0dc70238d95d236e514c65d84</prop>
+        
         
     </util:properties>
 </beans>

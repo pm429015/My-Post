@@ -61,7 +61,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/socialauth")
 public class SocialAuthWebController {
 
-	private String baseCallbackUrl="http://localhost:8082/mypost";
+	private String baseCallbackUrl="http://www.dealarenas.com";
 	private String successPageURL="authSuccess";
 	private String accessDeniedPageURL="Error";
 	@Autowired
