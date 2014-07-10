@@ -18,7 +18,7 @@
                                     <fieldset>
                                     		<!--  Header-->
 							            <div class="form-group form-header">
-							              <h3 class="col-md-10 control-label">Request a deal for free </h3>
+							              <h3 class="col-md-10 control-label">Request a deal for <font color=red>FREE</font></h3>
 							            </div>
                                     
                                     		<!-- Subject input-->
