@@ -1,11 +1,11 @@
 /***** Footer *****/
 
 footer {
-    padding: 30px 0;
+    padding: 10px 0;
     -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
     -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
     box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
-    color: #aaa;
+    background: #555;
 }
 
 footer h3 {

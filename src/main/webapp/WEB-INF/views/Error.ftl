@@ -20,6 +20,8 @@
 			</div>
 		</div>
 	</section>
+	<@macro.loadExternal />
+	<@macro.footer />
 	</body>	
 </html>
 
