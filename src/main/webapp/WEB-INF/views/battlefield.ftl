@@ -3,7 +3,7 @@
 
 <title>${post.title}</title>
 <@macro.showHeader />
-<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/battlefield.css">
+<@macro.loadExternal />
 <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
 <link href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/postctrl.js"></script>
@@ -109,6 +109,8 @@
     </div> <!-- /.container -->
 </div>
 
+<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/battlefield.css">
+<@macro.footer />
 	</body>	
 </html>
 

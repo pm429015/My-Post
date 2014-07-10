@@ -1,0 +1,263 @@
+/***** Footer *****/
+
+footer {
+    padding: 30px 0;
+    -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+    color: #aaa;
+}
+
+footer h3 {
+    margin-left: 50px;
+    padding-bottom: 10px;
+    font-size: 28px;
+    font-weight: 400;
+    color: #ddd;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+
+footer p { line-height: 30px; }
+
+footer a {
+    color: #ddd;
+    -o-transition: all .2s;
+    -moz-transition: all .2s;
+    -webkit-transition: all .2s;
+    -ms-transition: all .2s;
+}
+footer a:hover { color: #aaa; }
+
+.from-twitter .show-tweet {
+    margin-left: 50px;
+}
+
+.tweet_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+	
+.tweet_list li {
+    list-style-type: none;
+    line-height: 30px;
+}
+
+.testimonials p {
+    margin-left: 50px;
+}
+
+.testimonials .test-author {
+    margin-top: 25px;
+    padding-left: 50px;
+}
+
+.testimonials .test-author span { color: #ddd; }
+
+.testimonials .test-author img {
+    float: left;
+    margin-right: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.contact-us form {
+    margin: 17px 0 0 50px;
+}
+
+.contact-us p {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.contact-us form input, .contact-us form textarea {
+    width: 75%;
+    padding: 8px 15px;
+    background: #222;
+    border: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #aaa;
+}
+
+.contact-us form input:focus, .contact-us form textarea:focus {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.contact-us form button {
+    margin: 2px 0 0 191px;
+    padding: 7px 15px;
+    background: #518d8a;
+    border: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #fff;
+    -o-transition: all .2s;
+    -moz-transition: all .2s;
+    -webkit-transition: all .2s;
+    -ms-transition: all .2s;
+}
+
+.contact-us form button:hover {
+    background: #222;
+    color: #aaa;
+}
+
+.contact-us form input:-moz-placeholder { color: #aaa; }
+.contact-us form input:-ms-input-placeholder { color: #aaa; }
+.contact-us form input::-webkit-input-placeholder { color: #aaa; }
+
+.social-links {
+    margin: 40px 50px 0 50px;
+    padding-top: 40px;
+    border-top: 1px dotted #4d4d4d;
+    text-align: center;
+}
+
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+/***** Media Queries *****/
+
+@media (min-width: 980px) and (max-width: 1200px) {
+
+    .product-image { text-align: right; }
+
+    .product-image img { width: 95%; }
+
+    .features_2 .single-feature { width: 270px; }
+
+    .features_2 .features-left-span { margin-left: 70px; }
+
+    .features_2 .feature-icon i { width: 38px; font-size: 35px; }
+
+    .features_2 .feature-text { width: 217px; margin-left: 15px; }
+
+    .gallery_2 .gallery-images .img-background { width: 90px; height: 90px; }
+
+    .gallery_2 .gallery-images .img-background i { font-size: 38px; line-height: 90px; }
+
+    .gallery_2 .gallery-images img { width: 90px; }
+
+    .contact-us form button { margin-left: 138px; }
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+    .product-image { text-align: right; }
+
+    .product-image img { width: 95%; }
+
+    .product-title div.product-description form button { padding-left: 20px; padding-right: 20px; }
+
+    .features_2 .single-feature { width: 198px; }
+
+    .features_2 .features-left-span { margin-left: 70px; }
+
+    .features_2 .feature-icon i { width: 30px; font-size: 27px; }
+
+    .features_2 .feature-text { width: 158px; margin-left: 10px; }
+
+    .gallery_2 .gallery-images .img-background { width: 90px; height: 90px; }
+
+    .gallery_2 .gallery-images .img-background i { font-size: 38px; line-height: 90px; }
+
+    .gallery_2 .gallery-images img { width: 90px; }
+
+    footer h3, .testimonials p, .from-twitter .show-tweet, .contact-us form, .contact-us p { margin-left: 0; }
+
+    .contact-us p { margin-right: 0; }
+
+    .testimonials .test-author { padding-left: 0; }
+
+    .contact-us form input, .contact-us form textarea { width: 87%; }
+
+    .contact-us form button { margin-left: 149px; }
+
+}
+
+@media (max-width: 767px) {
+
+    body { padding-left: 0; padding-right: 0; }
+
+    .logo h2 { padding-left: 0; text-align: center; }
+
+    .tel-skype p { margin-bottom: 11px; padding-right: 0; text-align: center; }
+
+    .product-background { width: 90%; margin-left: auto; margin-right: auto; }
+
+    .product-image { display: none; }
+
+    .product-title h1, .product-title div.product-description { padding-left: 40px; }
+
+    .product-title div.product-description form { text-align: center; }
+
+    .product-title div.product-description form button:active { border: 1px solid transparent; }
+
+    .about-us_2 h3, .features_2 h3, .gallery_2 h3, .about-us_2 h5, .gallery_2 h5 { margin-left: 50px; margin-right: 50px; }
+
+    .about-us_2 p, .gallery_2 p { margin-left: 50px; margin-right: 50px; }
+
+    .features_2 .feature-icon { display: none; }
+
+    .features_2 .single-feature { width: 100%; margin-bottom: 0; }
+
+    .features_2 .features-left-span { margin-left: 0; }
+
+    .features_2 .feature-icon i { width: 30px; font-size: 30px; }
+
+    .features_2 .feature-text { float: none; width: auto; margin-left: 50px; margin-right: 50px; }
+
+    .features_2 .feature-text h4 { line-height: 36px; }
+
+    .gallery_2 .gallery-images { margin-right: 50px; }
+
+    .gallery_2 .gallery-images .img-background { width: 90px; height: 90px; }
+
+    .gallery_2 .gallery-images .img-background i { font-size: 38px; line-height: 90px; }
+
+    .gallery_2 .gallery-images img { width: 90px; }
+
+    .using-this { margin-top: 40px; }
+
+    .using-this h3 { margin-left: 50px; margin-right: 50px; }
+
+    footer { padding-top: 0; }
+
+    footer h3 { margin-top: 40px; }
+
+    footer h3, .testimonials p, .from-twitter .show-tweet, .contact-us form, .contact-us p, .copyright p { margin-left: 50px; margin-right: 50px; }
+
+    .testimonials .test-author { padding-left: 50px; padding-right: 50px; }
+
+    .contact-us form input, .contact-us form textarea { width: 87%; }
+
+    .contact-us form button { margin-left: 0; }
+
+    .social-links { margin-top: 45px; }
+
+}
+
+@media (max-width: 514px) {
+
+    .product-title div.product-description form input { width: 80%; }
+
+}
+

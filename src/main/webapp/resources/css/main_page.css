@@ -18,7 +18,7 @@
 
 .product-showcase {
 	margin: 0 auto;
-	background: #2d2d2d;
+	background: #fff;
 }
 
 .product-showcase-pattern {
@@ -212,6 +212,7 @@
 #aboutlayer {
 	position:relative;
 	margin-top: 35px;
+	margin-bottom: 35px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

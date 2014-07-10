@@ -54,7 +54,3 @@ function keypress(e)
     }
 }
 
-function checkLength(val)
-{
-	alert(val);
-}

@@ -2,7 +2,7 @@
 <#import "macro_new.ftl" as macro/>
 <link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
 
-<title>The Page Not Found.</title>
+<title>The Page Not Found</title>
 
 <@macro.showHeader />
 
@@ -15,13 +15,11 @@
 				
 				<li><a href="home"
 						class="btn btn-danger btn-lg">DealArenas</a>
-					
 				</li>
 				
 			</div>
 		</div>
 	</section>
-	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/main_page.js"></script>
 	</body>	
 </html>
 

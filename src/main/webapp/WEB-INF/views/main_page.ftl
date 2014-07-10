@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring />
 <#import "macro_new.ftl" as macro/>
-<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
-<title>DealArena</title>
+
+<title>DealArenas</title>
 <@macro.showHeader />
 	<!-- Product Showcase -->
         <div class="product-showcase">
@@ -18,7 +18,7 @@
                                     <fieldset>
                                     		<!--  Header-->
 							            <div class="form-group form-header">
-							              <h3 class="col-md-10 control-label">Request a deal for <font color=red>FREE</font></h3>
+							              <h3 class="col-md-10 control-label">Request a deal for <u>FREE</u></h3>
 							            </div>
                                     
                                     		<!-- Subject input-->
@@ -59,32 +59,35 @@
 									</form>
 									
                                 </div>
-                                <div id="aboutlayer">
-									<section id="about" class="container content-section text-center">
-										<div class="row">
-											<div class="col-lg-8 col-lg-offset-2">
-												<h2>About DealArenas</h2>
-												<p>DealArenas is a paradise for buyers to instantly negotiate, compare and choose the best deals they like. 
-												DealArenas is also a sellers arena because only the best deals could survive. If you want to buy something but 
-												can't find a good deal or you have good deals but can't find customers, DealArenas is your best friend.
-												</p>
-												<p>dealarenas@gmail.com</p>
-												<li><a href="mailto:dealarenas@gmail.com"
-														class="btn btn-default btn-lg"><i
-															class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-													</li>
-											</div>
-										</div>
-									</section>
-								</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="aboutlayer">
+				<div id="about" class="container content-section text-center">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
+							<h2>About DealArenas</h2>
+							<p>DealArenas is a paradise for buyers to instantly negotiate, compare and choose the best deals they like. 
+								DealArenas is also a sellers arena because only the best deals could survive. If you want to buy something but 
+								can't find a good deal or you have good deals but can't find customers, DealArenas is your best friend.
+							</p>
+							<p>dealarenas@gmail.com</p>
+							<li><a href="mailto:dealarenas@gmail.com"
+								class="btn btn-default btn-lg"><i
+								class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+							</li>
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
-		
+
+	<@macro.loadExternal />
 	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/main_page.js"></script>
+	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
+	<@macro.footer />
 	</body>	
 </html>
 

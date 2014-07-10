@@ -19,10 +19,10 @@
 		
 		<#nested/>
 
-		<div class="container" ng-app>
 			
 				
 </#macro>
+
 
 <#macro loginpage>
 	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/SocalLogin.css">

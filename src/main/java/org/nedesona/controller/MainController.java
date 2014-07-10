@@ -21,4 +21,10 @@ public class MainController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		return new ModelAndView("main_page", model);
 	}
+	
+	@RequestMapping(value = "/termsOfUse")
+	public ModelAndView termsOfUse() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		return new ModelAndView("TermOfUse", model);
+	}
 }

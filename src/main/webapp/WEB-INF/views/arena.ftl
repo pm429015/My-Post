@@ -3,7 +3,7 @@
 
 <title>DealArena</title>
 <@macro.showHeader />
-<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/arena.css">
+
 <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
 <link href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/postList.js"></script></script>
@@ -57,7 +57,9 @@
 
     </div> <!-- /.container -->
 </div>
-
+<@macro.loadExternal />
+<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/arena.css">
+<@macro.footer />
 	</body>	
 </html>
 
