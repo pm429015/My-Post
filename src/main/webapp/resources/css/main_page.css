@@ -199,6 +199,7 @@
 	font-weight: 100;
 }
 
+
 /***** About *****/
 #about p {
 	color: #000;
@@ -209,6 +210,8 @@
 }
 
 #aboutlayer {
+	position:relative;
+	margin-top: 35px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
