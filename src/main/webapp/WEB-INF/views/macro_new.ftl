@@ -36,7 +36,7 @@
 </#macro>
 
 <#macro loadExternal>
-	<#include "macro_css.ftl" /> 
-	<#include "macro_js.ftl" />
-	<#include "navbar.ftl" /> 
+<#include "macro_css.ftl" /> 
+<#include "macro_js.ftl" />
+<#include "navbar.ftl" /> 
 </#macro>

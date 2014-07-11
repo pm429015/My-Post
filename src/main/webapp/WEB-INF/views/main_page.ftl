@@ -85,8 +85,8 @@
         </div>
 
 	<@macro.loadExternal />
-	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/main_page.js"></script>
 	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
+	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/main_page.js"></script>
 	<@macro.footer />
 	</body>	
 </html>
