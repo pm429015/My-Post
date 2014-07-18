@@ -15,7 +15,7 @@
 
 
 	<mongo:db-factory id="mongoDbFactory" dbname="deepakrathor"
-		host="127.0.0.1" port="27017" username="stanley" password="833069237"/>
+		host="127.0.0.1" port="27017" />
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
