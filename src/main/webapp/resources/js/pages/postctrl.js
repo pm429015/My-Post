@@ -53,13 +53,8 @@ function commentSubmit(dealID, index) {
 
 function joinBid(token){
 	//Check if the user has token
-	if(token){
-		$("#postFight")
-		.html(
-				'<h3>Beat the </h3><center><textarea class="form-control " id="deal_header" rows="1" style="width: 600px;"  placeholder="Headline (requried)" ></textarea> <label class="error" for="header" id="header_error"><font color="red">Write a killer deal headline. </font></label><br><textarea class="form-control" id="deal_content" rows="8" style="width: 650px;" placeholder="Write your deal here (required)" required></textarea><label class="error" for="content" id="deal_error"><font color="red">10 more words required.</font></label></center><button type="button" class="btn btn-success btn-lg" id="postSubmit" >Submit</button>');
-	}else{
-		$("#postFight").hide();
-		$("#bidwell")
+	$("#postFight").hide();
+	$("#bidwell")
 		.html(
 				'<center>'+
 					'<div id="bidLayer">'+
@@ -95,9 +90,6 @@ function joinBid(token){
 							'</div>'+
 						'</div>'+
 					'</div></center>');
-											
-	}
-	
 }
 
 $(function() {
