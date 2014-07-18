@@ -1,5 +1,7 @@
 package org.nedesona.utils;
 
+import java.util.regex.Pattern;
+
 import javax.servlet.http.Cookie;
 
 public class Controller_utils {
@@ -10,4 +12,16 @@ public class Controller_utils {
 		cookie.setMaxAge(expireTime);
         return cookie;
 	}
+	
+	public static boolean checkEMail(String email){
+		final String EMAIL_PATTERN = 
+				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		
+		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+		
+		return pattern.matcher(email).matches();
+		
+	}
+	
 }

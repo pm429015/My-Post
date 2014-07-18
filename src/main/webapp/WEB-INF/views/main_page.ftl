@@ -11,19 +11,19 @@
                         <div class="span12 product-background">
                             <div class="row">
                                 <div class="col-md-5 product-image leftContent">
-                                   <p>You deserve a better way to find your dream deal. </p>
+                                   <p>Make Dealers Bid </p>
                                 </div>
                                 <div class="col-md-7 product-title">
                                     <form class="form-horizontal requestForm">
                                     <fieldset>
                                     		<!--  Header-->
 							            <div class="form-group form-header">
-							              <h3 class="col-md-10 control-label">Request a deal for <u>FREE</u></h3>
+							              <h3 class="col-md-10 control-label">Request a best car deal for <u>FREE</u></h3>
 							            </div>
                                     
                                     		<!-- Subject input-->
 							            <div class="form-group">
-							              <h3 class="col-md-3 control-label" for="title">Subject:</h3>
+							              <h3 class="col-md-3 control-label" for="title">Car Model:</h3>
 							              <div class="col-md-5">
 							                <input id="title" name="title" type="text" placeholder="Example: An affordable iPhone 5 " class="form-control"></input>
 							                <label class="error" for="title" id="subject_error"><font color="red">Please Summary your request. </font></label>
@@ -35,9 +35,34 @@
 							              <h3 class="col-md-3 control-label" for="Uemail">Email:</h3>
 							              <div class="col-md-5">
 							                <input id="Uemail" name="Uemail" type="text" placeholder="your@email.com" class="form-control"></input>
-							                <label class="error" for="Uemail" id="Uemail_error"><font color="red">Invalid email address</font></label>
+							                <label class="error" for="Uemail" id="Uemail_error"><font color="red">Invalid email address. No spam and your email address will never be shared.</font></label>
 							              </div>
 							            </div>
+							            
+							            <!-- ZipCode input-->
+							            <div class="form-group zipcode-group">
+							              <h3 class="col-md-3 control-label" for="Uzip">Zip:</h3>
+							              <div class="col-md-3">
+							                <input id="Uzip" name="Uzip" type="text" placeholder="zip code" class="form-control"></input>
+							                <label class="error" for="Uzip" id="Uzip_error"><font color="red">Invalid Zip Code</font></label>
+							              </div>
+							              <div class="col-md-1">
+							              	<h3 class="control-label">in</h3>
+							              </div>
+							              
+							              <div class="col-md-4">
+							              	<select class="form-control miles">
+							              		<option>5 Miles</option>
+											    <option>10 Miles</option>
+											    <option>20 Miles</option>
+											    <option>30 Miles</option>
+											    <option>40 Miles</option>
+											    <option>50 Miles</option>
+											</select>
+							              </div>
+							            </div>
+							            
+							            
                                     		
                                     		<!-- content input-->
 							            <div class="form-group">
@@ -57,7 +82,6 @@
 							            
                                     </fieldset>
 									</form>
-									
                                 </div>
                             </div>
                         </div>

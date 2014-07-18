@@ -51,28 +51,77 @@ function commentSubmit(dealID, index) {
 
 }
 
+function joinBid(token){
+	//Check if the user has token
+	if(token){
+		$("#postFight")
+		.html(
+				'<h3>Beat the </h3><center><textarea class="form-control " id="deal_header" rows="1" style="width: 600px;"  placeholder="Headline (requried)" ></textarea> <label class="error" for="header" id="header_error"><font color="red">Write a killer deal headline. </font></label><br><textarea class="form-control" id="deal_content" rows="8" style="width: 650px;" placeholder="Write your deal here (required)" required></textarea><label class="error" for="content" id="deal_error"><font color="red">10 more words required.</font></label></center><button type="button" class="btn btn-success btn-lg" id="postSubmit" >Submit</button>');
+	}else{
+		$("#postFight").hide();
+		$("#bidwell")
+		.html(
+				'<center>'+
+					'<div id="bidLayer">'+
+						'<div class="container">'+
+							'<div class="row">'+
+								'<div class="span12">'+
+									'<form class="form-horizontal bidform">'+
+                                    	'<fieldset>'+
+										'<div class="row">'+
+											'<div class="form-group">'+
+												'<h3 class="col-md-3 control-label bidformtext">Out of Door Price:</h3>'+
+												'<div class="col-md-5">'+
+													'<input class=" form-control " id="deal_header" placeholder="Out-the-door price" style="width: 400px;" ></input>'+ 
+													'<label class="error" for="header" id="header_error" hidden><font color="red">The full out-the-door price, all taxes and fees included. </font></label>'+
+												'</div> '+
+											'</div>'+
+											'<div class="form-group">'+
+												'<h3 class="col-md-3 control-label bidformtext">Description:</h3>'+
+												'<div class="col-md-9">'+
+													'<textarea class=" form-control" id="deal_content" rows="8" style="width: 65%;" placeholder="Write your deal here (required)" required></textarea>'+
+													'<label class="error" for="content" id="deal_error" hidden><font color="red">10 more words required.</font></label>'+
+												'</div>'+
+											'</div>'+
+											'<div class="form-group">'+
+												'<div class="col-md-9 text-right">'+
+													'<button type="button" class="btn btn-success btn-lg" id="postSubmit" >Submit</button>'+
+												'</div>'+
+											'</div>'+
+											'</fieldset>'+
+										'</form>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+					'</div></center>');
+											
+	}
+	
+}
+
 $(function() {
 	//Default hide all replies
 	$(".replies").hide();
+	$('.error').hide();
 	
 	// load cookies 
-	var name = getCookie("Name");
-	var email = getCookie("Email");
-	var postEmail = $("#post_mail").text();
-	//Check if the user is the person who requested this post. If yes, skip the join button
-	if (email != postEmail) {
-		// If not, check if the user has valid cookies
-		if (name && email) {
-			$("#postFight")
-					.html(
-							'<h3>Show us your best deal</h3><center><textarea class="form-control " id="deal_header" rows="1" style="width: 600px;"  placeholder="Headline (requried)" ></textarea> <label class="error" for="header" id="header_error"><font color="red">Write a killer deal headline. </font></label><br><textarea class="form-control" id="deal_content" rows="8" style="width: 650px;" placeholder="Write your deal here (required)" required></textarea><label class="error" for="content" id="deal_error"><font color="red">10 more words required.</font></label></center><button type="button" class="btn btn-success btn-lg" id="postSubmit" >Submit</button>');
-		} else {
-			$("#postFight")
-					.html(
-							'<a class="btn btn-danger btn-lg" href="#loginPage" data-toggle="modal" role="button" onclick="saveUrlCookie()">Join the flight</a>');
-		}
-		$('.error').hide();
+	var token = getCookie("token");
+	var authorID = $("#userID").text();
+	// If the user has a token to identify herself
+	// And if the user is not the author, show the button
+	if(token != authorID){
+		$("#postFight")
+		.html(
+				'<a class="btn btn-danger btn-lg" role="button" onclick="joinBid('+token+')">Join the flight</a>');
+
 	}
+	
+	
+	
+		
+		
+	
 	
 	
 	$("#postSubmit").click(function() {

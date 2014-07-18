@@ -18,27 +18,29 @@
                 		<div class="BTField">
                 			<h1>${post.title}</h1>
                 			<p>${post.description}</p>
+                			<p>${post.zip}</p>
                 			<p id="id" hidden>${post.id}</p>
-                			<p id="post_mail" hidden>${user.email}</p>
+                			<p id="userID" >${user.id}</p>
 		
-						<div id="postFight"></div>
+						<div id="postFight"></div>	
 						
 					</div>
                     </div><!--caption-full-->
                 </div><!-- /.thumbnail -->
-                
+                <div id="bidwell"></div>
                 <div class="well">
                 		<h1>Available Deals and Offers</h1>
                 		
-                		<#if !deals?has_content> 
-						<h3 id="noDeal" ><center>People tend to choose the first deal they find. <font color=red>Become the first one. </font> </center></h3>
+                		<#if !post.deals?has_content> 
+						<h3 id="noDeal" ><center><font color=red>Become the first one. </font> </center></h3>
 					</#if>
 
                     
 
                     <#assign index = 1> 
-					<#list deals as deal>
+					<#list post.deals?keys as key>
 					<div id="container">
+						${deal} = ${deals[key]};
 						<ul id="comments" onclick="expand('${index}','${deal.user.email}');">
 							<li class="cmmnt">
 								<div class="cmmnt-content">

@@ -1,6 +1,7 @@
 package org.nedesona.domain;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.annotation.Id;
@@ -13,14 +14,16 @@ public class Post {
 	private String id;
 	private String title;
 	private String description;
-	
+	private String zip;
+	private boolean active;
 	private Date lastModifiedDate;
 	private Date createDate;
-	
+	private List<String> emailList;
 	private int viewCount;
 
 	@DBRef
 	private User user;
+	@DBRef
 	private Map<String, Deal> deals;
 	
 	public String getId() {
@@ -70,6 +73,24 @@ public class Post {
 	}
 	public void setDeals(Map<String, Deal> deals) {
 		this.deals = deals;
+	}
+	public List<String> getEmailList() {
+		return emailList;
+	}
+	public void setEmailList(List<String> emailList) {
+		this.emailList = emailList;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
 

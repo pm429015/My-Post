@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.nedesona.dao.PostDao;
 import org.nedesona.domain.Deal;
@@ -24,7 +25,7 @@ public class PostManagerImpl implements PostManager {
 
 	@Override
 	public void savePost(Post post) {
-		Date timeStamp = Calendar.getInstance().getTime();
+		Date timeStamp = Calendar.getInstance(TimeZone.getTimeZone("EST")).getTime();
 		post.setCreateDate(timeStamp);
 		post.setLastModifiedDate(timeStamp);
 		post.setViewCount(0);

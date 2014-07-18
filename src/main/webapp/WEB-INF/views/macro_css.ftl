@@ -2,7 +2,7 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- Fonts -->

@@ -64,6 +64,21 @@
 	margin-bottom:20px;
 }
 
+/***Bid form layer ***/
+#bidLayer{
+	background-color: #c8c8c8;
+	text-align:center;
+	width:80%;
+	margin-bottom:20px;
+}
+
+.bidform{
+	margin-top:30px;
+}
+
+.bidformtext{
+	color:black;
+}
 
 /***deals***/
 .well{
