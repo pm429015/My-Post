@@ -26,7 +26,7 @@ public class Deal {
 	
 	
 	@DBRef
-	private User user;
+	private Dealer user;
 	private Map<String, Comment> comments;
 	
 	public String getId() {
@@ -77,11 +77,11 @@ public class Deal {
 		this.comments = comments;
 	}
 
-	public User getUser() {
+	public Dealer getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Dealer user) {
 		this.user = user;
 	}
 

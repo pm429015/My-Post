@@ -18,4 +18,6 @@ public interface PostManager {
 	
 	List<Post> search(String keyword);
 
+	void updateDeal(Deal forWhichDeal);
+
 }

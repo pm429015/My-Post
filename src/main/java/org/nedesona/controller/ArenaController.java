@@ -1,7 +1,9 @@
 package org.nedesona.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
+import org.nedesona.domain.Dealer;
 import org.nedesona.domain.Post;
 import org.nedesona.domain.User;
 import org.nedesona.service.CommentManager;
 import org.nedesona.service.DealManager;
+import org.nedesona.service.DealerManager;
 import org.nedesona.service.PostManager;
 import org.nedesona.service.UserManager;
 import org.nedesona.utils.Controller_utils;
@@ -44,6 +48,8 @@ public class ArenaController {
 	@Autowired
 	private CommentManager commentManager;
 
+	@Autowired
+	private DealerManager dealerManager;
 
 	@RequestMapping(value = "/arena")
 	public ModelAndView dealArena() {
@@ -52,27 +58,33 @@ public class ArenaController {
 		model.put("postList", postManager.getPostList());
 		return new ModelAndView("arena", model);
 	}
-	
+
 	@RequestMapping(value = "/{id}")
-	public ModelAndView view(@PathVariable String id, 
-			@RequestParam(value = "token", required = false) String token
-			, HttpServletResponse response
-			) throws Exception {
+	public ModelAndView view(@PathVariable String id,
+			@RequestParam(value = "token", required = false) String token,
+			HttpServletResponse response) throws Exception {
 		Map<String, Object> model = new HashMap<String, Object>();
 		Post post = postManager.viewById(id);
-		
+
 		// If the post id is valid
 		if (post != null) {
 
 			model.put("post", post);
 			model.put("user", post.getUser());
-			
+
 			// Save token in the cookie
-			
 			if (token != null) {
-				response.addCookie(Controller_utils.bakeCookie("token", token ));
+				// Check the token is a valid user
+				User user = userManager.searchUser("id", token);
+				Dealer dealer = dealerManager.searchByID(token);
+				if (user != null || dealer != null) {
+					response.addCookie(Controller_utils.bakeCookie("token",
+							token));
+				} else {
+					logger.warn("Unknown Token: " + token);
+				}
+
 			}
-			
 
 			return new ModelAndView("battlefield", model);
 		}
@@ -80,52 +92,105 @@ public class ArenaController {
 		return new ModelAndView("Error", model);
 
 	}
-	
+
 	@RequestMapping(value = "/reply", method = RequestMethod.POST)
 	public @ResponseBody
-	Object saveReply(@RequestParam(value = "email") String email,
+	Object saveReply(@RequestParam(value = "token") String token,
 			@RequestParam(value = "content") String content,
 			@RequestParam(value = "deal_id") String dealID) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.warn(email + " " + content + " " + dealID);
-		User user = userManager.searchUser("email", email);
+		logger.warn(token + " " + content + " " + dealID);
+		
 		Deal forWhichDeal = dealManager.searchBy("id", dealID);
-		Comment comment = new Comment();
-		// define user and for which deal
-		if (user != null && comment != null) {
+		if (forWhichDeal != null) {
+			// Two kind of user
+			Comment comment = new Comment();
 			comment.setContent(content);
-			comment.setUser(user);
 			comment.setDeal(forWhichDeal);
+			User user = userManager.searchUser("id", token);
+			// Is the author
+			if (user != null) {
+				comment.setUser(user);
+			}else{
+				// Check Buyer
+				Dealer dealer = dealerManager.searchByID(token);
+				if (dealer != null) {
+					comment.setUser(dealer);
+				}else{
+					logger.warn("Unknown user");
+					return null;
+				}
+			}
+			
+			
+			commentManager.saveComment(comment);
+			dealManager.addComment(comment);
+			postManager.updateDeal(forWhichDeal);
+
+		} else {
+			logger.warn("Unknown deal");
 		}
-
-		commentManager.saveComment(comment);
-		dealManager.addComment(comment);
-
+		
+		
 		return model;
 	}
 
-	
-
 	@RequestMapping(value = "/insertDeal", method = RequestMethod.POST)
 	public @ResponseBody
-	Object saveDeal(HttpServletRequest request,
-			@RequestParam(value = "email") String email,
-			@RequestParam(value = "content") String content,
-			@RequestParam(value = "header") String header,
+	Object saveDeal(
+			HttpServletRequest request,
+			@RequestParam(value = "token", required = false) String token,
+			@RequestParam(value = "dealHeader") String header,
+			@RequestParam(value = "dealContent") String dealContent,
+			@RequestParam(value = "dealerName", required = false) String dealerName,
+			@RequestParam(value = "dealerEmail", required = false) String dealerEmail,
+			@RequestParam(value = "dealerPhone", required = false) String dealerPhone,
+			@RequestParam(value = "dealerZip", required = false) String dealerZip,
+			@RequestParam(value = "dealerAddress", required = false) String dealerAddress,
+			@RequestParam(value = "dealerBrands", required = false) String dealerBrands,
 			@RequestParam(value = "id") String postid) {
-		Map<String, Object> model = new HashMap<String, Object>();
-		logger.info("Save a new deal " + email + " content:" + content + " id:"
-				+ postid);
-		User dealer = userManager.searchUser("email", email);
-		Deal deal = new Deal();
-		if (dealer != null) {
 
-			deal.setRefPost(postid);
-			deal.setContent(content);
-			deal.setUser(dealer);
-			deal.setHeader(header);
+		Map<String, Object> model = new HashMap<String, Object>();
+		logger.warn("Save a new deal " + header + " content:" + dealContent
+				+ " id:" + postid + " dealerName:" + dealerName
+				+ " dealerEmail:" + dealerEmail);
+
+		// Case 1: New user
+		Dealer dealer = new Dealer();
+		if (dealerName != null && dealerEmail != null && dealerPhone != null
+				&& dealerZip != null && dealerAddress != null && token == null) {
+			dealer.setUserName(dealerName);
+			dealer.setEmail(dealerEmail);
+			dealer.setPhone(dealerPhone);
+			dealer.setAddress(dealerAddress);
+			dealer.setZipCode(dealerZip);
+
+			// Optional if the dealer has brands
+			if (dealerBrands != null) {
+				dealer.setBrands(dealerBrands);
+			}
+			dealerManager.addDealer(dealer);
+			// Case 2: has a token
+		} else if (token != null) {
+			logger.warn("the return user");
+			// Find the dealer
+			Dealer returnDealer = dealerManager.searchByID(token);
+			if (returnDealer != null) {
+				dealer = returnDealer;
+			} else {
+				return null;
+			}
+			// Case 3: Error
+		} else {
+			return null;
 		}
 
+		// Create a new deal and add into db
+		Deal deal = new Deal();
+		deal.setHeader(header);
+		deal.setContent(dealContent);
+		deal.setRefPost(postid);
+		deal.setUser(dealer);
 		dealManager.saveDeal(deal);
 		postManager.addDeal(deal);
 

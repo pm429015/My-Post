@@ -45,13 +45,15 @@ public class DealManagerImpl implements DealManager {
 	@Override
 	public Deal searchBy(String by, String term) {
 		// TODO Auto-generated method stub
-		return dealDao.searchBy(by,term);
+		return dealDao.searchBy(by, term);
 	}
 
 	@Override
 	public void addComment(Comment comment) {
-		Query query = new Query(Criteria.where("id").is(comment.getDeal().getId()));
-		Update updateQuery = new Update().set("comments." + comment.getId(),comment);
+		Query query = new Query(Criteria.where("id").is(
+				comment.getDeal().getId()));
+		Update updateQuery = new Update().set("comments." + comment.getId(),
+				comment);
 		dealDao.addComment(query, updateQuery);
 
 	}

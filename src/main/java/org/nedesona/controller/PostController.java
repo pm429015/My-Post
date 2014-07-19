@@ -69,8 +69,8 @@ public class PostController {
 			post.setActive(true);
 			
 			// maintain a email list in the post db and add author email in the list
-			List<String> emailList = new ArrayList<String>();
-			emailList.add(email);
+			Map<String, String> emailList = new HashMap<String,String>();
+			emailList.put(returnUser.getId(),email);
 			post.setEmailList(emailList);
 			
 			//Call US zip code finder, and return a list of string

@@ -18,6 +18,10 @@ public class Dealer {
 	private String userName;
 	private String email;
 	private String zipCode;
+	private String phone;
+	private String address;
+	private String brands;
+	
 	public String getId() {
 		return id;
 	}
@@ -53,6 +57,24 @@ public class Dealer {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getBrands() {
+		return brands;
+	}
+	public void setBrands(String brands) {
+		this.brands = brands;
 	}
 	
 	

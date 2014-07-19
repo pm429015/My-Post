@@ -49,14 +49,31 @@ public class PostManagerImpl implements PostManager {
 	@Override	
 	public void addDeal(Deal deal) {
 		Query query = new Query(Criteria.where("id").is(deal.getRefPost()));
-		Update updateQuery = new Update().set("deals." + deal.getId(),deal);
+		
+		// Add deal
+		Update insertDeal = new Update().set("deals." + deal.getId(),deal);
+		postDao.addDeal(query, insertDeal);
+		
+		// Change modify time
+		new Update();
+		Update updateQuery = Update.update("lastModifiedDate",deal.getCreateDate());
 		postDao.addDeal(query, updateQuery);
-
+		
+		// Add email list
+		Update insertEmail = new Update().set("emailList." +deal.getId(),deal.getUser().getEmail());
+		postDao.addDeal(query, insertEmail);
 	}
 
 	@Override
 	public List<Post> search(String keyword) {
 		return postDao.search(keyword);
+	}
+
+	@Override
+	public void updateDeal(Deal deal) {
+		Query query = new Query(Criteria.where("id").is(deal.getRefPost()));
+		Update insertDeal = new Update().set("deals." + deal.getId(),deal);
+		postDao.addDeal(query, insertDeal);
 	}
 
 }

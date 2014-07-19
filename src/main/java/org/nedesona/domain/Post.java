@@ -18,7 +18,8 @@ public class Post {
 	private boolean active;
 	private Date lastModifiedDate;
 	private Date createDate;
-	private List<String> emailList;
+	@DBRef
+	private Map<String, String> emailList;
 	private int viewCount;
 
 	@DBRef
@@ -74,10 +75,10 @@ public class Post {
 	public void setDeals(Map<String, Deal> deals) {
 		this.deals = deals;
 	}
-	public List<String> getEmailList() {
+	public Map<String, String> getEmailList() {
 		return emailList;
 	}
-	public void setEmailList(List<String> emailList) {
+	public void setEmailList(Map<String, String> emailList) {
 		this.emailList = emailList;
 	}
 	public boolean isActive() {

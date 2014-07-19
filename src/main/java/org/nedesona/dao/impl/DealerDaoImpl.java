@@ -32,8 +32,8 @@ public class DealerDaoImpl implements DealerDao {
 	public Boolean checkDealerExist(Dealer dealer) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("email").is(dealer.getEmail()));
-		User returnUser = mongoTemplate.findOne(query, User.class);
-		if (returnUser == null) {
+		Dealer returnDealer = mongoTemplate.findOne(query, Dealer.class);
+		if (returnDealer == null) {
 			return false;
 		} else {
 			return true;
@@ -49,6 +49,12 @@ public class DealerDaoImpl implements DealerDao {
 
 		return matchDealers;
 
+	}
+
+	@Override
+	public Dealer searchByID(String id) {
+		
+		return mongoTemplate.findById(id, Dealer.class);
 	}
 
 }

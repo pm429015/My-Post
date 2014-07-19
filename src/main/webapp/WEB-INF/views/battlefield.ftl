@@ -24,10 +24,12 @@
 		
 						<div id="postFight"></div>	
 						
+						
 					</div>
                     </div><!--caption-full-->
                 </div><!-- /.thumbnail -->
                 <div id="bidwell"></div>
+                <div id="dealerInfo"></div>	
                 <div class="well">
                 		<h1>Available Deals and Offers</h1>
                 		
@@ -40,42 +42,33 @@
                     <#assign index = 1> 
 					<#list post.deals?keys as key>
 					<div id="container">
-						${deal} = ${deals[key]};
-						<ul id="comments" onclick="expand('${index}','${deal.user.email}');">
+						<ul id="comments" onclick="expand('${index}','${post.deals[key].user.id}');">
 							<li class="cmmnt">
 								<div class="cmmnt-content">
 									<header>
-										<a href="javascript:void(0);" class="userlink">${deal.header}</a>
-										<span class="pubdate pull-right">${deal.createDate?date}</span>
+										<a href="javascript:void(0);" class="userlink">${post.deals[key].header}</a>
+										<span class="pubdate pull-right">${post.deals[key].createDate?date}</span>
 									</header>
-									<p>${deal.content}</p>
-									<p align="right">by ${deal.user.firstName}</p>
+									<p>${post.deals[key].content}</p>
+									<p align="right">by ${post.deals[key].user.userName}</p>
 									
 									
 									<a href="javascript:void(0);" class="pull-right" id="expand${index}"
-										onclick="expand('${index}','${deal.user.email}');">Expand</a> <br>
+										onclick="expand('${index}','${post.deals[key].user.id}');">Expand</a> <br>
 								</div> 
-								<#if deal.comments??> 
-									<#list deal.comments?keys as i>
+								<#if post.deals[key].comments??> 
+									<#list post.deals[key].comments?keys as i>
 									<ul class="replies dis${index}">
 										<li class="cmmnt">
 											<div class="cmmnt-content">
-												<p>${deal.comments[i].content}</p>
-												<p style="text-align:right;font-size:15px">by ${deal.comments[i].user.firstName}</p>
+												<p>${post.deals[key].comments[i].content}</p>
+												<p style="text-align:right;font-size:15px">by ${post.deals[key].comments[i].user.firstName}</p>
 											</div>
 										</li>
 			
 									</ul> 
 									</#list> 
-								<#else>
-									<ul class="replies dis${index}">
-									<li class="cmmnt">
-										<div class="cmmnt-content">
-											<h4>No comments yet.</h4>
-										</div>
-									</li>
-		
-								</ul>
+								
 								</#if>
 		
 								<div class="msg_reply" id="m_reply${index}">
@@ -88,7 +81,7 @@
 												<label class="error" for="comment${index}" id="comment_error"><font color="red">Please write something. </font></label>
 												<div align="right"> 
 													<button class="btn btn-success btn-lg"
-													onclick="commentSubmit('${deal.id}','${index}');">Submit</button>
+													onclick="commentSubmit('${post.deals[key].id}','${index}');">Submit</button>
 												</div>
 											</div>
 										</li>

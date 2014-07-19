@@ -16,7 +16,7 @@ public class Comment {
 	private Date lastModifiedDate;
 
 	@DBRef
-	private User user;
+	private Object user;
 	private Deal deal;
 
 
@@ -44,11 +44,15 @@ public class Comment {
 		this.createdDate = createdDate;
 	}
 
-	public User getUser() {
+	public Object getUser() {
 		return user;
 	}
 
 	public void setUser(User createdBy) {
+		this.user = createdBy;
+	}
+	
+	public void setUser(Dealer createdBy) {
 		this.user = createdBy;
 	}
 
