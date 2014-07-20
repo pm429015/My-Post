@@ -62,7 +62,7 @@
 										<li class="cmmnt">
 											<div class="cmmnt-content">
 												<p>${post.deals[key].comments[i].content}</p>
-												<p style="text-align:right;font-size:15px">by ${post.deals[key].comments[i].user.firstName}</p>
+												<p style="text-align:right;font-size:15px">by ${post.deals[key].comments[i].user.userName}</p>
 											</div>
 										</li>
 			

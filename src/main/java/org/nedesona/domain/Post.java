@@ -18,7 +18,6 @@ public class Post {
 	private boolean active;
 	private Date lastModifiedDate;
 	private Date createDate;
-	@DBRef
 	private Map<String, String> emailList;
 	private int viewCount;
 

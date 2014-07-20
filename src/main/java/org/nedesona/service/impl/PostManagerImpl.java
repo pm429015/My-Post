@@ -60,7 +60,7 @@ public class PostManagerImpl implements PostManager {
 		postDao.addDeal(query, updateQuery);
 		
 		// Add email list
-		Update insertEmail = new Update().set("emailList." +deal.getId(),deal.getUser().getEmail());
+		Update insertEmail = new Update().set("emailList." +deal.getUser().getId(),deal.getUser().getEmail());
 		postDao.addDeal(query, insertEmail);
 	}
 

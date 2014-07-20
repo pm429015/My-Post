@@ -36,7 +36,7 @@ public class PostController {
 	private DealerManager dealerManager;
 	
 	@Autowired
-	private SendMail mailToDealers;
+	private SendMail reminderMail;
 
 
 	@RequestMapping(value = "/insertPost")
@@ -73,21 +73,27 @@ public class PostController {
 			emailList.put(returnUser.getId(),email);
 			post.setEmailList(emailList);
 			
+			logger.warn("Save the Post to the db");
+			postManager.savePost(post);
+			
 			//Call US zip code finder, and return a list of string
 			List<String> zipCodelist = new ArrayList<String>();
-			zipCodelist.add("1");
-
+			zipCodelist.add("2");
+			
 			if (!zipCodelist.isEmpty()) {
 				List<Dealer> dealerlist = dealerManager.searchDealers("zipCode", zipCodelist);
 				
 				// Send mail to the target dealers
-				mailToDealers.sending(dealerlist);
+				for (Dealer dealer : dealerlist) {
+					// Paste target email, title, post content and link
+					reminderMail.sending(dealer.getEmail(),"Can you beat the price?",post.getDescription(),post.getId()+"?token="+dealer.getId());
+				}
+				
 			}else{
 				logger.warn("Empyt Zip code list");
 			}
 			
-			logger.warn("Save the Post to the db");
-			postManager.savePost(post);
+			
 		}
 		
 		return new ModelAndView("postThankYou", model);

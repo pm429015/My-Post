@@ -52,8 +52,7 @@ public class DealManagerImpl implements DealManager {
 	public void addComment(Comment comment) {
 		Query query = new Query(Criteria.where("id").is(
 				comment.getDeal().getId()));
-		Update updateQuery = new Update().set("comments." + comment.getId(),
-				comment);
+		Update updateQuery = new Update().set("comments." + comment.getId(),comment);
 		dealDao.addComment(query, updateQuery);
 
 	}

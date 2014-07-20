@@ -12,8 +12,9 @@ function expand(index, dealerID) {
 
 		}
 
+		// load cookies 
 		var token = getCookie("token");
-		var author_id = $("#id").text();
+		var authorID = $("#userID").text();
 		// Only the author and the dealer can reply the deal
 		if (token == author_id || token == dealerID) {
 			$("#m_reply" + index).show();

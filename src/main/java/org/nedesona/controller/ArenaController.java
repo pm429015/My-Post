@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.nedesona.beanInterface.SendMail;
 import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Dealer;
@@ -50,6 +51,10 @@ public class ArenaController {
 
 	@Autowired
 	private DealerManager dealerManager;
+	
+	@Autowired
+	private SendMail reminderMail;
+
 
 	@RequestMapping(value = "/arena")
 	public ModelAndView dealArena() {
@@ -99,7 +104,7 @@ public class ArenaController {
 			@RequestParam(value = "content") String content,
 			@RequestParam(value = "deal_id") String dealID) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.warn(token + " " + content + " " + dealID);
+		logger.warn("Add a new commit");
 		
 		Deal forWhichDeal = dealManager.searchBy("id", dealID);
 		if (forWhichDeal != null) {
@@ -111,21 +116,30 @@ public class ArenaController {
 			// Is the author
 			if (user != null) {
 				comment.setUser(user);
+				// Send to the dealer
+				reminderMail.sending(comment.getDeal().getUser().getEmail(),
+						" Buyer said something ","Buyer said...",comment.getDeal().getId()+"?token="+token);
+
 			}else{
 				// Check Buyer
 				Dealer dealer = dealerManager.searchByID(token);
 				if (dealer != null) {
 					comment.setUser(dealer);
+					// Send to user
+					Post post = postManager.viewById(forWhichDeal.getRefPost());
+					reminderMail.sending(post.getUser().getEmail(),
+							" Dealer said something ","Dealer said...",comment.getDeal().getId()+"?token="+token);
+
 				}else{
 					logger.warn("Unknown user");
 					return null;
 				}
 			}
 			
-			
 			commentManager.saveComment(comment);
 			dealManager.addComment(comment);
-			postManager.updateDeal(forWhichDeal);
+			Deal updatedDeal = dealManager.searchBy("id", dealID);
+			postManager.updateDeal(updatedDeal);
 
 		} else {
 			logger.warn("Unknown deal");
@@ -154,6 +168,11 @@ public class ArenaController {
 		logger.warn("Save a new deal " + header + " content:" + dealContent
 				+ " id:" + postid + " dealerName:" + dealerName
 				+ " dealerEmail:" + dealerEmail);
+		
+		Post post = postManager.viewById(postid);
+		if (post== null) {
+			return null;
+		}
 
 		// Case 1: New user
 		Dealer dealer = new Dealer();
@@ -172,7 +191,6 @@ public class ArenaController {
 			dealerManager.addDealer(dealer);
 			// Case 2: has a token
 		} else if (token != null) {
-			logger.warn("the return user");
 			// Find the dealer
 			Dealer returnDealer = dealerManager.searchByID(token);
 			if (returnDealer != null) {
@@ -193,6 +211,18 @@ public class ArenaController {
 		deal.setUser(dealer);
 		dealManager.saveDeal(deal);
 		postManager.addDeal(deal);
+		
+		// Send email to remind all subscribed users
+		Map<String, String> emailStr = post.getEmailList();
+		if (emailStr!= null) {
+			for (String key : emailStr.keySet()) {
+				//Skip dealer herself
+				if (!key.equals(dealer.getId())) {
+					reminderMail.sending(emailStr.get(key),"New deal ",post.getDescription(),post.getId()+"?token="+key);
+				}
+			}
+			
+		}
 
 		return model;
 	}
