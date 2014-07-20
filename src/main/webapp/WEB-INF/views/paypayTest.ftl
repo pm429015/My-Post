@@ -7,7 +7,7 @@
 <title>Paypal</title>
 
 <@macro.showHeader />
-	<a href="paypal"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" align="left" style="margin-right:7px;"></a>	
+	<a href="paypal?dealID=${dealID}"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" align="left" style="margin-right:7px;"></a>	
 
 	
 	

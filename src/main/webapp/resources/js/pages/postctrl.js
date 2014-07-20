@@ -16,7 +16,7 @@ function expand(index, dealerID) {
 		var token = getCookie("token");
 		var authorID = $("#userID").text();
 		// Only the author and the dealer can reply the deal
-		if (token == author_id || token == dealerID) {
+		if (token == authorID || token == dealerID) {
 			$("#m_reply" + index).show();
 		} else {
 			$("#m_reply" + index).hide();
@@ -193,6 +193,19 @@ function inputCheck(id){
 		return input;
 	}
 }
+
+function chooseDeal(index){
+	if (index) {
+		$.ajax({
+			type : "POST",
+			url : "selectedDeal",
+			data : {
+				dealID : index
+			}
+
+		});
+	}
+} 
 
 function joinBid(){
 	//Check if the user has token

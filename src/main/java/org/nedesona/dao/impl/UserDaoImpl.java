@@ -72,4 +72,9 @@ public class UserDaoImpl implements UserDao {
 		mongoTemplate.updateFirst(query, update, User.class);
 	}
 
+	@Override
+	public User findByID(String id) {
+		return mongoTemplate.findById(id, User.class);
+	}
+
 }

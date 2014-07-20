@@ -25,34 +25,6 @@ public class UserManagerImpl implements UserManager {
 	@Autowired
 	private UserDao userDao;
 	
-	// @Override
-	// public void addNewUser(User user) {
-	// userDao.addNewUser(user);
-	// }
-	
-	// @Override
-	// public BookmarkUser validateUser(Map<String, Object> data) {
-	// return userDao.validateUser(data);
-	// }
-	//
-	// @Override
-	// public String generateRandomPassword() {
-	// String letters =
-	// "abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789+@";
-	// String pw = "";
-	// for (int i = 0; i < PASSWORD_LENGTH; i++) {
-	// int index = (int) (RANDOM.nextDouble() * letters.length());
-	// pw += letters.substring(index, index + 1);
-	// }
-	// return pw;
-	// }
-	//
-	// @Override
-	// public void updatePassword(BookmarkUser user) {
-	// userDao.updatePassword(user);
-	//
-	// }
-	
 	@Override
 	public void addUser(User user) {
 		// Add the user if not exist
@@ -78,6 +50,11 @@ public class UserManagerImpl implements UserManager {
 		Query query = new Query(Criteria.where("id").is(post.getUser().getId() ) );
 		Update updateQuery = new Update().set("posts." + post.getId(),post);
 		userDao.addPost(query, updateQuery);
+	}
+
+	@Override
+	public User findbyId(String id) {
+		return userDao.findByID(id);
 	}
 	
 }

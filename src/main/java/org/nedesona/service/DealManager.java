@@ -1,16 +1,13 @@
 package org.nedesona.service;
 
-import java.util.List;
-
-import org.nedesona.domain.Article;
 import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
-import org.nedesona.domain.Post;
 
 public interface DealManager {
 
 	void saveDeal(Deal deal);
-
+	
+	void updateDeal(String id, String field, String value);
 	
 	Deal viewById(String id);
 	

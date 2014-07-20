@@ -48,6 +48,7 @@
 									<header>
 										<a href="javascript:void(0);" class="userlink">${post.deals[key].header}</a>
 										<span class="pubdate pull-right">${post.deals[key].createDate?date}</span>
+										<a class="btn btn-danger btn-lg" role="button" onclick="chooseDeal('${post.deals[key].id}')">Select it</a>
 									</header>
 									<p>${post.deals[key].content}</p>
 									<p align="right">by ${post.deals[key].user.userName}</p>

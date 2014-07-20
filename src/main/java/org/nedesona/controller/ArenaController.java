@@ -236,5 +236,22 @@ public class ArenaController {
 
 		return new ModelAndView("search", model);
 	}
-
+	
+	@RequestMapping(value = "/selectedDeal", method = RequestMethod.POST)
+	public ModelAndView selectedDeal(@RequestParam(value = "dealID") String dealID){
+		Map<String, Object> model = new HashMap<String, Object>();
+		logger.warn(dealID);
+		
+		//Find the deal by id
+		Deal selectedDeal = dealManager.searchBy("id", dealID);
+		if (selectedDeal!= null) {
+			reminderMail.sending(selectedDeal.getUser().getEmail(),"Cong"," You are selected" , 
+					"paypaltest?payment="+selectedDeal.getId());
+		}else{
+			logger.warn("Unknown deal");
+			return null;
+		}
+		
+		return new ModelAndView("postThankYou", model);
+	}
 }

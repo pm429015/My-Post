@@ -17,4 +17,6 @@ public interface UserDao {
 	User searchUser(String byemail,String email);
 	
 	void addPost(Query query, Update update);
+
+	User findByID(String id);
 }

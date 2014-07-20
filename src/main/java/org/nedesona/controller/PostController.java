@@ -66,7 +66,7 @@ public class PostController {
 			post.setDescription(description);
 			post.setUser(returnUser);
 			post.setZip(zip);
-			post.setActive(true);
+			post.setActive("true");
 			
 			// maintain a email list in the post db and add author email in the list
 			Map<String, String> emailList = new HashMap<String,String>();

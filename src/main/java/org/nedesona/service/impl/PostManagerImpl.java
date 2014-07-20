@@ -76,4 +76,13 @@ public class PostManagerImpl implements PostManager {
 		postDao.addDeal(query, insertDeal);
 	}
 
+	@Override
+	public void updatePost(String id, String field, String value) {
+		// TODO Auto-generated method stub
+		Query query = new Query(Criteria.where("id").is(id));
+		new Update();
+		Update updateQuery = Update.update(field,value);
+		postDao.addDeal(query, updateQuery);
+	}
+
 }

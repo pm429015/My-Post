@@ -17,7 +17,7 @@ public class Deal {
 	private String header;
 	private String content;
 	private String refPost;
-
+	private String status;
 	private Date lastModifiedDate;
 	private Date createDate;
 
@@ -107,6 +107,14 @@ public class Deal {
 
 	public void setHeader(String header) {
 		this.header = header;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 

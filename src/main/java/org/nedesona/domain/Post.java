@@ -15,7 +15,7 @@ public class Post {
 	private String title;
 	private String description;
 	private String zip;
-	private boolean active;
+	private String active;
 	private Date lastModifiedDate;
 	private Date createDate;
 	private Map<String, String> emailList;
@@ -80,10 +80,10 @@ public class Post {
 	public void setEmailList(Map<String, String> emailList) {
 		this.emailList = emailList;
 	}
-	public boolean isActive() {
+	public String isActive() {
 		return active;
 	}
-	public void setActive(boolean active) {
+	public void setActive(String active) {
 		this.active = active;
 	}
 	public String getZip() {

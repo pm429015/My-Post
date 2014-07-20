@@ -32,6 +32,7 @@ public class DealManagerImpl implements DealManager {
 		deal.setCreateDate(timeStamp);
 		deal.setLastModifiedDate(timeStamp);
 		deal.setViewCount(0);
+		deal.setStatus("init");
 		dealDao.saveDeal(deal);
 
 	}
@@ -54,7 +55,14 @@ public class DealManagerImpl implements DealManager {
 				comment.getDeal().getId()));
 		Update updateQuery = new Update().set("comments." + comment.getId(),comment);
 		dealDao.addComment(query, updateQuery);
+	}
 
+	@Override
+	public void updateDeal(String id, String field, String value) {
+		Query query = new Query(Criteria.where("id").is(id));
+		new Update();
+		Update updateQuery = Update.update(field,value);
+		dealDao.addComment(query, updateQuery);
 	}
 
 }

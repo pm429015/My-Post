@@ -19,4 +19,6 @@ public interface UserManager {
 	User searchUser(String byemail, String email);
 	
 	void insertPost(Post post);
+	
+	User findbyId(String id);
 }
