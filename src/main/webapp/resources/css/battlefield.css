@@ -42,12 +42,17 @@
 	margin-top: 20px;
 }
 
-.BTField h1 {
+.BTField h1{
 	margin-top: 20px;
 	font-size: 30px;
 	text-align: left;
 	color: #428bca;
 	font-weight: 100;
+}
+
+.BTField h4 {
+	margin-top: 20px;
+	text-align: right;
 }
 
 .BTField p {
@@ -62,12 +67,19 @@
 	margin-bottom: 20px;
 }
 
+#postContent{
+	padding: 0px 40px;
+}
 /***Bid form layer ***/
 #bidLayer {
-	background-color: #c8c8c8;
+	background-color: #dedede;
 	text-align: center;
 	width: 80%;
 	margin-bottom: 20px;
+	border-top: 1px solid #66757f;
+	border-right: 1px solid #66757f;
+	border-left: 1px solid #66757f;
+	border-bottom: 1px solid #66757f;
 }
 
 .bidform {
@@ -138,17 +150,14 @@
 	color: #777;
 }
 
-#comments .cmmnt .cmmnt-content header .userlink {
-	font-weight: bold;
-}
 
 #comments .cmmnt .replies {
 	margin-bottom: 10px;
-	border-top: 3px solid #7f7066;
+	border-top: 2px solid #7f7066;
 }
 
-.cmmnt-content h3 {
-	color: #000;
+.cmmnt-content h3, h2{
+	color: #3B6CCD;
 	text-align: left;
 }
 
@@ -156,4 +165,13 @@
 	color: #000;
 	font-weight: 200;
 	font-size: 20px;
+}
+
+.cmmnt-content .timeAndDealer{
+	color: #000;
+	font-size: 15px;
+}
+
+#cmt-header{
+	padding: 0px 10px;
 }

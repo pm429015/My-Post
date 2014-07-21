@@ -267,7 +267,7 @@ public class PaypalController {
 				reminderMail.sending(buyer.getEmail(),
 						" Deal has comfirmed ", "Print it", post.getId()
 								+ "?token=" + buyer.getId());
-				postManager.updatePost(post.getId(), "status", "completed");
+				postManager.updatePost(post.getId(), "status", "Processing");
 				dealManager.updateDeal(deal.getId(), "status", "paid");
 			} else {
 				LOGGER.fatal("Empty guid");

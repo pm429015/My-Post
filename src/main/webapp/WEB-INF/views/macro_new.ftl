@@ -18,7 +18,6 @@
 <#macro footer>
 	<footer>
          <div class="container">
-                
                 <div class="row">
                     <div class="col-md-8 copyright">
                         <p>Copyright &copy; 2014 DealArenas.com All Rights Reserved
@@ -39,4 +38,8 @@
 <#include "macro_css.ftl" /> 
 <#include "macro_js.ftl" />
 <#include "navbar.ftl" /> 
+</#macro>
+
+<#macro doubleCheck>
+
 </#macro>

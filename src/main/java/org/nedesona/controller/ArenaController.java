@@ -63,6 +63,14 @@ public class ArenaController {
 		model.put("postList", postManager.getPostList());
 		return new ModelAndView("arena", model);
 	}
+	
+	@RequestMapping(value = "/bf")
+	public ModelAndView replyBack() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		logger.warn("new bf");
+		model.put("post", postManager.viewById("53cd5f8de4b06b9881717049"));
+		return new ModelAndView("bfDeals", model);
+	}
 
 	@RequestMapping(value = "/{id}")
 	public ModelAndView view(@PathVariable String id,
@@ -100,7 +108,7 @@ public class ArenaController {
 
 	@RequestMapping(value = "/reply", method = RequestMethod.POST)
 	public @ResponseBody
-	Object saveReply(@RequestParam(value = "token") String token,
+	ModelAndView saveReply(@RequestParam(value = "token") String token,
 			@RequestParam(value = "content") String content,
 			@RequestParam(value = "deal_id") String dealID) {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -129,7 +137,6 @@ public class ArenaController {
 					Post post = postManager.viewById(forWhichDeal.getRefPost());
 					reminderMail.sending(post.getUser().getEmail(),
 							" Dealer said something ","Dealer said...",comment.getDeal().getId()+"?token="+token);
-
 				}else{
 					logger.warn("Unknown user");
 					return null;
@@ -140,18 +147,23 @@ public class ArenaController {
 			dealManager.addComment(comment);
 			Deal updatedDeal = dealManager.searchBy("id", dealID);
 			postManager.updateDeal(updatedDeal);
-
+			
+			//Reload the page
+			Post updatedPost = postManager.viewById(updatedDeal.getRefPost());
+			model.put("post", updatedPost);
 		} else {
 			logger.warn("Unknown deal");
+			return null;
 		}
 		
 		
-		return model;
+		
+		return new ModelAndView("bfDeals", model);
 	}
 
 	@RequestMapping(value = "/insertDeal", method = RequestMethod.POST)
 	public @ResponseBody
-	Object saveDeal(
+	ModelAndView saveDeal(
 			HttpServletRequest request,
 			@RequestParam(value = "token", required = false) String token,
 			@RequestParam(value = "dealHeader") String header,
@@ -202,7 +214,7 @@ public class ArenaController {
 		} else {
 			return null;
 		}
-
+		
 		// Create a new deal and add into db
 		Deal deal = new Deal();
 		deal.setHeader(header);
@@ -211,6 +223,10 @@ public class ArenaController {
 		deal.setUser(dealer);
 		dealManager.saveDeal(deal);
 		postManager.addDeal(deal);
+		
+		//Reload the page
+		Post updatedPost = postManager.viewById(postid);
+		model.put("post", updatedPost);
 		
 		// Send email to remind all subscribed users
 		Map<String, String> emailStr = post.getEmailList();
@@ -224,7 +240,7 @@ public class ArenaController {
 			
 		}
 
-		return model;
+		return new ModelAndView("bfDeals", model);
 	}
 
 	@RequestMapping(value = "/search")

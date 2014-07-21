@@ -3,11 +3,11 @@ function expand(index, dealerID) {
 	if (!$("#comment" + index + ":focus").is("textarea")) {
 
 		if ($(".dis" + index).is(":visible")) {
-			$("#expand" + index).text('Expand');
+			$("#expand" + index).html('<span class="glyphicon glyphicon-chevron-down"></span>');
 			$(".dis" + index).hide();
 
 		} else {
-			$("#expand" + index).text('Collapse');
+			$("#expand" + index).html('<span class="glyphicon glyphicon-chevron-up"></span>');
 			$(".dis" + index).show();
 
 		}
@@ -26,33 +26,35 @@ function expand(index, dealerID) {
 }
 
 function commentSubmit(dealID, index) {
-	var token = getCookie("token");
-	var comment = $("#comment" + index).val();
-
-	if (comment) {
-		$.ajax({
-			type : "POST",
-			url : "reply",
-			data : {
-				token : token,
-				content : comment,
-				deal_id : dealID
-			}
-
-		});
-
-		$(".comments").val("");
-		setTimeout(function() {
-			location.reload();
-		}, 1000);
-	} else {
-		$("label#comment_error").show();
-		$("#comment" + index).focus();
-	}
-
+	
+		var token = getCookie("token");
+		var comment = $("#comment" + index).val();
+	
+		if (comment) {
+			$('#doubleCheck').modal({ backdrop: 'static', keyboard: false }).one('click', '#go', function (e) {
+				$.ajax({
+					type : "POST",
+					url : "reply",
+					data : {
+						token : token,
+						content : comment,
+						deal_id : dealID
+					},
+					success: function(msg){
+						$('.dealspaste').html(msg);
+					}
+		
+				});
+			});
+		} else {
+			$("label#comment_error").show();
+			$("#comment" + index).focus();
+		}
+	
 }
 
 function dealSubmit(){
+	
 	//Check deal header and content
 	if(!inputCheck("dealHeader") || !inputCheck("dealContent")){
 		return false;
@@ -145,41 +147,49 @@ function dealAndUserSubmit(){
 				|| !inputCheck("dealerZip") || !inputCheck("dealerAddress") ) {
 			return false;
 		}
-		
-		var post_id = $("#id").text();
-		$.ajax({
-			type : "POST",
-			url : "insertDeal",
-			data : {
-				id : post_id,
-				dealHeader : $('#dealHeader').val(),
-				dealContent: $('#dealContent').val(),
-				
-				dealerName: $('#dealerName').val(),
-				dealerEmail: $('#dealerEmail').val(),
-				dealerPhone: $('#dealerPhone').val(),
-				dealerZip: $('#dealerZip').val(),
-				dealerAddress: $('#dealerAddress').val(),
-				dealerBrands: $('#dealerBrands').val(),
-			}
-
+		$('#doubleCheck').modal({ backdrop: 'static', keyboard: false }).one('click', '#go', function (e) {
+			var post_id = $("#id").text();
+			$.ajax({
+				type : "POST",
+				url : "insertDeal",
+				data : {
+					id : post_id,
+					dealHeader : $('#dealHeader').val(),
+					dealContent: $('#dealContent').val(),
+					
+					dealerName: $('#dealerName').val(),
+					dealerEmail: $('#dealerEmail').val(),
+					dealerPhone: $('#dealerPhone').val(),
+					dealerZip: $('#dealerZip').val(),
+					dealerAddress: $('#dealerAddress').val(),
+					dealerBrands: $('#dealerBrands').val(),
+				},
+				success: function(msg){
+					$('.dealspaste').html(msg);
+				}
+			});
 		});
 	}else{
-		var post_id = $("#id").text();
-		$.ajax({
-			type : "POST",
-			url : "insertDeal",
-			data : {
-				id : post_id,
-				dealHeader : $('#dealHeader').val(),
-				dealContent: $('#dealContent').val(),
-				token:token
-			}
-
+		$('#doubleCheck').modal({ backdrop: 'static', keyboard: false }).one('click', '#go', function (e) {
+			var post_id = $("#id").text();
+			$.ajax({
+				type : "POST",
+				url : "insertDeal",
+				data : {
+					id : post_id,
+					dealHeader : $('#dealHeader').val(),
+					dealContent: $('#dealContent').val(),
+					token:token
+				},
+				success: function(msg){
+					$('.dealspaste').html(msg);
+				}
+			});
 		});
 	}
 	
-	
+	$("#bidwell").hide();
+	$("#dealerInfo").hide();
 }
 
 function inputCheck(id){
@@ -196,18 +206,25 @@ function inputCheck(id){
 
 function chooseDeal(index){
 	if (index) {
-		$.ajax({
-			type : "POST",
-			url : "selectedDeal",
-			data : {
-				dealID : index
-			}
-
+		$('#doubleCheck').modal({ backdrop: 'static', keyboard: false }).one('click', '#go', function (e) {
+			$.ajax({
+				type : "POST",
+				url : "selectedDeal",
+				data : {
+					dealID : index
+				}
+			});
 		});
 	}
 } 
 
 function joinBid(){
+	// Check the status of the post, disable deal when the buyer has chosen a deal
+	var status = $("#status").text().trim();
+	if (status == "Processing") {
+		$('#locked').modal('show');
+		return false;
+	}
 	//Check if the user has token
 	$("#postFight").hide();
 	$("#bidwell")
@@ -261,7 +278,8 @@ $(function() {
 	if(token != authorID){
 		$("#postFight")
 		.html(
-				'<a class="btn btn-danger btn-lg" role="button" onclick="joinBid()">Join the flight</a>');
+				'<a class="btn btn-danger btn-lg" role="button" onclick="joinBid()">Your Respond</a>');
+		$('.selectBT').hide();
 
 	}
 	

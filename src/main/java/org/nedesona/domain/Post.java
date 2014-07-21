@@ -80,7 +80,7 @@ public class Post {
 	public void setEmailList(Map<String, String> emailList) {
 		this.emailList = emailList;
 	}
-	public String isActive() {
+	public String getActive() {
 		return active;
 	}
 	public void setActive(String active) {

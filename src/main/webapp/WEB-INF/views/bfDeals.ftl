@@ -1,38 +1,7 @@
 <#import "/spring.ftl" as spring />
 <#import "macro_new.ftl" as macro/>
-
-<title>${post.title}</title>
-<@macro.showHeader />
 <@macro.loadExternal />
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/postctrl.js"></script>
-<div class="firstLayer" >
-	<div class="container">
-        <div class="row">
-            <div class="span12">
-                <div class="thumbnail">
-                		<div class="caption-full">
-                		<div class="BTField">
-                			<div class="col-md-8">
-                				<h1>${post.title}</h1>
-                			</div>
-                			<div class="col-md-4">
-                				<h4>Request Status: <u id="status"> ${post.active}</u></h4>
-                			</div>
-                			<p id="postContent" >${post.description}</p>
-                			<p style="text-align:right" > ${post.createDate?date}</p>
-                			<p style="text-align:right" > Buyer ZIP code: ${post.zip}</p>
-                			<p id="id" hidden>${post.id}</p>
-                			<p id="userID" hidden>${user.id}</p>
-		
-						<div id="postFight"></div>	
-						
-						
-					</div>
-                    </div><!--caption-full-->
-                </div><!-- /.thumbnail -->
-                <div id="bidwell"></div>
-                <div id="dealerInfo"></div>	
-                <div class="dealspaste" >
                 <div class="well">
                 	<h1>Current Deals</h1>
                 		
@@ -103,42 +72,6 @@
 					<#assign index = index + 1> 
 					</#list>
 				</div><!-- well -->
-				</div><!-- deal paste -->
-            </div><!-- span12 -->
-        </div><!-- row -->
-    </div> <!-- /.container -->
-</div>
-
-<div>
-	<div class="modal fade" id="doubleCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h3 style="color:black">Are you sure?</h3>
-				</div>
-			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn btn-primary" id="go">OK</button>
-				<button type="button" data-dismiss="modal" class="btn">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div>
-	<div class="modal fade" id="locked" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h3 style="color:black">Sorry, the buyer has chosen the best deal.</h3>
-				</div>
-			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn">OK</button>
-			</div>
-		</div>
-	</div>
-</div>
-<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/battlefield.css">
-<@macro.footer />
 	</body>	
 </html>
 
