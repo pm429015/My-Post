@@ -32,6 +32,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Details;
+import com.paypal.api.payments.Item;
+import com.paypal.api.payments.ItemList;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
@@ -100,7 +102,7 @@ public class PaypalController {
 		// Let's you specify details of a payment amount.
 		Details details = new Details();
 		details.setShipping("0");
-		details.setSubtotal("3");
+		details.setSubtotal("1");
 		details.setTax("0");
 
 		// ###Amount
@@ -108,8 +110,20 @@ public class PaypalController {
 		Amount amount = new Amount();
 		amount.setCurrency("USD");
 		// Total must be equal to sum of shipping, tax and subtotal.
-		amount.setTotal("3");
+		amount.setTotal("1");
 		amount.setDetails(details);
+		
+		// Add detail of the  item summary
+		Item item = new Item();
+		item.setName("DealArenas Fee");
+		item.setCurrency("USD");
+		item.setPrice("1");
+		item.setQuantity("1");
+		List<Item> items = new ArrayList<Item>();
+		items.add(item);
+		
+		ItemList itemList = new ItemList();
+		itemList.setItems(items);
 
 		// ###Transaction
 		// A transaction defines the contract of a
@@ -117,8 +131,9 @@ public class PaypalController {
 		// is fulfilling it. Transaction is created with
 		// a `Payee` and `Amount` types
 		Transaction transaction = new Transaction();
+		transaction.setItemList(itemList);
 		transaction.setAmount(amount);
-		transaction.setDescription("Total:	$13");
+//		transaction.setDescription("Total:	$13");
 
 		// The Payment creation API requires a list of
 		// Transaction; add the created `Transaction`
