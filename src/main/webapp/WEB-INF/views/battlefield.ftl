@@ -9,7 +9,6 @@
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/postctrl.js"></script>
 <div class="firstLayer" >
 	<div class="container">
-
         <div class="row">
 
             <div class="span12">
