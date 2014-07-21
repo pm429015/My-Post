@@ -1,170 +1,159 @@
-.firstLayer{
+.firstLayer {
 	background-color: #efefef;
 }
 
-
 .thumbnail {
-  margin-top: 80px;
-  padding: 0;
+	margin-top: 80px;
+	padding: 0;
 }
 
 .thumbnail .caption-full {
-  padding: 9px;
-  color: #333;
+	padding: 9px;
+	color: #333;
 }
 
-#searchForm input{
+#searchForm input {
 	margin-top: 10px;
-    margin-bottom: 0;
-    padding: 6px 15px;
-    border: 1px solid #71685f;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
-    -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
-    box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    color: #555;
+	margin-bottom: 0;
+	padding: 6px 15px;
+	border: 1px solid #71685f;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+	-webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	color: #555;
 }
 
 .product-title div.product-description form input:focus {
-    -moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
-    -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
-    box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+	-webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
 }
 
-#searchForm{
-	text-align:center;
-	
+#searchForm {
+	text-align: center;
 }
 
-#postSubmit{
+#postSubmit {
 	margin-top: 20px;
 }
 
-.BTField h1{
+.BTField h1 {
 	margin-top: 20px;
 	font-size: 30px;
-	text-align:left;
-	color:#428bca;
+	text-align: left;
+	color: #428bca;
 	font-weight: 100;
 }
 
-.BTField p{
+.BTField p {
 	font-size: 20px;
-	text-align:left;
-	color:#000;
+	text-align: left;
+	color: #000;
 	font-weight: 200;
 }
 
-#postFight{
-	text-align:center;
-	margin-bottom:20px;
+#postFight {
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 /***Bid form layer ***/
-#bidLayer{
+#bidLayer {
 	background-color: #c8c8c8;
-	text-align:center;
-	width:80%;
-	margin-bottom:20px;
+	text-align: center;
+	width: 80%;
+	margin-bottom: 20px;
 }
 
-.bidform{
-	margin-top:30px;
+.bidform {
+	margin-top: 30px;
 }
 
-.bidformtext{
-	color:black;
+.bidformtext {
+	color: black;
 }
-
 
 /***deals***/
-.well{
-	min-height:300px;
-	background-color:#edfeee;
-	
+.well {
+	min-height: 300px;
+	background-color: #faf6e1;
 }
 
-.well h1{
-	text-align:center;
-	color:#2f3148;
+.well h1 {
+	margin-top: 30px;
+	text-align: center;
+	color: #2f3148;
 	font-weight: 200;
 }
 
-.well p{
-	color:#000;
+.well p {
+	color: #000;
 	font-weight: 200;
 }
 
-.well h3{
-	text-align:center;
-	color:#000;
+.well h3 {
+	text-align: center;
+	color: #000;
 	font-weight: 200;
 }
 
 /* comments area */
-#comments { 
-	display: block; 
-	background-color:#feeeed;	
+#comments {
+	display: block;
 }
 
-#container{
-	background-color:#feeeed;
-	margin-bottom: 40px;
-}
-
-#container:hover{
-   border-top: 3px solid #66757f; 
-   border-right: 3px solid #66757f; 
-   border-left: 3px solid #66757f; 
-   border-bottom: 3px solid #66757f; 
-}
-
-#comments .cmmnt, ul .cmmnt, ul ul .cmmnt { 
-	display: block; 
-	position: relative; 
-	padding-left: 0px; 
-	
+#container {
+	background-color: #f4f4f4;
+	margin-bottom: 10px;
+	border-top: 1px solid #66757f;
+	border-right: 1px solid #66757f;
+	border-left: 1px solid #66757f;
+	border-bottom: 1px solid #66757f;
 }
 
 
-#comments .cmmnt .cmmnt-content { 
-	padding: 0px 3px; 
-	padding-bottom: 5px; 
-	padding-top: 8px; 
-	margin-top: 10px;
+#comments .cmmnt,ul .cmmnt,ul ul .cmmnt {
+	display: block;
+	position: relative;
+	padding-left: 0px;
 }
 
-#comments .cmmnt .cmmnt-content header { 
-	font-size: 1.3em; 
-	display: block; 
-	margin-bottom: 8px; 
-	
+#comments .cmmnt .cmmnt-content {
+	padding: 0px 30px;
+	padding-bottom: 0px;
+	padding-top: 20px;
 }
 
-#comments .cmmnt .cmmnt-content header .pubdate { 
-	color: #777; 
+#comments .cmmnt .cmmnt-content header {
+	font-size: 1.3em;
+	display: block;
 }
 
-#comments .cmmnt .cmmnt-content header .userlink { 
-	font-weight: bold; 
-} 
+#comments .cmmnt .cmmnt-content header .pubdate {
+	color: #777;
+}
 
-#comments .cmmnt .replies { 
+#comments .cmmnt .cmmnt-content header .userlink {
+	font-weight: bold;
+}
+
+#comments .cmmnt .replies {
 	margin-bottom: 10px;
 	border-top: 3px solid #7f7066;
 }
 
-.cmmnt-content h3{
-	color:#000;
-	text-align:left;
-} 
+.cmmnt-content h3 {
+	color: #000;
+	text-align: left;
+}
 
-.cmmnt-content h4{
-	color:#000;
+.cmmnt-content h4 {
+	color: #000;
 	font-weight: 200;
-	font-size: 20px; 
+	font-size: 20px;
 }
