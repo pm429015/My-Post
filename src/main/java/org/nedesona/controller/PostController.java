@@ -40,33 +40,44 @@ public class PostController {
 
 
 	@RequestMapping(value = "/insertPost")
-	public ModelAndView insertPost(@RequestParam(value = "email") String email,
+	public ModelAndView insertPost(
 			@RequestParam(value = "title") String title,
+			@RequestParam(value = "model") String carModel,
+			@RequestParam(value = "year") String year,
+			@RequestParam(value = "color") String color,
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "email") String email,
 			@RequestParam(value = "zip") String zip,
 			@RequestParam(value = "miles") String miles,
-			@RequestParam(value = "description") String description,
+			@RequestParam(value = "description", required = false) String description,
 			HttpServletResponse response) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		logger.warn("Insert a new post");
 
-		// Check email and if user exist, add the user if doesn't exist
-		if (Controller_utils.checkEMail(email)) {
+		// Check all attributes and if user exist, add the user if doesn't exist
+		if (Controller_utils.checkEMail(email) && title != null && carModel != null && year != null
+				&& color != null && name!= null && zip!= null && miles != null) {
 			User returnUser = userManager.searchUser("email", email);
 			if (returnUser == null) {
 				logger.warn("Create a new User");
 				returnUser = new User();
 				returnUser.setEmail(email);
-				String[] userName = email.split("@");
-				returnUser.setUserName(userName[0]);
+				returnUser.setUserName(name);
 				userManager.addUser(returnUser);
 			}
 			// Create a new post and save it
 			Post post = new Post();
 			post.setTitle(title);
-			post.setDescription(description);
+			if (description != null) {
+				post.setDescription(description);
+			}
+			
 			post.setUser(returnUser);
 			post.setZip(zip);
 			post.setActive("Active");
+			post.setColor(color);
+			post.setModel(carModel);
+			post.setYear(year);
 			
 			// maintain a email list in the post db and add author email in the list
 			Map<String, String> emailList = new HashMap<String,String>();
@@ -86,7 +97,8 @@ public class PostController {
 				// Send mail to the target dealers
 				for (Dealer dealer : dealerlist) {
 					// Paste target email, title, post content and link
-					reminderMail.sending(dealer.getEmail(),"Can you beat the price?",post.getDescription(),post.getId()+"?token="+dealer.getId());
+					reminderMail.sending(dealer.getEmail(),"Looking for "+post.getTitle(),post.getDescription()
+							,post.getId()+"?token="+dealer.getId(), false);
 				}
 				
 			}else{

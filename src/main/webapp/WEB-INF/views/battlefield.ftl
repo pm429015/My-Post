@@ -12,8 +12,8 @@
                 <div class="thumbnail">
                 		<div class="caption-full">
                 		<div class="BTField">
-                			<h1 class="col-md-10">${post.title}</h1>
-                			<h4 class="col-md-2" >Request Status: <u id="status"> ${post.active}</u></h4>
+                			<h1 class="col-md-9">${post.title}</h1>
+                			<h4 class="col-md-3" >Request Status: <u id="status"> ${post.active}</u></h4>
                 			<p id="postContent" >${post.description}</p>
                 			<p style="text-align:right" > ${post.createDate?date}</p>
                 			<p style="text-align:right" > Buyer ZIP code: ${post.zip}</p>
@@ -43,8 +43,8 @@
 							<li class="cmmnt">
 								<div class="cmmnt-content">
 									<header>
-										<div class="col-md-1">
-											<a class="btn btn-success" role="button" onclick="chooseDeal('${post.deals[key].id}')">Select it</a>
+										<div class="col-md-1 selectBT">
+											<a class="btn btn-success " role="button" onclick="chooseDeal('${post.deals[key].id}')">Select it</a>
 										</div>
 										<div class="col-md-11 ">
 											<h3 id="cmt-header" >${post.deals[key].header}</h3>

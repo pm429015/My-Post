@@ -67,9 +67,10 @@ public class ArenaController {
 	@RequestMapping(value = "/bf")
 	public ModelAndView replyBack() {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.warn("new bf");
+		logger.warn("new email");
 		
-		return new ModelAndView("arena", model);
+		reminderMail.sending("pm429015@gmail.com", "Can you beat that price?", "test \n content", "link", true);
+		return new ModelAndView("main_page", model);
 	}
 
 	@RequestMapping(value = "/{id}")
@@ -230,7 +231,7 @@ public class ArenaController {
 		
 		// Send email to remind all subscribed users
 		Map<String, String> emailStr = post.getEmailList();
-		if (emailStr!= null) {
+		if (emailStr!= null && !post.getActive().equals("Processing")) {
 			for (String key : emailStr.keySet()) {
 				//Skip dealer herself
 				if (!key.equals(dealer.getId())) {

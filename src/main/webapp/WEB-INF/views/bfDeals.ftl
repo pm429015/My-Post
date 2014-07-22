@@ -16,7 +16,7 @@
 							<li class="cmmnt">
 								<div class="cmmnt-content">
 									<header>
-										<div class="col-md-1">
+										<div class="col-md-1 selectBT">
 											<a class="btn btn-success" role="button" onclick="chooseDeal('${post.deals[key].id}')">Select it</a>
 										</div>
 										<div class="col-md-11 ">

@@ -16,26 +16,44 @@
                                 <div class="col-md-7 product-title">
                                     <form class="form-horizontal requestForm">
                                     <fieldset>
-                                    		<!--  Header-->
+                                    	<!--  Header-->
 							            <div class="form-group form-header">
 							              <h3 class="col-md-10 control-label">Request a best car deal for <u>FREE</u></h3>
 							            </div>
                                     
-                                    		<!-- Subject input-->
+                                    	<!-- Make input-->
 							            <div class="form-group">
-							              <h3 class="col-md-3 control-label" for="title">Car Model:</h3>
+							              <h3 class="col-md-3 control-label" for="title">Car Make:</h3>
 							              <div class="col-md-5">
-							                <input id="title" name="title" type="text" placeholder="Example: An affordable iPhone 5 " class="form-control"></input>
-							                <label class="error" for="title" id="subject_error"><font color="red">Please Summary your request. </font></label>
+							                <input id="title" name="title" type="text" placeholder="Example: Toyota" class="form-control"></input>
+							                <label class="error" for="title" id="subject_error" hidden><font color="red">No Emtpy Field.</font></label>
 							              </div>
 							            </div>
 							            
-							            	<!-- Email input-->
+							            <!-- Model input-->
 							            <div class="form-group email-group">
-							              <h3 class="col-md-3 control-label" for="Uemail">Email:</h3>
+							              <h3 class="col-md-3 control-label" for="Umodel">Model:</h3>
 							              <div class="col-md-5">
-							                <input id="Uemail" name="Uemail" type="text" placeholder="your@email.com" class="form-control"></input>
-							                <label class="error" for="Uemail" id="Uemail_error"><font color="red">Invalid email address. No spam and your email address will never be shared.</font></label>
+							                <input id="Umodel" name="Umodel" type="text" placeholder="Example: Camry SE" class="form-control"></input>
+							                <label class="error" for="Umodel" id="Umodel_error" hidden><font color="red">No Emtpy Field.</font></label>
+							              </div>
+							            </div>
+							            
+							            <!-- Year input-->
+							            <div class="form-group email-group">
+							              <h3 class="col-md-3 control-label" for="Uyear">Year:</h3>
+							              <div class="col-md-5">
+							                <input id="Uyear" name="Uyear" type="text" placeholder="Example: 2014" class="form-control"></input>
+							                <label class="error" for="Uyear" id="Uyear_error" hidden><font color="red">No Emtpy Field.</font></label>
+							              </div>
+							            </div>
+							            
+							            <!-- Color input-->
+							            <div class="form-group email-group">
+							              <h3 class="col-md-3 control-label" for="Ucolor">Color:</h3>
+							              <div class="col-md-5">
+							                <input id="Ucolor" name="Ucolor" type="text" placeholder="Example: red or blue" class="form-control"></input>
+							                <label class="error" for="Ucolor" id="Ucolor_error" hidden><font color="red">No Emtpy Field.</font></label>
 							              </div>
 							            </div>
 							            
@@ -44,7 +62,7 @@
 							              <h3 class="col-md-3 control-label" for="Uzip">Zip:</h3>
 							              <div class="col-md-3">
 							                <input id="Uzip" name="Uzip" type="text" placeholder="zip code" class="form-control"></input>
-							                <label class="error" for="Uzip" id="Uzip_error"><font color="red">Invalid Zip Code</font></label>
+							                <label class="error" for="Uzip" id="Uzip_error"><font color="red">No Emtpy Field.</font></label>
 							              </div>
 							              <div class="col-md-1">
 							              	<h3 class="control-label">in</h3>
@@ -62,25 +80,17 @@
 							              </div>
 							            </div>
 							            
-							            
-                                    		
-                                    		<!-- content input-->
-							            <div class="form-group">
-							              <h3 class="col-md-3 control-label" for="description">Description:</h3>
-							              <div class="col-md-8 textinput">
-							                <textarea id="description" name="description" style="height: 290px;" type="text" placeholder="Hey guys! I REALLY like the iPhone 5, but they are freaky expensive when bought on the Apple site and eBay. I have absolutely no problem with it being used/refurbished. I'm wondering where I can find one that isn't +$600." class="form-control"></textarea>
-							                <label class="error" for="description" id="descritpion_error"><font color="red">10 more words required. </font></label>
-							              </div>
-							            </div>
-							            
 							            <!-- Form actions -->
 							            <div class="form-group ">
 							              <div class="col-md-11 text-right">
-							                <button class="btn btn-danger btn-lg" id="RequestSubmit" type="button" >Submit</button>
+							                <button class="btn btn-danger btn-lg" id="CarSubmit" type="button" >Submit</button>
 							              </div>
 							            </div>
 							            
                                     </fieldset>
+									</form>
+									
+									<form class="form-horizontal userForm">
 									</form>
                                 </div>
                             </div>

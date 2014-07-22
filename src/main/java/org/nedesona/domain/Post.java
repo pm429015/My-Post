@@ -13,6 +13,9 @@ public class Post {
 	@Id
 	private String id;
 	private String title;
+	private String model;
+	private String year;
+	private String color;
 	private String description;
 	private String zip;
 	private String active;
@@ -93,5 +96,22 @@ public class Post {
 		this.zip = zip;
 	}
 
-
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 }
