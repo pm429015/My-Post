@@ -68,8 +68,8 @@ public class ArenaController {
 	public ModelAndView replyBack() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		logger.warn("new bf");
-		model.put("post", postManager.viewById("53cd5f8de4b06b9881717049"));
-		return new ModelAndView("bfDeals", model);
+		
+		return new ModelAndView("arena", model);
 	}
 
 	@RequestMapping(value = "/{id}")

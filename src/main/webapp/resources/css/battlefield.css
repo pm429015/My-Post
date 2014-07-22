@@ -68,7 +68,7 @@
 }
 
 #postContent{
-	padding: 0px 40px;
+	padding: 0px 0px;
 }
 /***Bid form layer ***/
 #bidLayer {
@@ -88,6 +88,7 @@
 
 .bidformtext {
 	color: black;
+	text-align: center;
 }
 
 /***deals***/
