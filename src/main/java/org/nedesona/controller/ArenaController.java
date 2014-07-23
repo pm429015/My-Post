@@ -69,12 +69,12 @@ public class ArenaController {
 	public ModelAndView replyBack() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		logger.warn("new email");
-		String postid= "53cf10343004bba78046e658";
+		String postid= "53cff04ae4b01847a8c51863";
 		Deal deal = dealManager.viewById(postid);
 		
 		reminderMail.sending("oiehf+fdqg90t7muqdk@sharklasers.com","Can you beat this price?","One of dealers offers a deal with price: "+deal.getHeader()+"\n"+
 				"Please provide a competitive price through this link <http://localhost:8082/mypost/53cefa98300447c8cc2dd7a1?token="+deal.getUser().getId()+">\n", 
-				"Thank you",true);		
+				"Thank you",false);		
 		
 		return new ModelAndView("main_page", model);
 	}
@@ -281,7 +281,7 @@ public class ArenaController {
 			reminderMail.sending(selectedDeal.getUser().getEmail(),
 					"I'd like to finalize the deal with you",
 					"Congratulation. The Buyer loves your offer of "+ selectedDeal.getHeader()+" for "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+"\n\n" +
-					"To confirm the offer with the buyer, please go to <http://localhost:8082/mypost/paypaltest?payment="+selectedDeal.getId()+"\n\n",
+					"To confirm the offer with the buyer, please go to <http://localhost:8082/mypost/confirm?payment="+selectedDeal.getId()+"\n\n",
 					"Thank you",false);
 		}else{
 			logger.warn("Unknown deal");

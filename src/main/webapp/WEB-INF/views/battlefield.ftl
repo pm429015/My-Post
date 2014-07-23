@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring />
 <#import "macro_new.ftl" as macro/>
 
-<title>${post.title}</title>
+<title>Request a Car Deal: ${post.title} ${post.model}</title>
 <@macro.showHeader />
 <@macro.loadExternal />
 <script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/postctrl.js"></script>
@@ -12,12 +12,50 @@
                 <div class="thumbnail">
                 		<div class="caption-full">
                 		<div class="BTField">
-                			<h1>${post.title}</h1>
-                			<p id="postContent" >${post.description}</p>
-                			<p style="text-align:right" > ${post.createDate?date}</p>
-                			<p style="text-align:right" hidden>Request Status: <u id="status"> ${post.active}</u></p>
+                			<h1>Request a Car Deal: ${post.title} ${post.model}</h1>
+                			<table style="margin:0px auto; width:80%" align="center" > 
+                				<tr>
+                					<td><p>Car Make:</p></td>
+                					<td><p>${post.title}</p></td>
+                				</tr>
+                				<tr>
+                					<td><p>Model:</p></td>
+                					<td><p>${post.model}</p></td>
+                				</tr>
+                				<tr>
+                					<td><p>Color:</p></td>
+                					<td><p>${post.color}</p></td>
+                					
+                				</tr>
+                				<tr>
+                					<td><p>Year:</p></td>
+                					<td><p>${post.year}</p></td>
+                				</tr>
+                				
+                				<tr>
+                					<td><p>Buyer Zip code:</p></td>
+                					<td><p>${post.zip}</p></td>
+                				</tr>
+                				
+                				<tr>
+                					<td><p>Request Time:</p></td>
+                					<td><p>${post.createDate?datetime}</p></td>
+                				</tr>
+                				
+                				
+                				<#if !post.description??> 
+                				<tr>
+                					<td><p>More Info:</p></td>
+                					<td><p id="postContent" >${post.description}</p>
+                				</tr>
+                				</#if>
+                				
+                				<tr>
+                					<td><p>Request Status:</p></td>
+                					<td><p><u id="status">${post.active}</u></p></td>
+                				</tr>
+                			</table>
                 			
-                			<p style="text-align:right" > Buyer ZIP code: ${post.zip}</p>
                 			<p id="id" hidden>${post.id}</p>
                 			<p id="userID" hidden>${user.id}</p>
 		

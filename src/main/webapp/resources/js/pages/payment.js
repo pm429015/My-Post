@@ -266,24 +266,6 @@ function joinBid(){
 }
 
 $(function() {
-	//Default hide all replies
-	$(".replies").hide();
-	$('.error').hide();
-	
-	// load cookies 
-	var token = getCookie("token");
-	var authorID = $("#userID").text();
-	// If the user has a token to identify herself
-	// And if the user is not the author, show the button
-	if(token != authorID){
-		$("#postFight")
-		.html(
-				'<a class="btn btn-danger btn-lg" role="button" onclick="joinBid()">Your Respond</a>');
-		$('.selectBT').hide();
-
-	}
-	
-	
 	
 	
 });

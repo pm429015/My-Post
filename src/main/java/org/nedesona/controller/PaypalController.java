@@ -203,7 +203,7 @@ public class PaypalController {
 		return new ModelAndView("paypalBack", model);
 	}
 
-	@RequestMapping(value = "paypaltest")
+	@RequestMapping(value = "confirm")
 	public ModelAndView paypal(@RequestParam(value = "payment", required = false) String dealID) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		LOGGER.warn("Start paypal");
@@ -216,12 +216,14 @@ public class PaypalController {
 			// if the deal has status = init 
 			if (deal.getStatus().equals("init")) {
 				LOGGER.warn("To payment page");
-				model.put("dealID", dealID);
-				return new ModelAndView("paypayTest", model);
+				Post post = postManager.viewById(deal.getRefPost());
+				model.put("deal", deal);
+				model.put("post", post);
+				return new ModelAndView("dealerPayment", model);
 			// if deal has paid
 			}else if(deal.getStatus().equals("paid")){
 				LOGGER.warn("Paid");
-				model.put("dealID", dealID);
+				model.put("deal", deal);
 				return new ModelAndView("Error", model);
 			}else{
 				return new ModelAndView("Error", model);

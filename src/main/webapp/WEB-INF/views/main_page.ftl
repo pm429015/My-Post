@@ -62,7 +62,7 @@
 							              <h3 class="col-md-3 control-label" for="Uzip">Zip:</h3>
 							              <div class="col-md-3">
 							                <input id="Uzip" name="Uzip" type="text" placeholder="zip code" class="form-control"></input>
-							                <label class="error" for="Uzip" id="Uzip_error"><font color="red">No Emtpy Field.</font></label>
+							                <label class="error" for="Uzip" id="Uzip_error" hidden><font color="red">No Emtpy Field.</font></label>
 							              </div>
 							              <div class="col-md-1">
 							              	<h3 class="control-label">in</h3>
