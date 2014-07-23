@@ -70,6 +70,8 @@ public class PostController {
 			post.setTitle(title);
 			if (description != null) {
 				post.setDescription(description);
+			}else{
+				post.setDescription("");
 			}
 			
 			post.setUser(returnUser);
@@ -97,8 +99,13 @@ public class PostController {
 				// Send mail to the target dealers
 				for (Dealer dealer : dealerlist) {
 					// Paste target email, title, post content and link
-					reminderMail.sending(dealer.getEmail(),"Looking for "+post.getTitle(),post.getDescription()
-							,post.getId()+"?token="+dealer.getId(), false);
+					reminderMail.sending(dealer.getEmail(),"Looking to purchase a "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel(),
+							"Dear "+dealer.getUserName()+",\n\n"+"   I am in the marktet for a "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+
+							" with in the next week. I am interested in hearing the lowest full out-the-door you can offer with no other taxes, fees and charges."+
+							" Price is my biggest factor. Also, "+post.getDescription()+". Other features are irrelevant. Again, full out-of-door price is requested"+
+							" so I can compare to offers from other dealers."+"\n\n Please response your message through this link <http://localhost:8082/mypost/"+post.getId()+"?token="+dealer.getId()+">", 
+							"\n\n Thank you for your help with this."
+							,false);
 				}
 				
 			}else{

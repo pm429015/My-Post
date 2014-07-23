@@ -12,10 +12,11 @@
                 <div class="thumbnail">
                 		<div class="caption-full">
                 		<div class="BTField">
-                			<h1 class="col-md-9">${post.title}</h1>
-                			<h4 class="col-md-3" >Request Status: <u id="status"> ${post.active}</u></h4>
+                			<h1>${post.title}</h1>
                 			<p id="postContent" >${post.description}</p>
                 			<p style="text-align:right" > ${post.createDate?date}</p>
+                			<p style="text-align:right" hidden>Request Status: <u id="status"> ${post.active}</u></p>
+                			
                 			<p style="text-align:right" > Buyer ZIP code: ${post.zip}</p>
                 			<p id="id" hidden>${post.id}</p>
                 			<p id="userID" hidden>${user.id}</p>

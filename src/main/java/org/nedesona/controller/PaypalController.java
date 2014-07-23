@@ -14,6 +14,7 @@ import javax.transaction.TransactionManager;
 
 import org.apache.log4j.Logger;
 import org.nedesona.beanInterface.SendMail;
+import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Post;
 import org.nedesona.domain.Record;
@@ -264,9 +265,28 @@ public class PaypalController {
 				Deal deal = dealManager.viewById(record.getDealID());
 				Post post = postManager.viewById(deal.getRefPost());
 				User buyer = userManager.findbyId(post.getUser().getId());
+				StringBuffer completeDeal = new StringBuffer();
+				completeDeal.append("Out-the-door price: "+deal.getHeader()+"\n Car Make: "+post.getTitle()
+						+"\n Model: "+post.getModel()
+						+"\n Year: "+post.getYear()
+						+"\n Color:"+post.getColor()
+						+"\n Specific Options"+post.getDescription()
+						+"\n Discussion:\n");
+				// Loop through the comments
+				for (String key : deal.getComments().keySet()) {
+					completeDeal.append(deal.getComments().get(key).getContent()+"\n");
+				}
+				
+				completeDeal.append("\n Dealer Contact Info:\n Name: "+deal.getUser().getUserName()
+						+"\n Phone: "+deal.getUser().getPhone()
+						+"\n Email: "+deal.getUser().getEmail()
+						+"\n Address: "+deal.getUser().getAddress()
+						+"\n Zip code: "+deal.getUser().getZipCode());
+				
 				reminderMail.sending(buyer.getEmail(),
-						" Deal has comfirmed ", "Print it", post.getId()
-								+ "?token=" + buyer.getId());
+				" Your car offer has confirmed", "The dealer just confirmed the offer of "+ deal.getHeader()+" for "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+"\n\n" +
+				"Offer Summary:\n"+completeDeal.toString()+"\n\n Bring this email with you to the dealership\n\n Share your friends how much you save with this offer <http://localhost:8082/mypost/"+post.getId()+">\n"
+				,"Congratulation \n DealArena.com <http://localhost:8082/mypost/>", false);
 				postManager.updatePost(post.getId(), "status", "Processing");
 				dealManager.updateDeal(deal.getId(), "status", "paid");
 			} else {

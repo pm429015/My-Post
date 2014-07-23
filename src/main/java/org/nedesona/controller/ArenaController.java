@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.crypto.SealedObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -68,8 +69,13 @@ public class ArenaController {
 	public ModelAndView replyBack() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		logger.warn("new email");
+		String postid= "53cf10343004bba78046e658";
+		Deal deal = dealManager.viewById(postid);
 		
-		reminderMail.sending("pm429015@gmail.com", "Can you beat that price?", "test \n content", "link", true);
+		reminderMail.sending("oiehf+fdqg90t7muqdk@sharklasers.com","Can you beat this price?","One of dealers offers a deal with price: "+deal.getHeader()+"\n"+
+				"Please provide a competitive price through this link <http://localhost:8082/mypost/53cefa98300447c8cc2dd7a1?token="+deal.getUser().getId()+">\n", 
+				"Thank you",true);		
+		
 		return new ModelAndView("main_page", model);
 	}
 
@@ -126,9 +132,12 @@ public class ArenaController {
 			if (user != null) {
 				comment.setUser(user);
 				// Send to the dealer
-				reminderMail.sending(comment.getDeal().getUser().getEmail(),
-						" Buyer said something ","Buyer said...",comment.getDeal().getId()+"?token="+token);
-
+				reminderMail.sending( comment.getDeal().getUser().getEmail(),
+						"A reply from the buyer",
+						"The reply as follow:\n\n	"+comment.getContent()+"\n\n"+
+						"Please reply through this link <http://localhost:8082/mypost/"+comment.getDeal().getRefPost()+"?token="+forWhichDeal.getUser().getId()+">\n",
+								"Thank you.", false);
+				
 			}else{
 				// Check Buyer
 				Dealer dealer = dealerManager.searchByID(token);
@@ -137,7 +146,9 @@ public class ArenaController {
 					// Send to user
 					Post post = postManager.viewById(forWhichDeal.getRefPost());
 					reminderMail.sending(post.getUser().getEmail(),
-							" Dealer said something ","Dealer said...",comment.getDeal().getId()+"?token="+token);
+							"A reply from dealer:"+dealer.getUserName(),"The reply as follow:\n\n		"+comment.getContent()+"\n\n"+
+							"Please reply through this link <http://localhost:8082/mypost/"+comment.getDeal().getRefPost()+"?token="+post.getUser().getId()+">\n",
+							"Thank you.", false);
 				}else{
 					logger.warn("Unknown user");
 					return null;
@@ -235,7 +246,9 @@ public class ArenaController {
 			for (String key : emailStr.keySet()) {
 				//Skip dealer herself
 				if (!key.equals(dealer.getId())) {
-					reminderMail.sending(emailStr.get(key),"New deal ",post.getDescription(),post.getId()+"?token="+key);
+					reminderMail.sending(emailStr.get(key),"Can you beat this price?","One of dealers offers a new deal on "+updatedPost.getYear()+" "+updatedPost.getColor()+" "+updatedPost.getTitle() +" "+updatedPost.getModel()+" with price: "+deal.getHeader()+"\n\n"+
+				"Please go this link for details <http://localhost:8082/mypost/"+post.getId()+"?token="+key+">\n\n", 
+				"Thank you",false);
 				}
 			}
 			
@@ -261,9 +274,15 @@ public class ArenaController {
 		
 		//Find the deal by id
 		Deal selectedDeal = dealManager.searchBy("id", dealID);
+		
 		if (selectedDeal!= null) {
-			reminderMail.sending(selectedDeal.getUser().getEmail(),"Cong"," You are selected" , 
-					"paypaltest?payment="+selectedDeal.getId());
+			Post post = postManager.viewById(selectedDeal.getRefPost());
+			
+			reminderMail.sending(selectedDeal.getUser().getEmail(),
+					"I'd like to finalize the deal with you",
+					"Congratulation. The Buyer loves your offer of "+ selectedDeal.getHeader()+" for "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+"\n\n" +
+					"To confirm the offer with the buyer, please go to <http://localhost:8082/mypost/paypaltest?payment="+selectedDeal.getId()+"\n\n",
+					"Thank you",false);
 		}else{
 			logger.warn("Unknown deal");
 			return null;

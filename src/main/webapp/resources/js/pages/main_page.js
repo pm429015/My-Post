@@ -22,28 +22,36 @@ function finalSubmit(){
 		$("#Uemail").focus();
 		return false;
 	}
-	
-	$.ajax({
-	type : 'POST',
-	url : 'insertPost',
-	data : {
-		title : $("#title").val(),
-		model : $("#Umodel").val(),
-		year :  $("#Uyear").val(),
-		color :  $("#Ucolor").val(),
-		description : $("#description").val(),
-		email : formEmail,
-		miles : $("#Uemail").val(),
-		zip : $("#Uzip").val(),
-		name : $("#Uname").val()
-	}
-
-	});
+	var title = $("#title").val();
+	var Umodel =  $("#Umodel").val();
+	var year =  $("#Uyear").val();
+	var color =  $("#Ucolor").val();
+	var description =  $("#description").val();
+	var zip = $("#Uzip").val();
+	var name = $("#Uname").val();
 	
 	$('.product-background')
 	.html(
 			'<div class="row postThanks"><div class="col-md-8 col-md-offset-2"><h1><center>You did a great job!</center></h1><h3><center>We will contact you once we find good deals for you.</center></h3><div class="col-md-6 text-center"><a href="mainp" ><button class="btn btn-primary btn-lg" type="button" >Request another deal</button></div></a><div class="col-md-6 text-center"><a href="arena"><button class="btn btn-danger btn-lg" type="button" >Go to our deal arena</button></a></div></div></div>');
 
+	
+	$.ajax({
+	type : 'POST',
+	url : 'insertPost',
+	data : {
+		title : title,
+		model : Umodel,
+		year :  year,
+		color : color,
+		description : description,
+		email : formEmail,
+		miles : Uname,
+		zip : zip,
+		name : name
+	}
+
+	});
+	
 
 }
 
@@ -133,7 +141,7 @@ $(document).ready(function() {
 	            '</div>'+
 	            
 	            '<div class="form-group">'+
-	              '<h3 class="col-md-3 control-label" for="description">Specific Requests:</h3>'+
+	              '<h3 class="col-md-3 control-label" for="description">Specific Options:</h3>'+
 	              '<div class="col-md-8 textinput">'+
 	                '<textarea id="description" name="description" style="height: 100px;" type="text" placeholder="(Optional)  Write here if you have any specific request." class="form-control"></textarea>'+
 	              '</div>'+

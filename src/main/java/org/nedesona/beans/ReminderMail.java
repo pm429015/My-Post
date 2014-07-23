@@ -35,7 +35,7 @@ public class ReminderMail implements SendMail {
 				helper.setFrom("DealArenas@gmail.com");
 				helper.setTo(to);
 				helper.setSubject(title);
-				helper.setText(content, false);
+				helper.setText(content+link, false);
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
