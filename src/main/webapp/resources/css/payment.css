@@ -183,3 +183,17 @@
 #cmt-header{
 	padding: 0px 10px;
 }
+
+.commentTable{
+	padding: 0px 10px;
+	margin-top: 15px;
+}
+
+/*Payment*/
+#paymentTitle{
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+

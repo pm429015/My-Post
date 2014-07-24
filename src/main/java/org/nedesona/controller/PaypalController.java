@@ -16,10 +16,12 @@ import org.apache.log4j.Logger;
 import org.nedesona.beanInterface.SendMail;
 import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
+import org.nedesona.domain.Dealer;
 import org.nedesona.domain.Post;
 import org.nedesona.domain.Record;
 import org.nedesona.domain.User;
 import org.nedesona.service.DealManager;
+import org.nedesona.service.DealerManager;
 import org.nedesona.service.PostManager;
 import org.nedesona.service.RecordManager;
 import org.nedesona.service.UserManager;
@@ -63,7 +65,9 @@ public class PaypalController {
 	
 	@Autowired
 	private UserManager userManager;
-
+	
+	@Autowired
+	private DealerManager dealerManager;
 
 	InputStream is = PaypalController.class
 			.getResourceAsStream("/sdk_config.properties");
@@ -230,6 +234,71 @@ public class PaypalController {
 			}
 		}else{
 			LOGGER.warn("Unknown id");
+			return new ModelAndView("Error", model);
+		}
+		
+		
+	}
+	
+	@RequestMapping(value = "dealerInfoUpdate")
+	public ModelAndView dealerInfoUpdate(
+			@RequestParam(value = "name", required = false, defaultValue = "None") String name,
+			@RequestParam(value = "email", required = false, defaultValue = "None") String email,
+			@RequestParam(value = "phone", required = false, defaultValue = "None") String phone,
+			@RequestParam(value = "address", required = false, defaultValue = "None") String address,
+			@RequestParam(value = "zip", required = false, defaultValue = "None") String zip,
+			@RequestParam(value = "id") String id
+		){
+		Map<String, Object> model = new HashMap<String, Object>();
+		LOGGER.warn("Start update"+name.length()+"");
+		Deal deal = dealManager.viewById(id);
+		
+		if (deal != null) {
+			LOGGER.warn("Found deal");
+			
+			// Update the dealer
+			// Keep the original info
+			Dealer dealer = deal.getUser();
+			Dealer updatedDealer = new Dealer();
+			updatedDealer.setId(dealer.getId());
+			if (name.length() !=0 ) {
+				LOGGER.warn("Original Name "+name);
+				updatedDealer.setUserName(name);
+			}else{
+				LOGGER.warn("Original Name "+dealer.getUserName());
+				updatedDealer.setUserName(dealer.getUserName());
+			}
+			
+			if (email.length() !=0) {
+				updatedDealer.setEmail(email);
+			}else{
+				updatedDealer.setEmail(dealer.getEmail());
+			}
+			
+			if (phone.length() !=0) {
+				updatedDealer.setPhone(phone);
+			}else{
+				updatedDealer.setPhone(dealer.getPhone());
+			}
+			
+			if (address.length() !=0) {
+				updatedDealer.setAddress(address);
+			}else{
+				updatedDealer.setAddress(dealer.getAddress());
+			}
+			
+			if (zip.length() !=0) {
+				updatedDealer.setZipCode(zip);
+			}else{
+				updatedDealer.setZipCode(dealer.getZipCode());
+			}
+			
+			dealerManager.update(updatedDealer);
+			
+			model.put("dealer", updatedDealer);
+			
+			return new ModelAndView("updateDealer", model);
+		}else{
 			return new ModelAndView("Error", model);
 		}
 		

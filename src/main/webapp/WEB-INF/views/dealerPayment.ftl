@@ -4,12 +4,12 @@
 <title>Confirm your offer</title>
 <@macro.showHeader />
 <@macro.loadExternal />
-<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/payment.js"></script>
 <div class="firstLayer" >
 	<div class="container">
         <div class="row">
-            <div class="span12">
+        	<div class="col-md-8 pull-left">
                 <div class="thumbnail">
+                	
                 		<div class="caption-full">
                 		<div class="BTField">
                 			<h1>Request Summary</h1>
@@ -42,7 +42,7 @@
                 				
                 			</table>
                 			
-                			<h1><font color="#ecac00">Dealer Offer: </font></h1>
+                			<h1>Dealer Offer: </h1>
                 			<table style="margin:0px auto; width:80%" align="center" > 
                 				<tr>
                 					<td><p>Out-the-door Price:</p></td>
@@ -61,110 +61,101 @@
                 				 <#if deal.comments??>
                 					<#list deal.comments?keys as i> 
 	                				<tr>
-	                					<td></td>
-	                					<td><p>${deal.comments[i].content}</p>
-	                						<p style="text-align:right" >By ${deal.comments[i].user.userName}</p>
+	                					<td><p class="commentTable" >${deal.comments[i].content}</p>
+	                						<p style="text-align:right" class="commentTable" >By ${deal.comments[i].user.userName}</p>
 	                					</td>
 	                				</tr>
 	                				</#list> 
                 				</#if>
                 			</table>
-                			<h3 style="margin-top: 20px;">Dealer Contact Info: </h3>
-                			<table style="margin:0px auto; width:80%" align="center" > 
-                				<tr>
-                					<td><p>Name:</p></td>
-                					<td><p>${deal.user.userName}</p></td>
-                				</tr>
-                				<tr>
-                					<td><p>Email:</td>
-                					<td><p>${deal.user.email}</p></td>
-                				</tr>
-                				<tr>
-                					<td><p>Phone:</td>
-                					<td><p>${deal.user.phone}</p></td>
-                				</tr>
-                				
-                				<tr>
-                					<td><p>Location:</td>
-                					<td><p>${deal.user.address}</p></td>
-                				</tr>
-                				
-                				<tr>
-                					<td><p>Zip code:</td>
-                					<td><p>${deal.user.phone}</p></td>
-                				</tr>
-                			</table>
-
+                			<h3 style="margin-top: 20px;">Dealer Contact Info:</h3>
+                			
+                			<div id="infoTable">
+	                			<table style="margin:0px auto; width:80%" align="center" > 
+	                				<tr>
+	                					<td><p>Name:</p></td>
+	                					<td><p><input id="dealerName" placeholder="${deal.user.userName}"></p></input></td>
+	                				</tr>
+	                				<tr>
+	                					<td><p>Email:</td>
+	                					<td><p><input id="dealerEmail" placeholder="${deal.user.email}"></p></input></td>
+	                				</tr>
+	                				<tr>
+	                					<td><p>Phone:</td>
+	                					<td><p><input id="dealerPhone" placeholder="${deal.user.phone}"></p></input></td>
+	                				</tr>
+	                				
+	                				<tr>
+	                					<td><p>Location:</td>
+	                					<td><p><input id="dealerAddress" placeholder="${deal.user.address}"></p></input></td>
+	                				</tr>
+	                				
+	                				<tr>
+	                					<td><p>Zip code:</td>
+	                					<td><p><input id="dealerZip" placeholder="${deal.user.zipCode}"></p></input></td>
+	                				</tr>
+	                			</table>
+	                			<button class="btn btn-info pull-right" type="button" onclick="infoUpdate('${deal.id}')">Update</button>
+							</div>
 							
-							<h3 style="margin-top: 20px;">Introduction Fee</h3>
+							<h3 style="margin-top: 20px;" >Introduction Fee</h3>
 							<p>Dealers pay a introduction fee on each car offer confirmation. The introduction fee is paid of dealers' own will and dose not guarantee
-								sales transactions will be successful. The fee is an one-time Charge fee and it does not apply to the amount the buyer pays. 
+								sales transactions will be successful. The fee is an one-time non-refundable fee and it does not apply to the amount the buyer pays. 
 							</p>
-							<div>
-							<table style="right:50px">
-							<tr>
-								<td><p>Summary</p></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><p>Introduction Fee:</p></td>
-								<td><p>$25.00</p></td>
-							</tr>
-							<tr>
-								<td><p>Tax Fee:</p></td>
-								<td><p>$0.00</p></td>
-							</tr>
-							<tr>
-								<td><hr style="width:190px;"></td>
-								<td><hr style="width:60px;"></td>
-							</tr>
-							<tr>
-								<td><p>Total:</p></td>
-								<td><p>$25.00</p></td>
-							</tr>
-							
-							</table>
-							<br>
-							<p><font color=red ><strong>Once you confirm the offer, we will notice the buy and arrange an appointment with you.</strong></font></p>
-					</div>
-                    </div><!--caption-full-->
+						<div>
+					
+						</div>
+                   </div><!--caption-full-->
+                    
                 </div><!-- /.thumbnail -->
-
+             </div>
                
-            </div><!-- span12 -->
         </div><!-- row -->
+        
+        <div class="col-md-4">
+            <div class="thumbnail">
+               <div class="caption-full">
+                		<div class="BTField">
+                			<h3 id="paymentTitle">Confirm Here</h3>
+                			<p><font color=red ><strong>Once you confirm the offer, we will notify the buy to contact you.</strong></font></p>
+                			<table style="width:100%; margin-top: 20px;" >
+								<tr>
+									<td><p><b>Summary</b></p></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><p>Introduction Fee:</p></td>
+									<td class="td-right"><p>$25.00</p></td>
+								</tr>
+								<tr>
+									<td><p>Tax Fee:</p></td>
+									<td class="td-right"><p>$0.00</p></td>
+								</tr>
+								<tr>
+									<td><hr style="width:100%;"></td>
+									<td><hr style="width:100%;"></td>
+								</tr>
+								
+								<tr>
+									<td><p>Total:</p></td>
+									<td><p>$25.00</p></td>
+								</tr>
+								
+							</table>
+							By clicking Pay Now, you have read and agreed with the terms and conditions.<br>
+							<a href="paypal?dealID=${deal.id}" style="margin-bottom: 10px;"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" align="right"></a>
+							<h6></h6>
+                		</div>
+                	</div>
+            </div><!-- /.thumbnail -->
+        </div><!-- col-md-2 -->
+        
     </div> <!-- /.container -->
 </div>
 
-<div>
-	<div class="modal fade" id="doubleCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h3 style="color:black">Are you sure?</h3>
-				</div>
-			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn btn-primary" id="go">OK</button>
-				<button type="button" data-dismiss="modal" class="btn">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div>
-	<div class="modal fade" id="locked" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h3 style="color:black">Sorry, the buyer has chosen the best deal.</h3>
-				</div>
-			<div class="modal-footer">
-				<button type="button" data-dismiss="modal" class="btn">OK</button>
-			</div>
-		</div>
-	</div>
-</div>
 <link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/payment.css">
+<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/payment.js"></script>
 <@macro.footer />
 	</body>	
 </html>

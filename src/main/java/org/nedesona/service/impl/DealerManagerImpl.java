@@ -33,4 +33,9 @@ public class DealerManagerImpl implements DealerManager {
 		return dealer;
 	}
 
+	@Override
+	public void update(Dealer dealer) {
+		dealerdao.update(dealer);
+	}
+
 }

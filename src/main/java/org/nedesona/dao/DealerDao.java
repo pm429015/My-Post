@@ -19,4 +19,6 @@ public interface DealerDao {
 	List<Dealer> searchDealers(String field, List<String> list);
 	
 	Dealer searchByID(String id);
+
+	void update(Dealer dealer);
 }

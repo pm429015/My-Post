@@ -15,4 +15,6 @@ public interface DealerManager {
 	List<Dealer> searchDealers(String field, List<String> list) ;
 	
 	Dealer searchByID(String term);
+	
+	void update(Dealer dealer);
 }

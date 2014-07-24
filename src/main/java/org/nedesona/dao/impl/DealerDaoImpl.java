@@ -57,4 +57,29 @@ public class DealerDaoImpl implements DealerDao {
 		return mongoTemplate.findById(id, Dealer.class);
 	}
 
+	@Override
+	public void update(Dealer dealer) {
+		mongoTemplate.save(dealer);
+		
+//		Query query = new Query(Criteria.where("id").is(dealer.getId()));
+//		new Update();
+//		Update update = Update.update("userName",dealer.getUserName());
+//		mongoTemplate.updateFirst(query, update, Dealer.class);
+//		
+//		update = Update.update("email",dealer.getEmail());
+//		mongoTemplate.updateFirst(query, update, Dealer.class);
+//		
+//		update = Update.update("zipCode",dealer.getZipCode());
+//		mongoTemplate.updateFirst(query, update, Dealer.class);
+//		
+//		update = Update.update("phone",dealer.getPhone());
+//		mongoTemplate.updateFirst(query, update, Dealer.class);
+//		
+//		update = Update.update("zipCode",dealer.getZipCode());
+//		mongoTemplate.updateFirst(query, update, Dealer.class);
+//		
+//		update = Update.update("address",dealer.getAddress());
+//		mongoTemplate.updateFirst(query, update, Dealer.class);
+	}
+
 }
