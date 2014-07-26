@@ -182,10 +182,12 @@ public class PaypalController {
 
 			// ###Payment Approval Url
 			Iterator<Links> links = createdPayment.getLinks().iterator();
+			String redirectURL = "";
 			while (links.hasNext()) {
 				Links link = links.next();
 				if (link.getRel().equalsIgnoreCase("approval_url")) {
 					model.put("redirectURL", link.getHref());
+					redirectURL =  link.getHref();
 					LOGGER.warn("Redirect to " + link.getRel() + " "
 							+ link.getHref());
 				}
@@ -199,12 +201,15 @@ public class PaypalController {
 			record.setStatus("init");
 			recordManager.saveTransaction(record);
 			LOGGER.warn("Save reocord");
+			
+			return new ModelAndView("redirect:"+ redirectURL);
 
 		} catch (PayPalRESTException e) {
 			LOGGER.fatal(e.getMessage());
+			return new ModelAndView("Error", model);
 		}
 
-		return new ModelAndView("paypalBack", model);
+		
 	}
 
 	@RequestMapping(value = "confirm")
