@@ -37,7 +37,20 @@ public class PostController {
 	
 	@Autowired
 	private SendMail reminderMail;
-
+	
+	@RequestMapping(value="about")
+	public ModelAndView about(){
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		return new ModelAndView("about",model);
+	}
+	
+	@RequestMapping(value="howItWorks")
+	public ModelAndView howItWorks(){
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		return new ModelAndView("howItWorks",model);
+	}
 
 	@RequestMapping(value = "/insertPost")
 	public ModelAndView insertPost(

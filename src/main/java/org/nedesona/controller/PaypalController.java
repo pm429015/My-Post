@@ -360,7 +360,7 @@ public class PaypalController {
 						+"\n Zip code: "+deal.getUser().getZipCode());
 				
 				reminderMail.sending(buyer.getEmail(),
-				" Your car offer has confirmed", "The dealer just confirmed the offer of "+ deal.getHeader()+" for "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+"\n\n" +
+				" Your car offer has been confirmed", "The dealer confirmed the offer of "+ deal.getHeader()+" for "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+"\n\n" +
 				"Offer Summary:\n"+completeDeal.toString()+"\n\n Bring this email with you to the dealership\n\n Share your friends how much you save with this offer <http://localhost:8082/mypost/"+post.getId()+">\n"
 				,"Congratulation \n DealArena.com <http://localhost:8082/mypost/>", false);
 				postManager.updatePost(post.getId(), "status", "Processing");

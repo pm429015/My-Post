@@ -49,25 +49,25 @@ $(function() {
 	$('.error').hide();
 
 	// Tangle user info in navbar
-	var name = getCookie("Name");
-	var email = getCookie("Email");
-	var token = 20;
-	if (name && email) {
-		$("#userToken")
-				.html(
-						'<a data-toggle="dropdown" href="#" class="dropdown-toggle" >'
-								+ token
-								+ '</a><div class="dropdown-menu gts-flat-dropdown-menu gts-user-dropdown-menu tokenMenu"><center><p>Using these tokens to join deal flights</p></center></div>');
-		$("#loginStatus")
-				.html(
-						'<a data-toggle="dropdown" href="#" class="dropdown-toggle UserName">Hi '
-								+ name
-								+ '</a><div class="dropdown-menu gts-flat-dropdown-menu gts-user-dropdown-menu userMenu"><div class="user-details"><center><a id="signOut" href="#">Sign Out</a></center> </div></div>');
-	} else {
-		$("#loginStatus")
-				.html(
-						'<a href="#loginPage" data-toggle="modal" id="signInUp" onclick="saveUrlCookie()">Sign up/Login</a></li>');
-	}
+//	var name = getCookie("Name");
+//	var email = getCookie("Email");
+//	var token = 20;
+//	if (name && email) {
+//		$("#userToken")
+//				.html(
+//						'<a data-toggle="dropdown" href="#" class="dropdown-toggle" >'
+//								+ token
+//								+ '</a><div class="dropdown-menu gts-flat-dropdown-menu gts-user-dropdown-menu tokenMenu"><center><p>Using these tokens to join deal flights</p></center></div>');
+//		$("#loginStatus")
+//				.html(
+//						'<a data-toggle="dropdown" href="#" class="dropdown-toggle UserName">Hi '
+//								+ name
+//								+ '</a><div class="dropdown-menu gts-flat-dropdown-menu gts-user-dropdown-menu userMenu"><div class="user-details"><center><a id="signOut" href="#">Sign Out</a></center> </div></div>');
+//	} else {
+//		$("#loginStatus")
+//				.html(
+//						'<a href="#loginPage" data-toggle="modal" id="signInUp" onclick="saveUrlCookie()">Sign up/Login</a></li>');
+//	}
 
 	$('#signOut').click(function() {
 		delete_cookie("Name");

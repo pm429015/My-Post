@@ -103,9 +103,10 @@
 					<div class="row">
 						<div class="col-lg-8 col-lg-offset-2">
 							<h2>About DealArenas</h2>
-							<p>DealArenas is a paradise for buyers to instantly negotiate, compare and choose the best deals they like. 
-								DealArenas is also a sellers arena because only the best deals could survive. If you want to buy something but 
-								can't find a good deal or you have good deals but can't find customers, DealArenas is your best friend.
+							<p>DealArenas is a paradise for car buyers to instantly negotiate, compare and choose the best deals they like. 
+								DealArenas is also a dealers arena because only the best deals could survive. If you want to buy a car but 
+								can't find a good dealer or you can offer good car deals but can't find customers, DealArenas is your best friend.
+								
 							</p>
 							<p>dealarenas@gmail.com</p>
 							<li><a href="mailto:dealarenas@gmail.com"

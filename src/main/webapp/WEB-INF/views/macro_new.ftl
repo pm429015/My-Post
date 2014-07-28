@@ -19,9 +19,13 @@
 	<footer>
          <div class="container">
                 <div class="row">
-                    <div class="col-md-8 copyright">
+                    <div class="col-md-6 copyright">
                         <p>Copyright &copy; 2014 DealArenas.com All Rights Reserved
                     </div>
+                    <div class="col-md-2 copyright">
+                        <a href="about"><p>About us<p></a>
+                    </div>
+                    
                     <div class="col-md-2 copyright">
                         <a href="mailto:dealarenas@gmail.com"><p>Contact us<p></a>
                     </div>
