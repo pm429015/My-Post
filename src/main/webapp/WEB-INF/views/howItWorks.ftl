@@ -1,6 +1,5 @@
 <#import "/spring.ftl" as spring />
 <#import "macro_new.ftl" as macro/>
-<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
 
 <title>How it works - DealArenas</title>
 
@@ -57,6 +56,7 @@
 		</div>
 	</section>
 	<@macro.loadExternal />
+	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
 	<@macro.footer />
 	</body>	
 </html>

@@ -102,17 +102,79 @@
 				<div id="about" class="container content-section text-center">
 					<div class="row">
 						<div class="col-lg-8 col-lg-offset-2">
-							<h2>About DealArenas</h2>
-							<p>DealArenas is a paradise for car buyers to instantly negotiate, compare and choose the best deals they like. 
-								DealArenas is also a dealers arena because only the best deals could survive. If you want to buy a car but 
-								can't find a good dealer or you can offer good car deals but can't find customers, DealArenas is your best friend.
-								
-							</p>
-							<p>dealarenas@gmail.com</p>
-							<li><a href="mailto:dealarenas@gmail.com"
-								class="btn btn-default btn-lg"><i
-								class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-							</li>
+							<h1 style="color:#ffcc33">Join Our Auto Dealer Network</h1>
+							<form class="form-horizontal">
+                            		<fieldset>
+                            			<!--  Header-->
+							        <div class="form-group">
+							              <p class="text-center">Make Your Time Worth Every Minute You Invest in Your Customers. </p>
+							        </div>
+							        
+							        <!-- Dealer name-->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Dname">Name:</p>
+							           <div class="col-md-8">
+							      	     <input id="Dname" name="Dname" type="text" placeholder="Your name" class="form-control"></input>
+							             <label class="error" for="Dname" id="Dname_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+							        
+							        <!-- Name of Dealership-->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Dealership">Dealership:</p>
+							           <div class="col-md-8">
+							      	     <input id="Dealership" name="Dealership" type="text" placeholder="Name of dealership" class="form-control"></input>
+							             <label class="error" for="Dealership" id="Dealership_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+							        
+							        <!-- Make -->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Dmake">Make:</p>
+							           <div class="col-md-8">
+							      	     <input id="Dmake" name="Dmake" type="text" placeholder="Car Make/Model you sell. (For example, Honda, Toyota and Ford )" class="form-control"></input>
+							             <label class="error" for="Dmake" id="Dmake_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+							        
+							        <!-- Email -->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Demail">Email:</p>
+							           <div class="col-md-8">
+							      	     <input id="Demail" name="Demail" type="text" placeholder="Your contact email" class="form-control"></input>
+							             <label class="error" for="Demail" id="Demail_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+							        
+							        <!-- phone -->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Dphone">Phone:</p>
+							           <div class="col-md-8">
+							      	     <input id="Dphone" name="Dphone" type="text" placeholder="Your phone" class="form-control"></input>
+							             <label class="error" for="Dphone" id="Dphone_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+							        
+							        <!-- Address -->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Daddress">Address:</p>
+							           <div class="col-md-8">
+							      	     <input id="Daddress" name="Daddress" type="text" placeholder="Your contact address" class="form-control"></input>
+							             <label class="error" for="Daddress" id="Daddress_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+							        
+							        <!-- zip -->
+							        <div class="form-group">
+							        <p class="col-md-3 control-label dtext" for="Dzip">Zip:</p>
+							           <div class="col-md-8">
+							      	     <input id="Dzip" name="Dzip" type="text" placeholder="Your Zip code" class="form-control"></input>
+							             <label class="error" for="Dzip" id="Dzip_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             </div>
+							        </div>
+                            		
+                            		</fieldset>
+                            	</form>
 						</div>
 					</div>
 				</div>
