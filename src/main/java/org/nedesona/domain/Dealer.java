@@ -21,6 +21,7 @@ public class Dealer {
 	private String phone;
 	private String address;
 	private String brands;
+	private String dealership;
 	
 	public String getId() {
 		return id;
@@ -75,6 +76,12 @@ public class Dealer {
 	}
 	public void setBrands(String brands) {
 		this.brands = brands;
+	}
+	public String getDealership() {
+		return dealership;
+	}
+	public void setDealership(String dealership) {
+		this.dealership = dealership;
 	}
 	
 	

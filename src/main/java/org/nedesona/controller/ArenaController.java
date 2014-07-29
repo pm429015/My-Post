@@ -65,6 +65,12 @@ public class ArenaController {
 		return new ModelAndView("arena", model);
 	}
 	
+	@RequestMapping(value="howItWorks")
+	public ModelAndView howItWorks(){
+		Map<String, Object> model = new HashMap<String, Object>();
+		return new ModelAndView("howItWorks",model);
+	}
+	
 	@RequestMapping(value = "/bf")
 	public ModelAndView replyBack() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -172,6 +178,7 @@ public class ArenaController {
 		
 		return new ModelAndView("bfDeals", model);
 	}
+	
 
 	@RequestMapping(value = "/insertDeal", method = RequestMethod.POST)
 	public @ResponseBody

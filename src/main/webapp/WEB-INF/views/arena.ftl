@@ -17,33 +17,33 @@
                 		<div class="col-md-12 arenaTitle">
                 			<h1>Deal Arenas</h1>
                 			<h3>ONLY BEST DEALS COULD SURVIVE</h3>
-					</div>
+						</div>
 					
-                		<div class="col-md-12 " id="searchForm">
+                		<div class="col-md-12 " id="searchForm" >
 						<input type="text" class="search-query" size="70" placeholder="Search" id="keyword" onkeypress="keypress(event);">
-						<button class="btn btn-primary" onclick="searchSubmit()">Search</button>
+						<button class="btn btn-primary" onclick="searchSubmit()" >Search</button>
 					</div>
 					
-                    <div class="caption-full">
-                        <div class="center-table" id="tableContent">
-							<table class="table table-hover" id="resultTable" width="90%">
+                    <div class="caption-full" >
+                        <div class="center-table" id="tableContent" >
+							<table class="table table-hover" id="resultTable" width="90%" >
 								<thead>
 									<tr>
-										<th>Subject</th>
-										<th>Snapshot</th>
+										<th><h3 style="margin-top: 30px;">Car Request List</h3></th>
+										<th>Remaining Time</th>
 									</tr>
 								</thead>
 					
 								<tbody>
 								<#list postList as post>
 									<tr>
-										<td id="tableSubject" ><a href="${post.id}" target="_blank">${post.title}</a></td>
-										<#if post.description?length &gt; 130 >
+										<td id="tableSubject" ><a href="${post.id}" target="_blank"><h4>${post.year}   ${post.color} ${post.title} ${post.model}</h4></a></td>
+										<!--<#if post.description?length &gt; 130 >
 											<#assign content = post.description?substring(0, 130) +'........ <a href="${post.id}" target="_blank">See more</a>' >
 										<#else>
 											<#assign content = post.description>
-										</#if>
-										<td><p id="postContent" >${content}</p></td>
+										</#if>-->
+										<td><p id="postContent" >${post.createDate?date}</p></td>
 									</tr>
 									</#list>
 								</tbody>

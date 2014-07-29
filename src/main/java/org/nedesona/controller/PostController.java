@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -18,7 +19,9 @@ import org.nedesona.utils.Controller_utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,12 +48,37 @@ public class PostController {
 		return new ModelAndView("about",model);
 	}
 	
-	@RequestMapping(value="howItWorks")
-	public ModelAndView howItWorks(){
+
+	@RequestMapping(value = "/addDealer", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelAndView dealerJoin(
+			@RequestParam(value = "dealerShip") String dealerShip,
+			@RequestParam(value = "dealerName") String dealerName,
+			@RequestParam(value = "dealerEmail") String dealerEmail,
+			@RequestParam(value = "dealerPhone") String dealerPhone,
+			@RequestParam(value = "dealerZip") String dealerZip,
+			@RequestParam(value = "dealerAddress") String dealerAddress,
+			@RequestParam(value = "dealerBrands") String dealerBrands
+			) {
+
 		Map<String, Object> model = new HashMap<String, Object>();
-		
-		return new ModelAndView("howItWorks",model);
+		System.out.println("start");
+		Dealer dealer = new Dealer();
+		if (dealerName != null && dealerEmail != null && dealerPhone != null
+				&& dealerZip != null && dealerAddress != null && dealerShip != null) {
+			dealer.setUserName(dealerName);
+			dealer.setEmail(dealerEmail);
+			dealer.setPhone(dealerPhone);
+			dealer.setAddress(dealerAddress);
+			dealer.setZipCode(dealerZip);
+			dealer.setDealership(dealerShip);
+			dealer.setBrands(dealerBrands);
+
+			dealerManager.addDealer(dealer);
+		}
+		return new ModelAndView("about", model);
 	}
+	
 
 	@RequestMapping(value = "/insertPost")
 	public ModelAndView insertPost(

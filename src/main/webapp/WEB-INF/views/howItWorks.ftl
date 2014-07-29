@@ -50,7 +50,7 @@
 		
 			<div class="col-lg-8 col-lg-offset-2" style="margin-top: 30px;">
 				<p>All you need to do is to pick a car that fit your needs and request a offer at here.</p>
-				<li><a href="home" class="btn btn-danger btn-lg" style="margin-bottom: 20px;" >Try it now</a>
+				<li><a class="btn btn-danger btn-lg" style="margin-bottom: 20px;" onclick="dealerSubmit()" >Try it now</a>
 				</li>
 			</div>
 		</div>

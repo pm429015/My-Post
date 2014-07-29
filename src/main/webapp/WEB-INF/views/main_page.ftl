@@ -98,6 +98,59 @@
                     </div>
                 </div>
             </div>
+            
+            <section id="about" class="container content-section text-center" >
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2" style="margin-top: 40px;">
+				<h2 style="font-weight: 120; color:black">Revolutionizing the way you buy cars</h2>
+			</div>
+			<div class="col-md-6">
+				<ul class="text-left" type="square" style="color:black">
+					<li><p><b>Never waste you time: </b>  Submit a free car deal request form and we will contact all auto dealerships in your area so 
+						you don't need to physically go there.
+						</p>
+					</li>
+					<li><p><b>Save quite a bit of money: </b> Having dealerships fighting for your request. You won't believe you can save more 
+								than $500.
+						</p>
+					</li>
+					
+					<li><p><b>Pressure-Free negotiation: </b> Sit back and relax. You now can instantly negotiate with dealers at any where any time. 
+					  	It is so much easier to walk away if they can't meet your criteria.
+					  	</p>
+					</li>
+					
+					<li><p><b>Free and always free: </b> Enjoy the best DealArenas service. No additional fees and commissions.
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul class="text-left">
+					<li>
+						<h1 style="color:#f0371e; font-size:500%">Save Time</h1>
+					</li>
+					<li>
+						<h1 style="color:#f0371e; font-size:500%">Save Money</h1>
+					</li>
+					<li>
+						<h1 style="color:#f0371e; font-size:500%">Relax</h1>
+					</li>
+					<li>
+						<h1 style="color:#f0371e; font-size:500%">Free</h1>
+					</li>
+				</ul>
+			</div>
+		
+			<div class="col-lg-8 col-lg-offset-2" style="margin-top: 30px;">
+				<p>All you need to do is to pick a car that fit your needs and request a offer at here.</p>
+				<li><a class="btn btn-danger btn-lg" style="margin-bottom: 20px;" id="moveTop">Try it now</a>
+				</li>
+			</div>
+		</div>
+	</section>
+            
+            
             <div id="aboutlayer">
 				<div id="about" class="container content-section text-center">
 					<div class="row">
@@ -107,7 +160,7 @@
                             		<fieldset>
                             			<!--  Header-->
 							        <div class="form-group">
-							              <p class="text-center">Make Your Time Worth Every Minute You Invest in Your Customers. </p>
+							              <p class="text-center" >Make Your Time Worth Every Minute You Invest in Your Customers. </p>
 							        </div>
 							        
 							        <!-- Dealer name-->
@@ -142,7 +195,7 @@
 							        <p class="col-md-3 control-label dtext" for="Demail">Email:</p>
 							           <div class="col-md-8">
 							      	     <input id="Demail" name="Demail" type="text" placeholder="Your contact email" class="form-control"></input>
-							             <label class="error" for="Demail" id="Demail_error" hidden><font color="red">No Emtpy Field.</font></label>
+							             <label class="error" for="Demail" id="Demail_error" hidden><font color="red">Invalid Email address.</font></label>
 							             </div>
 							        </div>
 							        
@@ -173,8 +226,14 @@
 							             </div>
 							        </div>
                             		
+                            		
                             		</fieldset>
                             	</form>
+                            	
+                            	<div class="col-lg-8 col-lg-offset-2" style="margin-top: 5px;">
+									<li><a class="btn btn-danger btn-lg" style="margin-bottom: 20px;" onclick="dealerSubmit()">Join Us</a>
+									</li>
+								</div>
 						</div>
 					</div>
 				</div>
@@ -184,7 +243,23 @@
 	<@macro.loadExternal />
 	<link rel="stylesheet" type="text/css" href="${rc.getContextPath()}/resources/css/main_page.css">
 	<script type="text/javascript" src="${rc.getContextPath()}/resources/js/pages/main_page.js"></script>
+	
 	<@macro.footer />
+	<div>
+	<div class="modal fade" id="doubleCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h3 style="color:black">Thank you.</h3>
+					<p style="color:black">Your validation email have been sent.</p>
+					<p style="color:black">Once you get the validation email, just click the link and you'll be all set.</p>
+				</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-primary" id="go">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
 	</body>	
 </html>
 
