@@ -12,10 +12,13 @@ import org.nedesona.beanInterface.SendMail;
 import org.nedesona.domain.Dealer;
 import org.nedesona.domain.Post;
 import org.nedesona.domain.User;
+import org.nedesona.domain.Zip;
 import org.nedesona.service.DealerManager;
 import org.nedesona.service.PostManager;
 import org.nedesona.service.UserManager;
+import org.nedesona.service.ZipManager;
 import org.nedesona.utils.Controller_utils;
+import org.nedesona.utils.ZipSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,9 +44,20 @@ public class PostController {
 	@Autowired
 	private SendMail reminderMail;
 	
+	@Autowired
+	private ZipManager zipManager;
+	
 	@RequestMapping(value="about")
 	public ModelAndView about(){
 		Map<String, Object> model = new HashMap<String, Object>();
+		Zip zip = zipManager.findByZip("35004");
+		System.out.println("show: lat:"+zip.getLatitude()+"  long:"+zip.getLongitude());
+		
+		
+		List<Zip> zips = zipManager.searchZips(38.08, 37.93, -84.44, -84.62);
+		for (Zip zip2 : zips) {
+			System.out.println(zip2.getZipCode());
+		}
 		
 		return new ModelAndView("about",model);
 	}

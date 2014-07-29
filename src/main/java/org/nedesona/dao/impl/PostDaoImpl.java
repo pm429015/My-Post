@@ -49,7 +49,7 @@ public class PostDaoImpl implements PostDao {
 	public List<Post> search(String keyword) {
 		String query = "{$or:[{description:{$regex:\""+keyword+"\", $options:\"i\"}},{title:{$regex:\""+keyword+"\",$options:\"i\"}}]}";
 		BasicQuery searchbyKeyword = new BasicQuery(query);
-
+		
 		return  mongoTemplate.find(searchbyKeyword, Post.class);
 		
 	}
