@@ -22,4 +22,6 @@ public interface PostManager {
 	
 	void updatePost(String id, String field, String value);
 
+	void updatePost(Post post);
+
 }

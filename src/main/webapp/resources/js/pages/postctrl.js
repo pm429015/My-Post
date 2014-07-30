@@ -59,7 +59,7 @@ function commentSubmit(dealID, index) {
 }
 
 function dealSubmit(){
-	if (checkStatus()) {
+	if (!checkStatus()) {
 		
 		return false;
 	}
@@ -146,7 +146,7 @@ function dealSubmit(){
 }
 
 function dealAndUserSubmit(){
-	if (checkStatus()) {
+	if (!checkStatus()) {
 		
 		return false;
 	}
@@ -232,7 +232,7 @@ function chooseDeal(index){
 function checkStatus(){
 	// Check the status of the post, disable deal when the buyer has chosen a deal
 	var status = $("#status").text().trim();
-	if (status == "Expired") {
+	if (status == "Expired" || status =="Canceled") {
 		$('#locked').modal('show');
 		return false;
 	}else{
@@ -241,7 +241,7 @@ function checkStatus(){
 }
 
 function joinBid(){
-	if (checkStatus()) {
+	if (!checkStatus()) {
 		
 		return false;
 	}

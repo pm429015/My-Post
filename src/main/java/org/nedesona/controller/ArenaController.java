@@ -85,6 +85,28 @@ public class ArenaController {
 		return new ModelAndView("main_page", model);
 	}
 	
+	@RequestMapping(value = "/unsubscribe")
+	public ModelAndView view(@RequestParam(value = "NID") String postID, @RequestParam(value = "token") String userID) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		logger.warn("new unsubscribe");
+		Post post = postManager.viewById(postID);
+		if (post!= null) {
+			Map<String, String> emailStr = post.getEmailList();
+			if (emailStr.containsKey(userID)) {
+				//if the buyer unsubscribe 
+				if (emailStr.get(userID).equals(post.getUser().getEmail())) {
+					post.setActive("Canceled");
+				}
+				emailStr.remove(userID);
+				post.setEmailList(emailStr);
+				postManager.updatePost(post);
+			}
+		}
+		
+		
+		return new ModelAndView("unsubscribe", model);
+	}
+	
 	@RequestMapping(value = "/{id}")
 	public ModelAndView view(@PathVariable String id, @RequestParam(value = "token", required = false) String token, HttpServletResponse response) throws Exception {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -139,7 +161,7 @@ public class ArenaController {
 			if (user != null) {
 				comment.setUser(user);
 				// Send to the dealer
-				reminderMail.sending(comment.getDeal().getUser().getEmail(), "A reply from the buyer", "The reply as follow:\n\n	" + comment.getContent() + "\n\n" + "Please reply through this link <http://localhost:8082/mypost/" + comment.getDeal().getRefPost() + "?token=" + forWhichDeal.getUser().getId() + ">\n", "Thank you.", false);
+				reminderMail.sending(comment.getDeal().getUser().getEmail(), "A reply from the buyer", "The reply as follow:\n\n	" + comment.getContent() + "\n\n" + "Please reply through this link <http://localhost:8082/mypost/" + comment.getDeal().getRefPost() + "?token=" + forWhichDeal.getUser().getId() + ">\n", "Thank you, \n DealArenas.com \n\n", false);
 				
 			} else {
 				// Check Buyer
@@ -149,7 +171,7 @@ public class ArenaController {
 					// Send to user
 					Post post = postManager.viewById(forWhichDeal.getRefPost());
 					if (!post.getActive().equals("Expired")) {
-						reminderMail.sending(post.getUser().getEmail(), "A reply from dealer:" + dealer.getUserName(), "The reply as follow:\n\n		" + comment.getContent() + "\n\n" + "Please reply through this link <http://localhost:8082/mypost/" + comment.getDeal().getRefPost() + "?token=" + post.getUser().getId() + ">\n", "Thank you.", false);
+						reminderMail.sending(post.getUser().getEmail(), "A reply from dealer:" + dealer.getUserName(), "The reply as follow:\n\n		" + comment.getContent() + "\n\n" + "Please reply through this link <http://localhost:8082/mypost/" + comment.getDeal().getRefPost() + "?token=" + post.getUser().getId() + ">\n", "Thank you, \n DealArenas.com \n\n", false);
 					}
 					
 				} else {
@@ -182,10 +204,12 @@ public class ArenaController {
 		
 		Post post = postManager.viewById(postid);
 		if (post == null) {
+			logger.warn("no post");
 			return new ModelAndView("Error", model);
 		}
 		// No deal will be able to post after the post is expired
-		if (!post.getActive().equals("Expired")) {
+		if (post.getActive().equals("Expired")) {
+			logger.warn("expired");
 			return new ModelAndView("Error", model);
 		}
 		// Case 1: New user
@@ -236,7 +260,9 @@ public class ArenaController {
 			for (String key : emailStr.keySet()) {
 				// Skip dealer herself
 				if (!key.equals(dealer.getId())) {
-					reminderMail.sending(emailStr.get(key), "Can you beat this price?", "One of dealers offers a new deal on " + updatedPost.getYear() + " " + updatedPost.getColor() + " " + updatedPost.getTitle() + " " + updatedPost.getModel() + " with price: " + deal.getHeader() + "\n\n" + "Please go this link for details <http://localhost:8082/mypost/" + post.getId() + "?token=" + key + ">\n\n", "Thank you", false);
+					reminderMail.sending(emailStr.get(key), "Can you beat this price?", 
+							"One of dealers offers a new deal on " + updatedPost.getYear() + " " + updatedPost.getColor() + " " + updatedPost.getTitle() + " " + updatedPost.getModel() + " with price: " + deal.getHeader() + "\n\n" + "Please go this link for details <http://localhost:8082/mypost/" + post.getId() + "?token=" + key + ">\n\n",
+							"Thank you, \n DealArenas.com \n\n Unsubscribe:<http://localhost:8082/mypost/unsubscribe?NID=" + post.getId() + "&token=" + key + ">\n\n", false);
 				}
 			}
 			

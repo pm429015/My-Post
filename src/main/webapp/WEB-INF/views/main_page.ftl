@@ -43,7 +43,7 @@
 							            <div class="form-group email-group">
 							              <h3 class="col-md-3 control-label" for="Uyear">Year:</h3>
 							              <div class="col-md-5">
-							                <input id="Uyear" name="Uyear" type="text" placeholder="Example: 2014" class="form-control"></input>
+							                <input id="Uyear" name="Uyear" type="text" placeholder="Example: 2014 or Used" class="form-control"></input>
 							                <label class="error" for="Uyear" id="Uyear_error" hidden><font color="red">No Emtpy Field.</font></label>
 							              </div>
 							            </div>

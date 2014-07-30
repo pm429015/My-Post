@@ -70,6 +70,10 @@ public class PostManagerImpl implements PostManager {
 		Update insertEmail = new Update().set("emailList." +deal.getUser().getId(),deal.getUser().getEmail());
 		postDao.addDeal(query, insertEmail);
 	}
+	@Override
+	public void updatePost(Post post){
+		postDao.savePost(post);
+	}
 
 	@Override
 	public List<Post> search(String keyword) {
