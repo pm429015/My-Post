@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class PostManagerImpl implements PostManager {
 
@@ -28,6 +29,12 @@ public class PostManagerImpl implements PostManager {
 		Date timeStamp = Calendar.getInstance(TimeZone.getTimeZone("EST")).getTime();
 		post.setCreateDate(timeStamp);
 		post.setLastModifiedDate(timeStamp);
+		
+		Calendar cal = Calendar.getInstance(); // creates calendar
+	    cal.setTime(new Date()); // sets calendar time/date
+	    cal.add(Calendar.HOUR_OF_DAY, 72); // adds one hour
+	    
+		post.setExpireDate(cal.getTime());
 		post.setViewCount(0);
 		Map<String, Deal> deals = new HashMap<String, Deal>();
 		post.setDeals(deals);

@@ -84,7 +84,7 @@ function finalSubmit(){
 	
 	$('.product-background')
 	.html(
-			'<div class="row postThanks"><div class="col-md-8 col-md-offset-2"><h1><center>You did a great job!</center></h1><h3><center>We will contact you once we find good deals for you.</center></h3><div class="col-md-6 text-center"><a href="mainp" ><button class="btn btn-primary btn-lg" type="button" >Request another deal</button></div></a><div class="col-md-6 text-center"><a href="arena"><button class="btn btn-danger btn-lg" type="button" >Go to our deal arena</button></a></div></div></div>');
+			'<div class="row postThanks"><div class="col-md-8 col-md-offset-2"><h1><center>You did a great job!</center></h1><h3><center>We will contact you once we find good deals for you.</center></h3><div class="col-md-12 text-center"><a href="home" ><button class="btn btn-primary btn-lg" type="button" >Request another deal</button></div></a></div></div></div>');
 
 	
 	$.ajax({
@@ -183,7 +183,7 @@ $(document).ready(function() {
 	            '<div class="form-group">'+
 	             '<h3 class="col-md-3 control-label" for="Uname">Name:</h3>'+
 	             '<div class="col-md-5">'+
-	                '<input id="Uname" name="Uname" type="text" placeholder="John" class="form-control"></input>'+
+	                '<input id="Uname" name="Uname" type="text" placeholder="Your name" class="form-control"></input>'+
 	                '<label class="error" for="Uname" id="Uname_error" hidden><font color="red">No Emtpy Field.</font></label>'+
 	              '</div>'+
 	            '</div>'+

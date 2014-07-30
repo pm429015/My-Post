@@ -21,6 +21,7 @@ public class Post {
 	private String active;
 	private Date lastModifiedDate;
 	private Date createDate;
+	private Date expireDate;
 	private Map<String, String> emailList;
 	private int viewCount;
 
@@ -113,5 +114,11 @@ public class Post {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+	public Date getExpireDate() {
+		return expireDate;
+	}
+	public void setExpireDate(Date expireDate) {
+		this.expireDate = expireDate;
 	}
 }

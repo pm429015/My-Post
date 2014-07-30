@@ -28,6 +28,11 @@ function expand(index, dealerID) {
 function commentSubmit(dealID, index) {
 	
 		var token = getCookie("token");
+		// if post has been terminal and a dealer wants to comment, no no
+		if (!checkStatus() && token != $("#userID").text()) {
+			$('#locked').modal('show');
+			return false;
+		}
 		var comment = $("#comment" + index).val();
 	
 		if (comment) {
@@ -54,7 +59,10 @@ function commentSubmit(dealID, index) {
 }
 
 function dealSubmit(){
-	
+	if (checkStatus()) {
+		
+		return false;
+	}
 	//Check deal header and content
 	if(!inputCheck("dealHeader") || !inputCheck("dealContent")){
 		return false;
@@ -138,7 +146,10 @@ function dealSubmit(){
 }
 
 function dealAndUserSubmit(){
-	
+	if (checkStatus()) {
+		
+		return false;
+	}
 	var token = getCookie("token");
 	
 	// if the user don't has the token
@@ -218,13 +229,23 @@ function chooseDeal(index){
 	}
 } 
 
-function joinBid(){
+function checkStatus(){
 	// Check the status of the post, disable deal when the buyer has chosen a deal
 	var status = $("#status").text().trim();
-	if (status == "Processing") {
+	if (status == "Expired") {
 		$('#locked').modal('show');
 		return false;
+	}else{
+		return true;
 	}
+}
+
+function joinBid(){
+	if (checkStatus()) {
+		
+		return false;
+	}
+	
 	//Check if the user has token
 	$("#postFight").hide();
 	$("#bidwell")
@@ -265,6 +286,7 @@ function joinBid(){
 					'</div></center>');
 }
 
+
 $(function() {
 	//Default hide all replies
 	$(".replies").hide();
@@ -282,7 +304,6 @@ $(function() {
 		$('.selectBT').hide();
 
 	}
-	
 	
 	
 	

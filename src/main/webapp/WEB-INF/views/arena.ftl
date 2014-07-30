@@ -43,7 +43,7 @@
 										<#else>
 											<#assign content = post.description>
 										</#if>-->
-										<td><p id="postContent" >${post.createDate?date}</p></td>
+										<td><iframe src="http://free.timeanddate.com/countdown/i49ggjda/n848/cf12/cm0/cu4/ct0/cs1/ca0/co0/cr0/ss0/cac000/cpc000/pcfff/tcfff/fs100/szw320/szh135/iso${post.expireDate?string("yyyy-MM-dd")}T${post.expireDate?string("HH:mm:ss")}" frameborder="0" width="103" height="30"></iframe>
 									</tr>
 									</#list>
 								</tbody>

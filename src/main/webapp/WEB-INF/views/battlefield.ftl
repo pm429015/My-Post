@@ -38,8 +38,8 @@
                 				</tr>
                 				
                 				<tr>
-                					<td><p>Request Time:</p></td>
-                					<td><p>${post.createDate?datetime}</p></td>
+                					<td><p>Remining Time:</p></td>
+                					<td><iframe src="http://free.timeanddate.com/countdown/i49ggjda/n848/cf12/cm0/cu4/ct0/cs1/ca0/co0/cr0/ss0/cac000/cpc000/pcfff/tcfff/fs100/szw320/szh135/iso${post.expireDate?string("yyyy-MM-dd")}T${post.expireDate?string("HH:mm:ss")}" frameborder="0" width="103" height="30"></iframe>
                 				</tr>
                 				
                 				
@@ -164,7 +164,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-					<h3 style="color:black">Sorry, the buyer has chosen the best deal.</h3>
+					<h3 style="color:black">Sorry, the requet has been processed.</h3>
 				</div>
 			<div class="modal-footer">
 				<button type="button" data-dismiss="modal" class="btn">OK</button>
