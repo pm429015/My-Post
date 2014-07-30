@@ -50,11 +50,12 @@ public class PostController {
 	@RequestMapping(value="about")
 	public ModelAndView about(){
 		Map<String, Object> model = new HashMap<String, Object>();
-		Zip zip = zipManager.findByZip("35004");
+		Zip zip = zipManager.findByZip("81153");
 		System.out.println("show: lat:"+zip.getLatitude()+"  long:"+zip.getLongitude());
+		List<Double> ranges = ZipSearch.search(zip.getLatitude(),zip.getLongitude(), 25.0);
 		
+		List<Zip> zips = zipManager.searchZips(ranges.get(0),ranges.get(1),ranges.get(2),ranges.get(3));
 		
-		List<Zip> zips = zipManager.searchZips(38.08, 37.93, -84.44, -84.62);
 		for (Zip zip2 : zips) {
 			System.out.println(zip2.getZipCode());
 		}
