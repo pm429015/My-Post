@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring />
 <#import "macro_new.ftl" as macro/>
 
-<title>DealArenas</title>
+<title>DealArenas.com - Get car dealers to compete for your new purchase </title>
 <@macro.showHeader />
 	<!-- Product Showcase -->
         <div class="product-showcase">
@@ -111,7 +111,7 @@
 						</p>
 					</li>
 					<li><p><b>Save quite a bit of money: </b> Having dealerships fighting for your request. You won't believe you can save more 
-								than $500.
+								than $2,000.
 						</p>
 					</li>
 					
