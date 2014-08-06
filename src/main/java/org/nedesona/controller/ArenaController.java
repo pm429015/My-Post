@@ -1,16 +1,11 @@
 package org.nedesona.controller;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TimeZone;
 
-import javax.crypto.SealedObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,6 +54,8 @@ public class ArenaController {
 	@Autowired
 	private SendMail reminderMail;
 	
+	String domain="http://localhost:8082/mypost/";
+	
 	@RequestMapping(value = "/arena")
 	public ModelAndView dealArena() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -73,17 +70,17 @@ public class ArenaController {
 		return new ModelAndView("howItWorks", model);
 	}
 	
-	@RequestMapping(value = "/bf")
-	public ModelAndView replyBack() {
-		Map<String, Object> model = new HashMap<String, Object>();
-		logger.warn("new email");
-		String postid = "53cff04ae4b01847a8c51863";
-		Deal deal = dealManager.viewById(postid);
-		
-		reminderMail.sending("oiehf+fdqg90t7muqdk@sharklasers.com", "Can you beat this price?", "One of dealers offers a deal with price: " + deal.getHeader() + "\n" + "Please provide a competitive price through this link <http://localhost:8082/mypost/53cefa98300447c8cc2dd7a1?token=" + deal.getUser().getId() + ">\n", "Thank you", false);
-		
-		return new ModelAndView("main_page", model);
-	}
+//	@RequestMapping(value = "/bf")
+//	public ModelAndView replyBack() {
+//		Map<String, Object> model = new HashMap<String, Object>();
+//		logger.warn("new email");
+//		String postid = "53cff04ae4b01847a8c51863";
+//		Deal deal = dealManager.viewById(postid);
+//		
+//		reminderMail.sending("oiehf+fdqg90t7muqdk@sharklasers.com", "Can you beat this price?", "One of dealers offers a deal with price: " + deal.getHeader() + "\n" + "Please provide a competitive price through this link <http://localhost:8082/mypost/53cefa98300447c8cc2dd7a1?token=" + deal.getUser().getId() + ">\n", "Thank you");
+//		
+//		return new ModelAndView("main_page", model);
+//	}
 	
 	@RequestMapping(value = "/unsubscribe")
 	public ModelAndView view(@RequestParam(value = "NID") String postID, @RequestParam(value = "token") String userID) {
@@ -161,7 +158,7 @@ public class ArenaController {
 			if (user != null) {
 				comment.setUser(user);
 				// Send to the dealer
-				reminderMail.sending(comment.getDeal().getUser().getEmail(), "A reply from the buyer", "The reply as follow:\n\n	" + comment.getContent() + "\n\n" + "Please reply through this link <http://localhost:8082/mypost/" + comment.getDeal().getRefPost() + "?token=" + forWhichDeal.getUser().getId() + ">\n", "Thank you, \n DealArenas.com \n\n", false);
+				reminderMail.sending(comment.getDeal().getUser().getEmail(), "A reply from the buyer", "Dear "+comment.getDeal().getUser().getUserName()+",\n\n"+"The reply as follow:\n\n	" + comment.getContent() + "\n\n" + "Please reply through this link <"+domain + comment.getDeal().getRefPost() + "?token=" + forWhichDeal.getUser().getId() + ">\n", "Thank you, \n DealArenas.com \n\n");
 				
 			} else {
 				// Check Buyer
@@ -171,7 +168,7 @@ public class ArenaController {
 					// Send to user
 					Post post = postManager.viewById(forWhichDeal.getRefPost());
 					if (!post.getActive().equals("Expired")) {
-						reminderMail.sending(post.getUser().getEmail(), "A reply from dealer:" + dealer.getUserName(), "The reply as follow:\n\n		" + comment.getContent() + "\n\n" + "Please reply through this link <http://localhost:8082/mypost/" + comment.getDeal().getRefPost() + "?token=" + post.getUser().getId() + ">\n", "Thank you, \n DealArenas.com \n\n", false);
+						reminderMail.sending(post.getUser().getEmail(), "A reply from dealer: " + dealer.getUserName(), "Dear "+post.getUser().getUserName()+",\n\n"+"The reply as follow:\n\n		" + comment.getContent() + "\n\n" + "Please reply through this link <"+domain+ comment.getDeal().getRefPost() + "?token=" + post.getUser().getId() + ">\n", "Thank you, \n DealArenas.com \n\n");
 					}
 					
 				} else {
@@ -260,9 +257,9 @@ public class ArenaController {
 			for (String key : emailStr.keySet()) {
 				// Skip dealer herself
 				if (!key.equals(dealer.getId())) {
-					reminderMail.sending(emailStr.get(key), "Can you beat this price?", 
-							"One of dealers offers a new deal on " + updatedPost.getYear() + " " + updatedPost.getColor() + " " + updatedPost.getTitle() + " " + updatedPost.getModel() + " with price: " + deal.getHeader() + "\n\n" + "Please go this link for details <http://localhost:8082/mypost/" + post.getId() + "?token=" + key + ">\n\n",
-							"Thank you, \n DealArenas.com \n\n Unsubscribe:<http://localhost:8082/mypost/unsubscribe?NID=" + post.getId() + "&token=" + key + ">\n\n", false);
+					reminderMail.sending(emailStr.get(key), "Can you beat this price?", "Dear "+dealer.getUserName()+",\n\n"+
+							"One of dealers offers a new deal on " + updatedPost.getYear() + " " + updatedPost.getColor() + " " + updatedPost.getTitle() + " " + updatedPost.getModel() + " with price: " + deal.getHeader() + "\n\n" + "Please go this link for details <"+domain+ post.getId() + "?token=" + key + ">\n\n",
+							"Thank you, \n DealArenas.com \n\n Unsubscribe:<"+domain+"unsubscribe?NID=" + post.getId() + "&token=" + key + ">\n\n");
 				}
 			}
 			
@@ -292,7 +289,8 @@ public class ArenaController {
 		if (selectedDeal != null) {
 			Post post = postManager.viewById(selectedDeal.getRefPost());
 			
-			reminderMail.sending(selectedDeal.getUser().getEmail(), "I'd like to finalize the deal with you", "Congratulation. The Buyer loves your offer of " + selectedDeal.getHeader() + " for " + post.getYear() + " " + post.getColor() + " " + post.getTitle() + " " + post.getModel() + "\n\n" + "To confirm the offer with the buyer, please go to <http://localhost:8082/mypost/confirm?payment=" + selectedDeal.getId() + "\n\n", "Thank you", false);
+			reminderMail.sending(selectedDeal.getUser().getEmail(), "I'd like to finalize the deal with you", "Dear "+selectedDeal.getUser().getUserName()+",\n\n"+"Congratulation. The buyer loves your offer of " + selectedDeal.getHeader() + " for " + post.getYear() + " " + post.getColor() + " " + post.getTitle() + " " + post.getModel() + "\n\n" + "To confirm the offer with the buyer, "
+					+ "please go to <"+domain+"confirm?payment=" + selectedDeal.getId() + "\n\n", "Thank you \nDealArenas.com \n\n");
 		} else {
 			logger.warn("Unknown deal");
 			return new ModelAndView("Error", model);

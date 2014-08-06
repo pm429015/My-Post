@@ -43,7 +43,7 @@
                 				</tr>
                 				
                 				
-                				<#if !post.description??> 
+                				<#if post.description??> 
                 				<tr>
                 					<td><p>More Info:</p></td>
                 					<td><p id="postContent" >${post.description}</p>

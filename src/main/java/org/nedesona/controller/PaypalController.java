@@ -9,12 +9,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.transaction.TransactionManager;
-
 import org.apache.log4j.Logger;
 import org.nedesona.beanInterface.SendMail;
-import org.nedesona.domain.Comment;
 import org.nedesona.domain.Deal;
 import org.nedesona.domain.Dealer;
 import org.nedesona.domain.Post;
@@ -29,7 +25,6 @@ import org.nedesona.utils.GenerateAccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -68,6 +63,8 @@ public class PaypalController {
 	
 	@Autowired
 	private DealerManager dealerManager;
+	
+	String domain="http://localhost:8082/mypost/";
 
 	InputStream is = PaypalController.class
 			.getResourceAsStream("/sdk_config.properties");
@@ -361,8 +358,8 @@ public class PaypalController {
 				
 				reminderMail.sending(buyer.getEmail(),
 				" Your car offer has been confirmed", "The dealer confirmed the offer of "+ deal.getHeader()+" for "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+"\n\n" +
-				"Offer Summary:\n"+completeDeal.toString()+"\n\n Bring this email with you to the dealership\n\n Share your friends how much you save with this offer <http://localhost:8082/mypost/"+post.getId()+">\n"
-				,"Congratulation \n DealArena.com <http://localhost:8082/mypost/>", false);
+				"Offer Summary:\n"+completeDeal.toString()+"\n\n Bring this email with you to the dealership\n\n Share your friends how much you save with this offer <"+domain+post.getId()+">\n"
+				,"Congratulation \n DealArena.com <"+domain+">");
 				postManager.updatePost(post.getId(), "status", "Processing");
 				dealManager.updateDeal(deal.getId(), "status", "paid");
 			} else {

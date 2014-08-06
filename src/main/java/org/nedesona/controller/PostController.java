@@ -47,6 +47,8 @@ public class PostController {
 	@Autowired
 	private ZipManager zipManager;
 	
+	String domain="http://localhost:8082/mypost/";
+	
 	@RequestMapping(value="about")
 	public ModelAndView about(){
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -159,9 +161,9 @@ public class PostController {
 							"Dear "+dealer.getUserName()+",\n\n"+"   I am in the marktet for a "+post.getYear()+" "+post.getColor()+" "+post.getTitle() +" "+post.getModel()+
 							" with in the next week. I am interested in hearing the lowest full out-the-door you can offer with no other taxes, fees and charges."+
 							" Price is my biggest factor. Also, "+post.getDescription()+". Other features are irrelevant. Again, full out-of-door price is requested"+
-							" so I can compare to offers from other dealers."+"\n\n Please response your message through this link <http://localhost:8082/mypost/"+post.getId()+"?token="+dealer.getId()+">", 
+							" so I can compare to offers from other dealers."+"\n\n Please response your message through this link <"+domain+post.getId()+"?token="+dealer.getId()+">", 
 							"\n\n Thank you for your help with this."
-							,false);
+							);
 				}
 				
 			}else{
